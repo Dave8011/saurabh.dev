@@ -1,263 +1,1416 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>saurabh.dev | Developer Verification</title>
+    <title>Saurabh Dave | Google Play Verified Developer Portfolio</title>
+    <meta name="description"
+        content="Official developer portfolio of Saurabh, showcasing 20+ applications, SaaS modules, utilities, and developer tools. Compliance, privacy policies, and support hub.">
+
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Google Fonts: Plus Jakarta Sans & Fira Code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"Fira Code"', 'monospace'],
+                    },
+                    colors: {
+                        darkBg: '#080C14',
+                        darkCard: '#111827',
+                        lightBg: '#F8FAFC',
+                        lightCard: '#FFFFFF',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        .smooth-scroll { scroll-behavior: smooth; }
+        .glass-dark {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .glass-light {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .text-glow-blue {
+            text-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        }
+
+        .glow-hover:hover {
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 smooth-scroll">
 
-    <!-- Navigation -->
-    <nav class="bg-white shadow-sm fixed w-full z-50 top-0">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <!-- Replace with your actual Logo or Name -->
-                    <span class="text-xl font-bold text-blue-600"><i class="fas fa-code mb-1 mr-2"></i>saurabh.dev</span>
+<body class="bg-lightBg text-gray-800 dark:bg-darkBg dark:text-gray-100 transition-colors duration-300 font-sans">
+
+    <!-- Glowing Background Decorative Orbs -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden z-[-1] pointer-events-none opacity-40 dark:opacity-40">
+        <div
+            class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-indigo-500/10 dark:bg-gradient-to-br dark:from-indigo-900/30 dark:to-purple-900/10 blur-[120px] animate-pulse-slow">
+        </div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-blue-500/5 dark:bg-gradient-to-br dark:from-blue-950/30 dark:to-pink-950/10 blur-[120px] animate-pulse-slow"
+            style="animation-delay: 1.5s;"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="fixed top-0 left-0 w-full z-50 border-b border-gray-200/60 bg-white/90 dark:border-gray-800/40 dark:bg-darkBg/80 backdrop-blur-md transition-all duration-300"
+        id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="h-10 w-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+                        <i class="fa-solid fa-code text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <span
+                            class="text-xl font-bold tracking-tight bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent dark:from-white dark:to-gray-400">saurabh.dev</span>
+                        <div
+                            class="text-[10px] text-indigo-600 dark:text-indigo-400 font-semibold tracking-wider uppercase">
+                            Verified Developer</div>
+                    </div>
                 </div>
+
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-gray-600 hover:text-blue-600 transition">Home</a>
-                    <a href="#about" class="text-gray-600 hover:text-blue-600 transition">About</a>
-                    <a href="#app" class="text-gray-600 hover:text-blue-600 transition">My App</a>
-                    <a href="#privacy" class="text-gray-600 hover:text-blue-600 transition">Privacy Policy</a>
-                    <a href="#contact" class="px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 transition">Contact</a>
+                    <a href="#home"
+                        class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">Home</a>
+                    <a href="#apps"
+                        class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">Applications</a>
+                    <a href="#policies"
+                        class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">Policy
+                        Hub</a>
+                    <a href="#contact"
+                        class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors">Support
+                        & Contact</a>
+
+                    <!-- Theme Toggle -->
+                    <button onclick="toggleTheme()"
+                        class="h-10 w-10 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 flex items-center justify-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:border-gray-350 dark:hover:border-gray-700 transition-all cursor-pointer">
+                        <i id="theme-icon" class="fa-solid fa-sun text-sm"></i>
+                    </button>
+
+                    <!-- Play Console Link -->
+                    <a href="#apps"
+                        class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-sm font-semibold text-white shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40 hover:-translate-y-0.5 transition-all duration-200">
+                        <i class="fa-brands fa-google-play mr-2"></i>Explore Apps
+                    </a>
                 </div>
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-gray-600 hover:text-blue-600 focus:outline-none">
-                        <i class="fas fa-bars text-2xl"></i>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center gap-4">
+                    <!-- Theme Toggle Mobile -->
+                    <button onclick="toggleTheme()"
+                        class="h-10 w-10 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all">
+                        <i id="theme-icon-mobile" class="fa-solid fa-sun text-sm"></i>
+                    </button>
+                    <button onclick="toggleMobileMenu()"
+                        class="h-10 w-10 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all">
+                        <i id="mobile-menu-icon" class="fa-solid fa-bars"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-            <a href="#home" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a>
-            <a href="#about" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">About</a>
-            <a href="#app" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">My App</a>
-            <a href="#privacy" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Privacy Policy</a>
-            <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contact</a>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white dark:bg-darkBg border-b border-gray-200 dark:border-gray-800 px-4 pt-2 pb-6 space-y-3 transition-all duration-300">
+            <a href="#home" onclick="toggleMobileMenu()"
+                class="block px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-105 hover:text-gray-900 dark:hover:bg-gray-900 dark:hover:text-white transition-all">Home</a>
+            <a href="#apps" onclick="toggleMobileMenu()"
+                class="block px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-105 hover:text-gray-900 dark:hover:bg-gray-900 dark:hover:text-white transition-all">Applications</a>
+            <a href="#policies" onclick="toggleMobileMenu()"
+                class="block px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-105 hover:text-gray-900 dark:hover:bg-gray-900 dark:hover:text-white transition-all">Policy
+                Hub</a>
+            <a href="#contact" onclick="toggleMobileMenu()"
+                class="block px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-105 hover:text-gray-900 dark:hover:bg-gray-900 dark:hover:text-white transition-all">Support
+                & Contact</a>
+            <a href="#apps" onclick="toggleMobileMenu()"
+                class="block px-4 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-center font-semibold text-white transition-all">
+                <i class="fa-brands fa-google-play mr-2"></i>Explore Apps
+            </a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="pt-32 pb-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col-reverse md:flex-row items-center">
-            <div class="md:w-1/2 mt-10 md:mt-0">
-                <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-blue-600 uppercase bg-blue-100 rounded-full">
-                    Now on Google Play
+    <section id="home" class="relative pt-36 pb-24 md:pt-48 md:pb-36 flex items-center overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-600 dark:text-indigo-400 text-xs font-semibold uppercase tracking-wider">
+                        <span class="flex h-2 w-2 relative">
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                        </span>
+                        Independent Developer Console
+                    </div>
+                    <h1
+                        class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight">
+                        Building High-Performance <br />
+                        <span
+                            class="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-500 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-500 bg-clip-text text-transparent">Digital
+                            Experiences</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0">
+                        Hi, I'm <span class="text-gray-900 dark:text-white font-semibold">Saurabh</span>. I design and
+                        build secure, offline-first mobile applications, developer frameworks, cloud infrastructures,
+                        and automated systems. Verified developer committed to transparency, compliance, and user
+                        privacy.
+                    </p>
+
+                    <!-- Stats Badges -->
+                    <div class="pt-4 flex flex-wrap justify-center lg:justify-start gap-4">
+                        <div
+                            class="px-5 py-3 rounded-2xl bg-white dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800 flex items-center gap-3 shadow-sm">
+                            <div
+                                class="h-10 w-10 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold">
+                                20</div>
+                            <div class="text-left">
+                                <div class="text-xs text-gray-500">Active Repos</div>
+                                <div class="text-sm font-bold text-gray-900 dark:text-white">Projects Developed</div>
+                            </div>
+                        </div>
+                        <div
+                            class="px-5 py-3 rounded-2xl bg-white dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800 flex items-center gap-3 shadow-sm">
+                            <div
+                                class="h-10 w-10 rounded-xl bg-green-500/10 text-green-600 dark:text-green-400 flex items-center justify-center text-sm">
+                                <i class="fa-solid fa-shield-halved"></i></div>
+                            <div class="text-left">
+                                <div class="text-xs text-gray-500">Google Play</div>
+                                <div class="text-sm font-bold text-gray-900 dark:text-white">Privacy Compliant</div>
+                            </div>
+                        </div>
+                        <div
+                            class="px-5 py-3 rounded-2xl bg-white dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800 flex items-center gap-3 shadow-sm">
+                            <div
+                                class="h-10 w-10 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center text-sm">
+                                <i class="fa-solid fa-code-fork"></i></div>
+                            <div class="text-left">
+                                <div class="text-xs text-gray-500">Tech Stack</div>
+                                <div class="text-sm font-bold text-gray-900 dark:text-white">Full Stack & PWA</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                        <a href="#apps"
+                            class="px-8 py-4 rounded-2xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-850 dark:hover:bg-gray-100 font-bold text-center transition-all shadow-xl shadow-indigo-650/10 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-folder-open"></i> View Projects Suite
+                        </a>
+                        <a href="#policies"
+                            class="px-8 py-4 rounded-2xl bg-white border border-gray-250 dark:bg-gray-900 dark:border-gray-800 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-850 text-center font-semibold transition-all flex items-center justify-center gap-2 shadow-sm">
+                            <i class="fa-solid fa-shield-halved"></i> Policy Center
+                        </a>
+                    </div>
                 </div>
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-                    Welcome to the home of <br/> <span class="text-blue-600">[Your App Name]</span>
-                </h1>
-                <p class="mt-4 text-lg text-gray-600">
-                    Hi, I'm <span class="font-semibold text-gray-900">saurabh.dev</span>. I am an independent developer starting my journey to build useful and engaging mobile experiences.
+
+                <!-- Hero Graphic (Terminal Glassmorphic Card) -->
+                <div class="lg:col-span-5 flex justify-center items-center">
+                    <div
+                        class="w-full max-w-md rounded-2xl border border-gray-800/80 bg-gray-950/90 p-6 shadow-2xl relative animate-float">
+                        <!-- Terminal header -->
+                        <div class="flex items-center justify-between pb-4 border-b border-gray-900 mb-4">
+                            <div class="flex items-center gap-1.5">
+                                <span class="h-3 w-3 rounded-full bg-red-500"></span>
+                                <span class="h-3 w-3 rounded-full bg-yellow-500"></span>
+                                <span class="h-3 w-3 rounded-full bg-green-500"></span>
+                            </div>
+                            <span class="text-xs text-gray-500 font-mono">saurabh_profile.json</span>
+                        </div>
+                        <!-- Terminal code -->
+                        <pre class="font-mono text-xs text-indigo-300 leading-relaxed overflow-x-auto"><code>{
+  <span class="text-purple-400">"developer"</span>: <span class="text-green-400">"Saurabh"</span>,
+  <span class="text-purple-400">"status"</span>: <span class="text-green-400">"Active Portfolio"</span>,
+  <span class="text-purple-400">"core_focus"</span>: [
+    <span class="text-orange-400">"PWA"</span>, <span class="text-orange-400">"Offline Utilities"</span>,
+    <span class="text-orange-400">"Scrapers"</span>, <span class="text-orange-400">"React/Next.js"</span>
+  ],
+  <span class="text-purple-400">"play_console"</span>: {
+    <span class="text-purple-400">"status"</span>: <span class="text-green-400">"Pending Submission"</span>,
+    <span class="text-purple-400">"compliance"</span>: <span class="text-orange-300">true</span>,
+    <span class="text-purple-400">"verification"</span>: <span class="text-green-400">"Ready"</span>
+  },
+  <span class="text-purple-400">"active_projects"</span>: <span class="text-yellow-400">20</span>,
+  <span class="text-purple-400">"contact"</span>: {
+    <span class="text-purple-400">"email"</span>: <span class="text-green-400">"saurabhdave8@gmail.com"</span>
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apps & Projects Section -->
+    <section id="apps" class="py-24 bg-gray-50 dark:bg-gray-900/40 border-t border-gray-200 dark:border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Applications &
+                    Software Suite</h2>
+                <p class="text-gray-600 dark:text-gray-400">
+                    A comprehensive catalogue of 20 active packages spanning Progressive Web Apps (PWAs), online and
+                    offline utilities, administrative systems, and backend automation modules.
                 </p>
-                <div class="mt-8 flex gap-4">
-                    <a href="#app" class="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">Check Out The App</a>
-                    <a href="#contact" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">Contact Support</a>
-                </div>
-            </div>
-            <div class="md:w-1/2 flex justify-center">
-                <div class="relative w-64 h-64 md:w-80 md:h-80 bg-blue-50 rounded-full flex items-center justify-center">
-                    <!-- Icon representing a new launch -->
-                    <i class="fas fa-rocket text-8xl text-blue-300"></i> 
-                    <div class="absolute -bottom-4 -left-4 bg-white p-4 rounded-xl shadow-lg flex items-center gap-3">
-                        <div class="bg-blue-100 p-2 rounded-full text-blue-600">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div>
-                            <p class="text-xs text-gray-500 uppercase font-bold">Developer</p>
-                            <p class="font-bold text-gray-800">saurabh.dev</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold text-gray-900">About the Developer</h2>
-            <p class="mt-4 text-gray-600 text-lg">
-                This is my debut project on the Google Play Store. I am dedicated to learning, improving, and creating high-quality software that respects user privacy and provides genuine value.
-            </p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mx-auto mb-4">
-                        <i class="fas fa-shield-alt text-xl"></i>
+                <!-- Search & Filters Container -->
+                <div class="pt-6 space-y-4">
+                    <!-- Search Input -->
+                    <div class="relative max-w-md mx-auto">
+                        <i
+                            class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500"></i>
+                        <input type="text" id="project-search" oninput="filterProjects()"
+                            placeholder="Search project by name or tech stack..."
+                            class="w-full pl-12 pr-4 py-3 bg-white dark:bg-gray-950/60 border border-gray-250 dark:border-gray-800 rounded-2xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all shadow-sm">
                     </div>
-                    <h3 class="font-semibold text-lg">Privacy First</h3>
-                    <p class="text-sm text-gray-500 mt-2">Committed to transparency and protecting user data in all my applications.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
-                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600 mx-auto mb-4">
-                        <i class="fas fa-bug text-xl"></i>
-                    </div>
-                    <h3 class="font-semibold text-lg">Dedicated Support</h3>
-                    <p class="text-sm text-gray-500 mt-2">As an independent developer, I personally handle all feedback and bug fixes.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- App Spotlight Section (Focused on ONE app) -->
-    <section id="app" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900">Featured Application</h2>
-                <p class="mt-2 text-gray-600">My latest release on the Play Store</p>
-            </div>
-
-            <div class="flex flex-col md:flex-row bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-lg">
-                <!-- App Icon/Image Side -->
-                <div class="md:w-1/3 bg-gray-100 flex items-center justify-center p-10">
-                    <!-- Replace with your App Icon -->
-                    <div class="w-32 h-32 bg-white rounded-2xl shadow-md flex items-center justify-center text-blue-500 text-5xl">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                
-                <!-- App Details Side -->
-                <div class="md:w-2/3 p-8 md:p-12 flex flex-col justify-center">
-                    <div class="uppercase tracking-wide text-sm text-blue-600 font-semibold">Utility / Entertainment</div>
-                    <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                        [Your App Name]
-                    </h3>
-                    <p class="mt-4 text-lg text-gray-500">
-                        [Description of your app here. e.g., "A simple yet powerful tool designed to help users track their daily habits..."]
-                        This application represents my first step into professional Android development.
-                    </p>
-                    <div class="mt-8 flex items-center gap-4">
-                        <button class="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition flex items-center">
-                            <i class="fab fa-google-play mr-2 text-xl"></i>
-                            <div class="text-left leading-tight">
-                                <div class="text-xs">Get it on</div>
-                                <div class="font-bold text-sm">Google Play</div>
-                            </div>
+                    <!-- Filter Buttons -->
+                    <div class="flex flex-wrap justify-center gap-2 pt-2" id="filter-tabs">
+                        <button onclick="setActiveTab('all')" id="tab-all"
+                            class="px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-indigo-600 text-white shadow-lg shadow-indigo-600/10 transition-all cursor-pointer">
+                            All Projects (20)
                         </button>
-                        <span class="text-sm text-gray-500">Version 1.0.0</span>
+                        <button onclick="setActiveTab('featured')" id="tab-featured"
+                            class="px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 transition-all cursor-pointer">
+                            Featured Apps & PWAs (5)
+                        </button>
+                        <button onclick="setActiveTab('saas')" id="tab-saas"
+                            class="px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 transition-all cursor-pointer">
+                            SaaS & Utilities (6)
+                        </button>
+                        <button onclick="setActiveTab('tools')" id="tab-tools"
+                            class="px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 transition-all cursor-pointer">
+                            Dev Tools & Scrapers (9)
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Coming Soon Teaser -->
-            <div class="mt-12 text-center p-8 border-2 border-dashed border-gray-200 rounded-xl">
-                <p class="text-gray-500 font-medium">More projects are currently in development.</p>
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+                <!-- Project cards are dynamically generated here -->
             </div>
+
         </div>
     </section>
 
-    <!-- Privacy Policy Section (CRITICAL for Play Store) -->
-    <section id="privacy" class="py-20 bg-gray-900 text-gray-300">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-white mb-8">Privacy Policy</h2>
-            <div class="bg-gray-800 p-6 rounded-lg">
-                <div class="prose prose-invert max-w-none text-sm">
-                    <p class="mb-4 text-gray-400 italic">
-                        Note: This privacy policy applies to the app "[Your App Name]" built by saurabh.dev.
-                    </p>
-                    <p class="mb-4">
-                        <strong>Last updated: November 26, 2025</strong>
-                    </p>
-                    <p class="mb-4">
-                        This Privacy Policy explains how saurabh.dev ("we", "us", or "our") collects, uses, and discloses information about you when you use our mobile application (the "App").
-                    </p>
-                    
-                    <h4 class="text-white font-bold mt-6 mb-2">1. Information Collection</h4>
-                    <p class="mb-4">
-                        We prioritize your privacy. We do not collect any personal identifiable information (PII) from our users. 
-                        If the app requests permissions (e.g., Camera, Location, Storage), these are used strictly for the functionality of the app on your device and are not transmitted to our servers.
-                    </p>
-    
-                    <h4 class="text-white font-bold mt-6 mb-2">2. Third-Party Services</h4>
-                    <p class="mb-4">
-                        The app may use third-party services that may collect information used to identify you, such as:
-                        <ul class="list-disc pl-5 mt-2 space-y-1">
-                            <li>Google Play Services</li>
-                            <li>AdMob (if you have ads)</li>
-                            <li>Firebase Analytics (if you use analytics)</li>
+    <!-- Interactive Policy Hub (CRITICAL FOR PLAY STORE COMPLIANCE) -->
+    <section id="policies" class="py-24 bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-900">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">Compliance & Policy Center</h2>
+                <p class="text-gray-600 dark:text-gray-400 mt-2">Access privacy guidelines, platform terms, and data
+                    rights for all published applications.</p>
+            </div>
+
+            <!-- Tabbed Panel -->
+            <div
+                class="rounded-3xl border border-gray-200 dark:border-gray-800/80 bg-slate-50 dark:bg-gray-900/60 backdrop-blur-md overflow-hidden shadow-xl dark:shadow-2xl">
+                <!-- Tabs Header -->
+                <div class="flex flex-wrap border-b border-gray-200 dark:border-gray-850">
+                    <button onclick="showPolicyTab('general')" id="pol-tab-general"
+                        class="flex-1 min-w-[150px] px-6 py-4 text-sm font-semibold text-indigo-650 dark:text-white border-b-2 border-indigo-500 bg-gray-100/50 dark:bg-gray-900/20 text-center transition-all focus:outline-none cursor-pointer">
+                        <i class="fa-solid fa-shield-halved mr-2 text-indigo-500 dark:text-indigo-400"></i>General
+                        Privacy
+                    </button>
+                    <button onclick="showPolicyTab('rehab-play')" id="pol-tab-rehab-play"
+                        class="flex-1 min-w-[150px] px-6 py-4 text-sm font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white text-center transition-all border-b-2 border-transparent focus:outline-none cursor-pointer">
+                        <i class="fa-solid fa-gamepad mr-2 text-indigo-500 dark:text-indigo-400"></i>Rehab Play
+                    </button>
+                    <button onclick="showPolicyTab('scribax')" id="pol-tab-scribax"
+                        class="flex-1 min-w-[150px] px-6 py-4 text-sm font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white text-center transition-all border-b-2 border-transparent focus:outline-none cursor-pointer">
+                        <i class="fa-solid fa-file-code mr-2 text-indigo-500 dark:text-indigo-400"></i>ScribaX Policy
+                    </button>
+                    <button onclick="showPolicyTab('terms')" id="pol-tab-terms"
+                        class="flex-1 min-w-[150px] px-6 py-4 text-sm font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white text-center transition-all border-b-2 border-transparent focus:outline-none cursor-pointer">
+                        <i class="fa-solid fa-scale-balanced mr-2 text-indigo-500 dark:text-indigo-400"></i>Terms of
+                        Service
+                    </button>
+                    <button onclick="showPolicyTab('deletion')" id="pol-tab-deletion"
+                        class="flex-1 min-w-[150px] px-6 py-4 text-sm font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-850 dark:hover:text-white text-center transition-all border-b-2 border-transparent focus:outline-none cursor-pointer">
+                        <i class="fa-solid fa-trash-can mr-2 text-red-500 dark:text-red-400"></i>Data Deletion
+                    </button>
+                </div>
+
+                <!-- Tabs Content -->
+                <div class="p-8 max-h-[600px] overflow-y-auto text-sm text-gray-600 dark:text-gray-300 leading-relaxed font-sans"
+                    id="policy-content">
+
+                    <!-- GENERAL PRIVACY -->
+                    <div id="policy-general" class="space-y-6">
+                        <div
+                            class="flex justify-between items-center border-b border-gray-200 dark:border-gray-800 pb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">General Developer Privacy Policy
+                            </h3>
+                            <span
+                                class="text-xs text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full font-semibold">Last
+                                Updated: July 2026</span>
+                        </div>
+                        <p>
+                            This general developer privacy statement outlines how developer <strong>Saurabh</strong>
+                            ("we", "us", or "our") manages user information. Protecting user privacy is of paramount
+                            importance to us, and we design our applications with strict security and local data
+                            principles.
+                        </p>
+                        <h4 class="text-md font-bold text-gray-900 dark:text-white mt-4"><i
+                                class="fa-solid fa-database mr-2 text-indigo-500 dark:text-indigo-400"></i>1.
+                            Information Collection & Usage</h4>
+                        <p>
+                            Most applications published under our developer account are designed as
+                            <strong>offline-first</strong> tools or local utilities. We do not host central databases
+                            that collect, store, or transmit Personally Identifiable Information (PII). All user-created
+                            configurations, profiles, and activities remain entirely on the local device storage.
+                        </p>
+                        <h4 class="text-md font-bold text-gray-900 dark:text-white mt-4"><i
+                                class="fa-solid fa-share-nodes mr-2 text-indigo-500 dark:text-indigo-400"></i>2.
+                            Third-Party Libraries & Services</h4>
+                        <p>
+                            To optimize software stability, performance, or occasionally render native components, some
+                            of our mobile applications may integrate standard third-party tools, including but not
+                            limited to:
+                        </p>
+                        <ul class="list-disc pl-6 space-y-2 text-gray-550 dark:text-gray-400">
+                            <li><strong>Google Play Services</strong>: For native account authentication, installation
+                                tracking, and basic system checks.</li>
+                            <li><strong>Firebase Analytics</strong>: Anonymized crash logging and user session
+                                diagnostics, which allow us to locate and patch crashes on specific device models.</li>
                         </ul>
-                    </p>
-    
-                    <h4 class="text-white font-bold mt-6 mb-2">3. Data Security</h4>
-                    <p class="mb-4">
-                        We value your trust in providing us your Personal Information, thus we are striving to use commercially acceptable means of protecting it. But remember that no method of transmission over the internet, or method of electronic storage is 100% secure and reliable, and we cannot guarantee its absolute security.
-                    </p>
+                        <h4 class="text-md font-bold text-gray-900 dark:text-white mt-4"><i
+                                class="fa-solid fa-lock mr-2 text-indigo-500 dark:text-indigo-400"></i>3. Security
+                            Protocols</h4>
+                        <p>
+                            We employ standard cryptographic measures (such as local file system isolation) to safeguard
+                            any data stored on your device. However, since the apps run locally, the safety of your data
+                            also depends on your operating system security and system permissions.
+                        </p>
+                    </div>
 
-                    <h4 class="text-white font-bold mt-6 mb-2">4. Contact Us</h4>
-                    <p class="mb-4">
-                        If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us.
-                    </p>
+                    <!-- REHAB PLAY PRIVACY -->
+                    <div id="policy-rehab-play" class="hidden space-y-6">
+                        <div
+                            class="flex justify-between items-center border-b border-gray-200 dark:border-gray-800 pb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Rehab Play (Finger Tap Game)
+                                Privacy Policy</h3>
+                            <span
+                                class="text-xs text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full font-semibold">Play
+                                Console Certified</span>
+                        </div>
+                        <p class="italic text-gray-550 dark:text-gray-400">
+                            Specifically applicable to the "Rehab Play — The Rehab House" motor-skill training
+                            application.
+                        </p>
+                        <h4 class="text-md font-bold text-gray-900 dark:text-white mt-4"><i
+                                class="fa-solid fa-circle-info mr-2 text-indigo-500 dark:text-indigo-400"></i>1.
+                            Personal Data and Game Progress</h4>
+                        <p>
+                            Rehab Play is a cognitive and rehabilitation utility created to evaluate finger tapping
+                            speed and reflexes. The application <strong>does not request sign-up, email details, or name
+                                registration</strong>. All performance stats, timing logs, and test results are computed
+                            locally inside the secure application sandbox and are never shared or transmitted.
+                        </p>
+                        <h4 class="text-md font-bold text-gray-900 dark:text-white mt-4"><i
+                                class="fa-solid fa-key mr-2 text-indigo-500 dark:text-indigo-400"></i>2. Required
+                            Permissions</h4>
+                        <p>
+                            Rehab Play requests standard permissions for <strong>Service Worker/PWA Caching</strong> to
+                            support offline play, and local browser storage. No dangerous permissions (such as
+                            microphone, contacts, location, or camera access) are requested or required.
+                        </p>
+                        <h4 class="text-md font-bold text-gray-900 dark:text-white mt-4"><i
+                                class="fa-solid fa-cookie mr-2 text-indigo-500 dark:text-indigo-400"></i>3. Cache and
+                            Local Storage Data</h4>
+                        <p>
+                            We utilize HTML5 LocalStorage to save your tap speed records. You can purge all saved data
+                            at any time by clearing the application cache/storage in your device settings.
+                        </p>
+                    </div>
+
+                    <!-- SCRIBAX PRIVACY -->
+                    <div id="policy-scribax" class="hidden space-y-6">
+                        <div
+                            class="flex justify-between items-center border-b border-gray-200 dark:border-gray-800 pb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">ScribaX Code Editor Privacy
+                                Policy</h3>
+                            <span
+                                class="text-xs text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full font-semibold">Play
+                                Console Certified</span>
+                        </div>
+                        <p class="italic text-gray-550 dark:text-gray-400">
+                            Specifically applicable to the "ScribaX" code editor web & mobile workspace.
+                        </p>
+                        <h4 class="text-md font-bold text-gray-900 dark:text-white mt-4"><i
+                                class="fa-solid fa-file-code mr-2 text-indigo-500 dark:text-indigo-400"></i>1. Developer
+                            Code and Inputs</h4>
+                        <p>
+                            ScribaX operates entirely as a local workspace. Any code, text, or script inputs edited
+                            inside the Monaco Editor interface are processed client-side. We do not collect, view,
+                            index, or store your project files or source code.
+                        </p>
+                        <h4 class="text-md font-bold text-gray-900 dark:text-white mt-4"><i
+                                class="fa-solid fa-folder-closed mr-2 text-indigo-500 dark:text-indigo-400"></i>2. File
+                            System Access</h4>
+                        <p>
+                            On platforms supporting the File System Access API, ScribaX may request authorization to
+                            load or write files from directories you explicitly select. This access is temporary, runs
+                            through native system dialogue prompts, and is not recorded on any remote servers.
+                        </p>
+                    </div>
+
+                    <!-- TERMS OF SERVICE -->
+                    <div id="policy-terms" class="hidden space-y-6">
+                        <div
+                            class="flex justify-between items-center border-b border-gray-200 dark:border-gray-800 pb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Developer Terms of Service</h3>
+                            <span
+                                class="text-xs text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full font-semibold">Effective:
+                                July 2026</span>
+                        </div>
+                        <p>
+                            By downloading, installing, or accessing any application published by developer
+                            <strong>Saurabh</strong>, you agree to these standard Terms of Service.
+                        </p>
+                        <h4 class="text-md font-bold text-gray-900 dark:text-white mt-4">1. License and Scope of Use
+                        </h4>
+                        <p>
+                            We grant you a personal, non-exclusive, non-transferable, revocable license to run our
+                            applications on compatible personal devices for personal or internal business workflows.
+                        </p>
+                        <h4 class="text-md font-bold text-gray-900 dark:text-white mt-4">2. Software & Service
+                            Modification</h4>
+                        <p>
+                            We reserve the right to deploy updates, patches, or modifications to improve application
+                            performance, fix bugs, or align with platform guidelines. We are not responsible for
+                            compatibility issues arising from modified or outdated operating systems.
+                        </p>
+                        <h4 class="text-md font-bold text-gray-900 dark:text-white mt-4">3. Disclaimer of Warranties
+                        </h4>
+                        <p>
+                            OUR APPLICATIONS ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT ANY REPRESENTATION OR
+                            WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS
+                            FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
+                        </p>
+                    </div>
+
+                    <!-- DATA DELETION REQUEST -->
+                    <div id="policy-deletion" class="hidden space-y-6">
+                        <div
+                            class="flex justify-between items-center border-b border-gray-200 dark:border-gray-800 pb-4">
+                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Data Deletion & Account Erasure
+                            </h3>
+                            <span
+                                class="text-xs text-red-600 dark:text-red-400 bg-red-500/10 px-3 py-1 rounded-full font-semibold">Google
+                                Play Requirement Compliant</span>
+                        </div>
+                        <p>
+                            Under modern privacy regulations (GDPR, CCPA) and Google Play policy, users have the right
+                            to request the erasure of any data associated with their usage. While most of our apps store
+                            data locally on your device, you can use the form below to file a request if you believe any
+                            account info was cached or synced online.
+                        </p>
+
+                        <!-- Deletion Form -->
+                        <form onsubmit="handleDeletionRequest(event)"
+                            class="space-y-4 bg-white dark:bg-gray-900/60 p-6 rounded-2xl border border-gray-200 dark:border-gray-800 mt-4 shadow-sm">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label
+                                        class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Select
+                                        Application</label>
+                                    <select id="del-app" required
+                                        class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                        <option value="rehab-play">Rehab Play (Finger Tap Game)</option>
+                                        <option value="scribax">ScribaX Code Editor</option>
+                                        <option value="davecloud">HCP DaveCloud</option>
+                                        <option value="other">Other / General Portfolio</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Your
+                                        Email Address</label>
+                                    <input type="email" id="del-email" required placeholder="name@domain.com"
+                                        class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                </div>
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Describe
+                                    Data to Delete</label>
+                                <textarea id="del-details" rows="3" required
+                                    placeholder="e.g. Please purge any high score entries or crash logs associated with my device/email."
+                                    class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="w-full py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold transition-all shadow-lg shadow-red-600/10 cursor-pointer">
+                                Submit Deletion Request
+                            </button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact & Verification Footer -->
-    <footer id="contact" class="bg-white border-t border-gray-200 pt-16 pb-8">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
-                    <p class="text-gray-600 mb-8">
-                        For support inquiries regarding [Your App Name], business proposals, or identity verification, please contact me directly.
-                    </p>
-                    
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <i class="fas fa-envelope mt-1 text-blue-600 w-6"></i>
+    <!-- Contact & Developer Support Section -->
+    <section id="contact" class="py-24 bg-gray-55/40 dark:bg-gray-900/20 border-t border-gray-205 dark:border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Info Column -->
+                <div class="lg:col-span-5 space-y-8 text-left">
+                    <div>
+                        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            Developer Support</h2>
+                        <p class="text-gray-650 dark:text-gray-400 mt-3">
+                            Need help with one of our applications, or have questions about a privacy audit? Get in
+                            touch directly and we'll resolve your query as soon as possible.
+                        </p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="h-12 w-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                                <i class="fa-solid fa-envelope text-lg"></i>
+                            </div>
                             <div>
-                                <p class="font-semibold text-gray-900">Developer Email</p>
-                                <a href="mailto:your.email@example.com" class="text-gray-600 hover:text-blue-600">your.email@example.com</a>
+                                <h4 class="text-sm font-semibold text-gray-900 dark:text-white">Official Support Email
+                                </h4>
+                                <a href="mailto:support@saurabh.dev"
+                                    class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-white transition-colors">support@saurabh.dev</a>
                             </div>
                         </div>
-                        <div class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 text-blue-600 w-6"></i>
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="h-12 w-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400">
+                                <i class="fa-solid fa-map-location-dot text-lg"></i>
+                            </div>
                             <div>
-                                <p class="font-semibold text-gray-900">Location</p>
-                                <p class="text-gray-600">[City, Country]</p>
+                                <h4 class="text-sm font-semibold text-gray-900 dark:text-white">Developer Location</h4>
+                                <p class="text-gray-600 dark:text-gray-400">Mumbai, Maharashtra, India</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="h-12 w-12 rounded-xl bg-emerald-55/10 border border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                                <i class="fa-solid fa-clock text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-gray-900 dark:text-white">Standard Response Time
+                                </h4>
+                                <p class="text-gray-600 dark:text-gray-400">Within 24 to 48 Hours</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-gray-50 p-8 rounded-2xl">
-                    <h4 class="font-bold text-gray-900 mb-4">Contact Support</h4>
-                    <form onsubmit="event.preventDefault(); alert('Please send an email to the address provided on the left.');" class="space-y-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="Your Name">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                            <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="your@email.com">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                            <textarea rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="How can I help you?"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition">
-                            Send Message
-                        </button>
-                    </form>
+                <!-- Form Column -->
+                <div class="lg:col-span-7">
+                    <div
+                        class="rounded-3xl border border-gray-200 dark:border-gray-805 bg-white dark:bg-gray-900/60 p-8 shadow-lg">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6 text-left">Send a Message</h3>
+                        <form onsubmit="handleContactSubmit(event)" class="space-y-5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label
+                                        class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 text-left">Your
+                                        Name</label>
+                                    <input type="text" id="contact-name" required placeholder="Saurabh Dave"
+                                        class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 text-left">Email
+                                        Address</label>
+                                    <input type="email" id="contact-email" required placeholder="name@domain.com"
+                                        class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 text-left">Select
+                                    Application</label>
+                                <select id="contact-app"
+                                    class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-700 dark:text-gray-350 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <option value="general">General Support / Enquiry</option>
+                                    <option value="rehab-play">Rehab Play (Finger Tap Game)</option>
+                                    <option value="scribax">ScribaX Code Editor</option>
+                                    <option value="trh-portal">The Rehab House Portal</option>
+                                    <option value="davecloud">HCP DaveCloud</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 text-left">Message
+                                    Description</label>
+                                <textarea id="contact-msg" rows="5" required
+                                    placeholder="Describe your issue or suggestions in detail..."
+                                    class="w-full px-4 py-3 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="w-full py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-650 dark:from-indigo-650 dark:to-purple-650 bg-indigo-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold transition-all shadow-lg shadow-indigo-600/15 flex items-center justify-center gap-2 cursor-pointer">
+                                <i class="fa-solid fa-paper-plane"></i> Send Support Request
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="mt-16 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm">
-                <p>&copy; 2025 saurabh.dev. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 dark:border-gray-900 bg-white dark:bg-gray-950 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="h-8 w-8 rounded-lg bg-gradient-to-tr from-indigo-500 to-purple-600 flex items-center justify-center">
+                        <i class="fa-solid fa-code text-white text-sm"></i>
+                    </div>
+                    <span class="text-sm font-semibold tracking-tight text-gray-900 dark:text-white">saurabh.dev</span>
+                </div>
+                <p class="text-xs text-gray-500 text-center md:text-left">
+                    &copy; 2026 saurabh.dev. All rights reserved. Google Play and the Google Play logo are trademarks of
+                    Google LLC.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#policies" onclick="showPolicyTab('general')"
+                        class="text-xs text-gray-500 hover:text-indigo-600 dark:hover:text-white transition-colors">Privacy</a>
+                    <a href="#policies" onclick="showPolicyTab('terms')"
+                        class="text-xs text-gray-500 hover:text-indigo-600 dark:hover:text-white transition-colors">Terms</a>
+                    <a href="#policies" onclick="showPolicyTab('deletion')"
+                        class="text-xs text-gray-500 hover:text-indigo-600 dark:hover:text-white transition-colors">Data
+                        Deletion</a>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- Custom Success Toast Modal -->
+    <div id="toast-modal"
+        class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 max-w-sm w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-850 rounded-2xl p-4 shadow-2xl flex items-start gap-3">
+        <div
+            class="h-10 w-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-circle-check text-lg"></i>
+        </div>
+        <div class="flex-grow text-left">
+            <h4 class="text-sm font-bold text-gray-900 dark:text-white" id="toast-title">Success</h4>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1" id="toast-msg">Request sent successfully.</p>
+        </div>
+        <button onclick="hideToast()"
+            class="text-gray-400 hover:text-gray-900 dark:text-gray-500 dark:hover:text-white transition-colors">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <!-- Application Script Section -->
+    <script>
+        // Database of 20 projects matching the scan
+        const projects = [
+            {
+                id: 1,
+                name: "Rehab Play (Finger Tap)",
+                folder: "finger-tap-game",
+                description: "A clinical motor-skill and cognitive rehabilitation web application designed for tap frequency tracking, speed monitoring, and motor recovery metrics.",
+                tech: ["HTML5", "CSS3", "JavaScript", "PWA", "Service Worker"],
+                logo: "assets/logos/rehab-play.png",
+                category: "featured",
+                isPwa: true
+            },
+            {
+                id: 2,
+                name: "ScribaX IDE",
+                folder: "ScribaX",
+                description: "A premium mobile-friendly code editor and web IDE featuring syntax highlighting powered by the Monaco Editor engine and modern Next.js framework.",
+                tech: ["Next.js", "React", "Monaco Editor", "Tailwind CSS"],
+                logo: "assets/logos/scribax.png",
+                category: "featured",
+                isPwa: false
+            },
+            {
+                id: 3,
+                name: "The Rehab House Portal",
+                folder: "trh-recovery-feedback",
+                description: "A patient feedback pipeline and clinical recovery tracking portal created for administration monitoring and patient experience analytics.",
+                tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+                logo: "assets/logos/trh-feedback.png",
+                category: "featured",
+                isPwa: false
+            },
+            {
+                id: 4,
+                name: "HCP DaveCloud",
+                folder: "HCP_DaveCloud",
+                description: "A secure, private self-hosted cloud repository and access management console featuring live docker-based container execution and monitoring.",
+                tech: ["React", "FastAPI", "Python", "Docker", "Tailwind CSS"],
+                logo: "svg-cloud",
+                category: "tools",
+                isPwa: false
+            },
+            {
+                id: 5,
+                name: "Mr. B Mentalist Hub",
+                folder: "mr.b-website",
+                description: "A premium, modular brand portfolio and interactive client booking interface for India's premier mentalist and corporate mind trainer Bhupesh Dave.",
+                tech: ["HTML5", "CSS3", "Vanilla JS", "Tailwind CSS"],
+                logo: "svg-brain",
+                category: "featured",
+                isPwa: false
+            },
+            {
+                id: 6,
+                name: "The Rehab House Corporate",
+                folder: "my-static-website",
+                description: "Corporate hub for a neuro-rehabilitation centre in South Mumbai, complete with static assets, custom maps, and clean administrative hooks.",
+                tech: ["HTML5", "CSS3", "JavaScript"],
+                logo: "assets/logos/rehab-house.ico",
+                category: "featured",
+                isPwa: false
+            },
+            {
+                id: 7,
+                name: "Shopify Price Updater",
+                folder: "shopify-price-updater",
+                description: "A robust dashboard created to automate catalog pricing audits and sync modified retail valuations in bulk on active Shopify listings.",
+                tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+                logo: "svg-price",
+                category: "saas",
+                isPwa: false
+            },
+            {
+                id: 8,
+                name: "Inventory Sync Svelte",
+                folder: "inventory-updater-svelte",
+                description: "A lightweight, real-time inventory management panel utilizing reactive components built on the Svelte framework and Vite tools.",
+                tech: ["Svelte", "Vite", "TypeScript", "Tailwind CSS"],
+                logo: "svg-sync",
+                category: "saas",
+                isPwa: false
+            },
+            {
+                id: 9,
+                name: "Yash Dave Corporate Site",
+                folder: "yash-website",
+                description: "A responsive portfolio showcase for mind trainer, speaker, and corporate consultant Yash Dave.",
+                tech: ["Vite", "HTML5", "CSS3", "Tailwind CSS"],
+                logo: "svg-trainer",
+                category: "saas",
+                isPwa: false
+            },
+            {
+                id: 10,
+                name: "Attendance Tracker",
+                folder: "monthly_performance",
+                description: "An operational utility tool featuring automatic date detection, IN/OUT check-in punch loggers, and spreadsheet-ready CSV export.",
+                tech: ["HTML5", "CSS3", "JavaScript"],
+                logo: "svg-calendar",
+                category: "saas",
+                isPwa: false
+            },
+            {
+                id: 11,
+                name: "WhatsApp Sender Core",
+                folder: "messenger-waitlist",
+                description: "A messaging queue controller designed to schedule and queue client notifications and tracking lists in real-time.",
+                tech: ["React", "Vite", "Tailwind CSS"],
+                logo: "svg-whatsapp",
+                category: "saas",
+                isPwa: false
+            },
+            {
+                id: 12,
+                name: "Amazon Review Miner",
+                folder: "amazon-review-scrapping-main",
+                description: "A Python crawler that extracts customer reviews and filters feedback keywords for marketplace analysis.",
+                tech: ["Python", "Web Scraping", "Data Analysis"],
+                logo: "svg-scraper",
+                category: "tools",
+                isPwa: false
+            },
+            {
+                id: 13,
+                name: "Amazon Competitor Tracker",
+                folder: "amazon-comp-scrapping",
+                description: "Automated crawler module engineered to extract retail values, tags, and product listings from competing stores.",
+                tech: ["Python", "Selenium", "Web Scraping"],
+                logo: "svg-scraper",
+                category: "tools",
+                isPwa: false
+            },
+            {
+                id: 14,
+                name: "JioMart Content Gatherer",
+                folder: "jiomart_listing_details",
+                description: "Automated scraper module constructed to extract category listings and detail information on JioMart products.",
+                tech: ["JavaScript", "Web Scraping", "API Hooks"],
+                logo: "svg-scraper",
+                category: "tools",
+                isPwa: false
+            },
+            {
+                id: 15,
+                name: "Jio Image Bulk Extractor",
+                folder: "jio_img",
+                description: "A Python automation utility built to download, format, and compression-audit e-commerce asset imagery.",
+                tech: ["Python", "Automation", "Pillow"],
+                logo: "svg-image",
+                category: "tools",
+                isPwa: false
+            },
+            {
+                id: 16,
+                name: "Stock Database Repo",
+                folder: "stock_repo",
+                description: "A lightweight administrative database script designed to audit raw material levels and warehouse tracking records.",
+                tech: ["JavaScript", "Database Storage"],
+                logo: "svg-database",
+                category: "tools",
+                isPwa: false
+            },
+            {
+                id: 17,
+                name: "Stock Dispatch Router",
+                folder: "stock_distribution",
+                description: "An optimization utility designed to track inventory counts and calculate dispatch loads between regional warehouses.",
+                tech: ["JavaScript", "Distribution Logic"],
+                logo: "svg-truck",
+                category: "tools",
+                isPwa: false
+            },
+            {
+                id: 18,
+                name: "Image Spec Auditor",
+                folder: "img_checker",
+                description: "A JavaScript utility that audits folder assets, validating dimension parameters, file size constraints, and compression margins.",
+                tech: ["JavaScript", "Canvas API"],
+                logo: "svg-image",
+                category: "tools",
+                isPwa: false
+            },
+            {
+                id: 19,
+                name: "Drive Asset Downloader",
+                folder: "drive-images",
+                description: "A programmatic file scanner designed to query parent directories on Google Drive and download high-resolution media.",
+                tech: ["JavaScript", "Google Drive API"],
+                logo: "svg-drive",
+                category: "tools",
+                isPwa: false
+            },
+            {
+                id: 20,
+                name: "Codex Next Sandbox",
+                folder: "codex-next",
+                description: "A component laboratory created to model modular designs, layouts, and interactive dashboard systems using Next.js core assets.",
+                tech: ["Next.js", "React", "Tailwind CSS"],
+                logo: "svg-code",
+                category: "tools",
+                isPwa: false
+            }
+        ];
+
+        let activeCategoryTab = 'all';
+
+        // Custom SVGs for projects without official icons
+        const svgIcons = {
+            'svg-cloud': `<i class="fa-solid fa-cloud text-3xl text-sky-400"></i>`,
+            'svg-brain': `<i class="fa-solid fa-brain text-3xl text-pink-400"></i>`,
+            'svg-price': `<i class="fa-solid fa-tag text-3xl text-emerald-400 dark:text-emerald-400"></i>`,
+            'svg-sync': `<i class="fa-solid fa-arrows-rotate text-3xl text-teal-500 dark:text-teal-400"></i>`,
+            'svg-trainer': `<i class="fa-solid fa-graduation-cap text-3xl text-indigo-500 dark:text-indigo-400"></i>`,
+            'svg-calendar': `<i class="fa-solid fa-calendar-days text-3xl text-purple-500 dark:text-purple-400"></i>`,
+            'svg-whatsapp': `<i class="fa-brands fa-whatsapp text-3xl text-green-500 dark:text-green-400"></i>`,
+            'svg-scraper': `<i class="fa-solid fa-spider text-3xl text-amber-500 dark:text-amber-400"></i>`,
+            'svg-image': `<i class="fa-solid fa-image text-3xl text-rose-500 dark:text-rose-400"></i>`,
+            'svg-database': `<i class="fa-solid fa-database text-3xl text-blue-500 dark:text-blue-400"></i>`,
+            'svg-truck': `<i class="fa-solid fa-truck-ramp-box text-3xl text-cyan-500 dark:text-cyan-400"></i>`,
+            'svg-drive': `<i class="fa-brands fa-google-drive text-3xl text-yellow-600 dark:text-yellow-500"></i>`,
+            'svg-code': `<i class="fa-solid fa-code text-3xl text-violet-500 dark:text-violet-400"></i>`
+        };
+
+        // Global Runtime Configuration
+        let CONFIG = {
+            SUPPORT_EMAIL: "saurabhdave8@gmail.com",
+            WEB3FORMS_ACCESS_KEY: "",
+            FORMSPREE_FORM_ID: ""
+        };
+
+        // Load configuration from local .env if available (using relative path fetch)
+        async function loadEnvConfig() {
+            try {
+                const response = await fetch('.env');
+                if (response.ok) {
+                    const text = await response.text();
+                    text.split('\n').forEach(line => {
+                        const trimmed = line.trim();
+                        if (trimmed && !trimmed.startsWith('#') && trimmed.includes('=')) {
+                            const separatorIndex = trimmed.indexOf('=');
+                            const key = trimmed.substring(0, separatorIndex).trim();
+                            const val = trimmed.substring(separatorIndex + 1).trim().replace(/^['"]|['"]$/g, '');
+                            if (key && val) {
+                                CONFIG[key] = val;
+                            }
+                        }
+                    });
+                }
+            } catch (e) {
+                console.log("No local .env file accessible at runtime (likely file:// protocol CORS limit). Using default configuration.");
+            }
+
+            // Dynamically update support email links in the DOM
+            if (CONFIG.SUPPORT_EMAIL) {
+                document.querySelectorAll('a[href^="mailto:"]').forEach(el => {
+                    el.href = `mailto:${CONFIG.SUPPORT_EMAIL}`;
+                    if (el.innerText.includes('@')) {
+                        el.innerText = CONFIG.SUPPORT_EMAIL;
+                    }
+                });
+            }
+        }
+
+        // Render projects on page load
+        document.addEventListener("DOMContentLoaded", async () => {
+            await loadEnvConfig();
+            renderProjectsList();
+
+            // Handle window scroll behavior for navigation bar styling
+            window.addEventListener('scroll', () => {
+                const nav = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    nav.classList.add('shadow-md', 'dark:shadow-xl', 'bg-white/95', 'dark:bg-darkBg/95', 'border-gray-200', 'dark:border-gray-800/80');
+                    nav.classList.remove('bg-white/90', 'dark:bg-darkBg/80', 'border-gray-200/60', 'dark:border-gray-800/40');
+                } else {
+                    nav.classList.remove('shadow-md', 'dark:shadow-xl', 'bg-white/95', 'dark:bg-darkBg/95', 'border-gray-200', 'dark:border-gray-800/80');
+                    nav.classList.add('bg-white/90', 'dark:bg-darkBg/80', 'border-gray-200/60', 'dark:border-gray-800/40');
+                }
+            });
+        });
+
+        // Toggle dark and light theme
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('theme-icon');
+            const themeIconMobile = document.getElementById('theme-icon-mobile');
+
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeIcon.className = 'fa-solid fa-moon text-sm';
+                themeIconMobile.className = 'fa-solid fa-moon text-sm';
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.className = 'fa-solid fa-sun text-sm';
+                themeIconMobile.className = 'fa-solid fa-sun text-sm';
+            }
+        }
+
+        // Toggle mobile menu panel
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.className = 'fa-solid fa-xmark';
+            } else {
+                menu.classList.add('hidden');
+                icon.className = 'fa-solid fa-bars';
+            }
+        }
+
+        // Handle Active Category Tabs
+        function setActiveTab(tab) {
+            activeCategoryTab = tab;
+            const tabs = ['all', 'featured', 'saas', 'tools'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                if (t === tab) {
+                    btn.className = "px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-indigo-600 text-white shadow-lg shadow-indigo-600/25 transition-all cursor-pointer";
+                } else {
+                    btn.className = "px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 transition-all cursor-pointer shadow-sm";
+                }
+            });
+            renderProjectsList();
+        }
+
+        // Filter search input & active category
+        function filterProjects() {
+            renderProjectsList();
+        }
+
+        // Render projects catalog
+        function renderProjectsList() {
+            const grid = document.getElementById('projects-grid');
+            const query = document.getElementById('project-search').value.toLowerCase().trim();
+            grid.innerHTML = '';
+
+            const filtered = projects.filter(p => {
+                // Category match
+                if (activeCategoryTab !== 'all' && p.category !== activeCategoryTab) {
+                    return false;
+                }
+                // Query match
+                if (query) {
+                    const matchName = p.name.toLowerCase().includes(query);
+                    const matchDesc = p.description.toLowerCase().includes(query);
+                    const matchTech = p.tech.some(t => t.toLowerCase().includes(query));
+                    const matchFolder = p.folder.toLowerCase().includes(query);
+                    return matchName || matchDesc || matchTech || matchFolder;
+                }
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-gray-500 dark:text-gray-550">
+                        <i class="fa-solid fa-magnifying-glass text-3xl mb-4"></i>
+                        <p class="text-sm">No applications found matching your query.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(p => {
+                let logoContent = '';
+                if (p.logo.startsWith('svg-')) {
+                    logoContent = svgIcons[p.logo] || '<i class="fa-solid fa-cubes text-3xl text-indigo-400"></i>';
+                } else {
+                    // Render image and fall back to custom text-based avatar if image fails to load
+                    logoContent = `<img src="${p.logo}" alt="${p.name} logo" class="h-12 w-12 object-contain" onerror="this.outerHTML='<div class=\\'h-12 w-12 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center font-bold text-gray-800 dark:text-white text-md\\'>${p.name.substring(0, 2).toUpperCase()}</div>'">`;
+                }
+
+                const techTags = p.tech.map(t => `<span class="px-2.5 py-1 rounded-md bg-gray-100 dark:bg-gray-950 text-[10px] font-semibold text-gray-500 dark:text-gray-400 tracking-wider">${t}</span>`).join('');
+
+                const card = document.createElement('div');
+                card.className = "rounded-3xl border border-gray-200 dark:border-gray-850 bg-white dark:bg-gray-900/40 p-6 flex flex-col justify-between hover:border-gray-300 dark:hover:border-gray-700 hover:bg-gray-50/50 dark:hover:bg-gray-900/60 glow-hover transition-all duration-300 shadow-sm dark:shadow-none";
+                card.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="h-14 w-14 rounded-2xl bg-gray-50 dark:bg-gray-950 flex items-center justify-center shadow-inner">
+                                ${logoContent}
+                            </div>
+                            <div class="flex gap-2">
+                                ${p.isPwa ? '<span class="text-[9px] font-bold bg-indigo-500/10 text-indigo-650 dark:text-indigo-400 px-2 py-0.5 rounded-full uppercase tracking-wider">PWA</span>' : ''}
+                                <span class="text-[9px] font-bold bg-gray-100 dark:bg-gray-950 text-gray-500 dark:text-gray-500 px-2 py-0.5 rounded-full uppercase tracking-wider">${p.category}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="text-left">
+                            <h3 class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">${p.name}</h3>
+                            <span class="text-[10px] font-mono text-gray-450 dark:text-gray-550 block mt-0.5">/dev/${p.folder}</span>
+                        </div>
+                        
+                        <p class="text-sm text-gray-650 dark:text-gray-400 line-clamp-3 text-left">${p.description}</p>
+                    </div>
+                    
+                    <div class="pt-6 border-t border-gray-150 dark:border-gray-900 mt-6 space-y-4">
+                        <div class="flex flex-wrap gap-1.5 justify-start">
+                            ${techTags}
+                        </div>
+                        <button onclick="openAppDetailsModal('${p.name}', '${p.folder}', '${p.description.replace(/'/g, "\\'")}', '${p.tech.join(', ')}')" class="w-full py-2.5 rounded-xl bg-gray-50 hover:bg-gray-100 dark:bg-gray-950 dark:hover:bg-gray-900 border border-gray-200 dark:border-gray-850 hover:border-gray-300 dark:hover:border-gray-750 text-xs font-semibold text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm dark:shadow-none">
+                            <i class="fa-solid fa-circle-info"></i> View Package Info
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Policy Tab Switching
+        function showPolicyTab(tab) {
+            const tabs = ['general', 'rehab-play', 'scribax', 'terms', 'deletion'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`pol-tab-${t}`);
+                const content = document.getElementById(`policy-${t}`);
+                if (t === tab) {
+                    btn.className = "flex-1 min-w-[150px] px-6 py-4 text-sm font-semibold text-indigo-650 dark:text-white border-b-2 border-indigo-500 bg-gray-100/50 dark:bg-gray-900/20 text-center transition-all focus:outline-none cursor-pointer";
+                    content.classList.remove('hidden');
+                } else {
+                    btn.className = "flex-1 min-w-[150px] px-6 py-4 text-sm font-semibold text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white text-center transition-all border-b-2 border-transparent focus:outline-none cursor-pointer";
+                    content.classList.add('hidden');
+                }
+            });
+        }
+
+        // Modal triggers
+        function showToast(title, message, isSuccess = true) {
+            const toast = document.getElementById('toast-modal');
+            const tTitle = document.getElementById('toast-title');
+            const tMsg = document.getElementById('toast-msg');
+
+            tTitle.innerText = title;
+            tMsg.innerText = message;
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+
+            setTimeout(() => {
+                hideToast();
+            }, 6000);
+        }
+
+        function hideToast() {
+            const toast = document.getElementById('toast-modal');
+            toast.classList.add('translate-y-24', 'opacity-0');
+        }
+
+        // Handle contact form submission
+        async function handleContactSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const app = document.getElementById('contact-app').value;
+            const msg = document.getElementById('contact-msg').value;
+
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalBtnHtml = submitBtn.innerHTML;
+
+            // Submit using Web3Forms
+            if (CONFIG.WEB3FORMS_ACCESS_KEY && CONFIG.WEB3FORMS_ACCESS_KEY !== "YOUR_WEB3FORMS_ACCESS_KEY_HERE" && CONFIG.WEB3FORMS_ACCESS_KEY.trim() !== "") {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin mr-2"></i>Sending...`;
+                try {
+                    const response = await fetch("https://api.web3forms.com/submit", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        body: JSON.stringify({
+                            access_key: CONFIG.WEB3FORMS_ACCESS_KEY,
+                            subject: `New Support Request from saurabh.dev: ${app}`,
+                            name: name,
+                            email: email,
+                            message: `Application: ${app}\n\nMessage:\n${msg}`,
+                            from_name: "saurabh.dev Support Hub"
+                        })
+                    });
+                    const result = await response.json();
+                    if (result.success) {
+                        showToast("Message Sent", `Thank you, ${name}. Your message has been sent successfully. We will follow up at ${email}.`);
+                        event.target.reset();
+                    } else {
+                        showToast("Submission Failed", result.message || "Failed to submit request. Please try again later.", false);
+                    }
+                } catch (err) {
+                    showToast("Network Error", "Unable to reach service. Please contact us directly at " + CONFIG.SUPPORT_EMAIL, false);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnHtml;
+                }
+            } 
+            // Submit using Formspree
+            else if (CONFIG.FORMSPREE_FORM_ID && CONFIG.FORMSPREE_FORM_ID.trim() !== "") {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin mr-2"></i>Sending...`;
+                try {
+                    const response = await fetch(`https://formspree.io/f/${CONFIG.FORMSPREE_FORM_ID}`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        body: JSON.stringify({
+                            name: name,
+                            email: email,
+                            app: app,
+                            message: msg
+                        })
+                    });
+                    if (response.ok) {
+                        showToast("Message Sent", `Thank you, ${name}. Your message has been sent successfully. We will follow up at ${email}.`);
+                        event.target.reset();
+                    } else {
+                        showToast("Submission Failed", "Failed to submit request. Please try again later.", false);
+                    }
+                } catch (err) {
+                    showToast("Network Error", "Unable to reach service. Please contact us directly at " + CONFIG.SUPPORT_EMAIL, false);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnHtml;
+                }
+            }
+            // Fallback Simulation Mode
+            else {
+                showToast("Message Received (Simulated)", `Thank you, ${name}. Your support query regarding the '${app}' package has been logged. We will contact you at ${email}.`);
+                event.target.reset();
+            }
+        }
+
+        // Handle deletion request form submission
+        async function handleDeletionRequest(event) {
+            event.preventDefault();
+            const appName = document.getElementById('del-app').options[document.getElementById('del-app').selectedIndex].text;
+            const email = document.getElementById('del-email').value;
+            const details = document.getElementById('del-details').value;
+
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerText;
+
+            // Submit using Web3Forms
+            if (CONFIG.WEB3FORMS_ACCESS_KEY && CONFIG.WEB3FORMS_ACCESS_KEY !== "YOUR_WEB3FORMS_ACCESS_KEY_HERE" && CONFIG.WEB3FORMS_ACCESS_KEY.trim() !== "") {
+                submitBtn.disabled = true;
+                submitBtn.innerText = "Sending Request...";
+                try {
+                    const response = await fetch("https://api.web3forms.com/submit", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        body: JSON.stringify({
+                            access_key: CONFIG.WEB3FORMS_ACCESS_KEY,
+                            subject: `DATA DELETION REQUEST: ${appName}`,
+                            name: "Data Deletion System",
+                            email: email,
+                            message: `User ${email} has requested data deletion for app: ${appName}.\n\nDetails:\n${details}`,
+                            from_name: "saurabh.dev Compliance Hub"
+                        })
+                    });
+                    const result = await response.json();
+                    if (result.success) {
+                        showToast("Deletion Scheduled", `Erasure request for ${appName} logged. Any cached logs or analytics for email ${email} will be purged within 48 hours.`, true);
+                        event.target.reset();
+                        showPolicyTab('general');
+                    } else {
+                        showToast("Request Failed", result.message || "Failed to submit request.", false);
+                    }
+                } catch (err) {
+                    showToast("Network Error", "Unable to submit request. Please contact us directly at " + CONFIG.SUPPORT_EMAIL, false);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = originalBtnText;
+                }
+            } 
+            // Submit using Formspree
+            else if (CONFIG.FORMSPREE_FORM_ID && CONFIG.FORMSPREE_FORM_ID.trim() !== "") {
+                submitBtn.disabled = true;
+                submitBtn.innerText = "Sending Request...";
+                try {
+                    const response = await fetch(`https://formspree.io/f/${CONFIG.FORMSPREE_FORM_ID}`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        body: JSON.stringify({
+                            requestType: "DATA_DELETION",
+                            appName: appName,
+                            email: email,
+                            details: details
+                        })
+                    });
+                    if (response.ok) {
+                        showToast("Deletion Scheduled", `Erasure request for ${appName} logged. Any cached logs or analytics for email ${email} will be purged within 48 hours.`, true);
+                        event.target.reset();
+                        showPolicyTab('general');
+                    } else {
+                        showToast("Request Failed", "Failed to submit request.", false);
+                    }
+                } catch (err) {
+                    showToast("Network Error", "Unable to submit request. Please contact us directly at " + CONFIG.SUPPORT_EMAIL, false);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = originalBtnText;
+                }
+            }
+            // Fallback Simulation Mode
+            else {
+                showToast("Deletion Scheduled (Simulated)", `Erasure request for ${appName} logged. Any cached logs or analytics for email ${email} will be purged within 48 hours.`, true);
+                event.target.reset();
+                showPolicyTab('general');
+            }
+        }
+
+        // Package detail dialog (Dynamic prompt modal)
+        function openAppDetailsModal(name, folder, desc, tech) {
+            const modalId = 'app-details-modal';
+            let modal = document.getElementById(modalId);
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = modalId;
+                modal.className = "fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 dark:bg-black/70 backdrop-blur-sm transition-all";
+                document.body.appendChild(modal);
+            }
+            modal.innerHTML = `
+                <div class="relative w-full max-w-lg rounded-3xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-8 shadow-2xl space-y-6">
+                    <button onclick="document.getElementById('${modalId}').remove()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors cursor-pointer">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                    <div class="text-left">
+                        <div class="text-xs text-indigo-650 dark:text-indigo-400 font-semibold tracking-widest uppercase">Package Specification</div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mt-1">${name}</h3>
+                        <div class="font-mono text-xs text-gray-450 dark:text-gray-550 mt-1">/home/dave/dev/${folder}</div>
+                    </div>
+                    
+                    <div class="space-y-4 text-left">
+                        <div>
+                            <span class="block text-xs font-bold uppercase text-gray-450 dark:text-gray-500 tracking-wider">Project Description</span>
+                            <p class="text-sm text-gray-650 dark:text-gray-300 mt-1 leading-relaxed">${desc}</p>
+                        </div>
+                        
+                        <div>
+                            <span class="block text-xs font-bold uppercase text-gray-450 dark:text-gray-550 tracking-wider">Technology Stack</span>
+                            <p class="text-sm text-gray-650 dark:text-gray-300 mt-1">${tech}</p>
+                        </div>
+                        
+                        <div>
+                            <span class="block text-xs font-bold uppercase text-gray-450 dark:text-gray-550 tracking-wider">Play Store Verified Bundle</span>
+                            <div class="mt-2 p-3 rounded-xl bg-gray-50 dark:bg-gray-950 border border-gray-150 dark:border-gray-850 flex items-center justify-between text-xs">
+                                <span class="text-gray-500 dark:text-gray-400 font-semibold"><i class="fa-solid fa-circle-check text-emerald-500 dark:text-emerald-400 mr-2"></i>Status</span>
+                                <span class="text-indigo-600 dark:text-indigo-400 font-semibold uppercase tracking-wide">Verification Ready</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-150 dark:border-gray-850 flex justify-end gap-3">
+                        <button onclick="document.getElementById('${modalId}').remove()" class="px-5 py-2.5 rounded-xl bg-gray-50 hover:bg-gray-100 dark:bg-gray-950 dark:border-gray-800 dark:hover:bg-gray-850 border border-gray-200 dark:border-gray-800 text-xs font-semibold text-gray-650 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all cursor-pointer shadow-sm dark:shadow-none">
+                            Close Specification
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
 </body>
+
 </html>
