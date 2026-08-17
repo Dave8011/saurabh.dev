@@ -203,7 +203,7 @@
                             class="px-5 py-3 rounded-2xl bg-white dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800 flex items-center gap-3 shadow-sm">
                             <div
                                 class="h-10 w-10 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold">
-                                20</div>
+                                26</div>
                             <div class="text-left">
                                 <div class="text-xs text-gray-500">Active Repos</div>
                                 <div class="text-sm font-bold text-gray-900 dark:text-white">Projects Developed</div>
@@ -265,11 +265,11 @@
     <span class="text-orange-400">"Scrapers"</span>, <span class="text-orange-400">"React/Next.js"</span>
   ],
   <span class="text-purple-400">"play_console"</span>: {
-    <span class="text-purple-400">"status"</span>: <span class="text-green-400">"Pending Submission"</span>,
-    <span class="text-purple-400">"compliance"</span>: <span class="text-orange-300">true</span>,
-    <span class="text-purple-400">"verification"</span>: <span class="text-green-400">"Ready"</span>
+    <span class="text-purple-400">"status"</span>: <span class="text-green-400">"Live on Play Store"</span>,
+    <span class="text-purple-400">"app_id"</span>: <span class="text-green-400">"com.rehabhouse.trhgames"</span>,
+    <span class="text-purple-400">"compliance"</span>: <span class="text-orange-300">true</span>
   },
-  <span class="text-purple-400">"active_projects"</span>: <span class="text-yellow-400">20</span>,
+  <span class="text-purple-400">"active_projects"</span>: <span class="text-yellow-400">26</span>,
   <span class="text-purple-400">"contact"</span>: {
     <span class="text-purple-400">"email"</span>: <span class="text-green-400">"saurabhdave8@gmail.com"</span>
   }
@@ -289,7 +289,7 @@
                 <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Applications &
                     Software Suite</h2>
                 <p class="text-gray-600 dark:text-gray-400">
-                    A comprehensive catalogue of 20 active packages spanning Progressive Web Apps (PWAs), online and
+                    A comprehensive catalogue of 26 active packages spanning Progressive Web Apps (PWAs), online and
                     offline utilities, administrative systems, and backend automation modules.
                 </p>
 
@@ -308,7 +308,7 @@
                     <div class="flex flex-wrap justify-center gap-2 pt-2" id="filter-tabs">
                         <button onclick="setActiveTab('all')" id="tab-all"
                             class="px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-indigo-600 text-white shadow-lg shadow-indigo-600/10 transition-all cursor-pointer">
-                            All Projects (20)
+                            All Projects (26)
                         </button>
                         <button onclick="setActiveTab('featured')" id="tab-featured"
                             class="px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 transition-all cursor-pointer">
@@ -316,11 +316,11 @@
                         </button>
                         <button onclick="setActiveTab('saas')" id="tab-saas"
                             class="px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 transition-all cursor-pointer">
-                            SaaS & Utilities (6)
+                            SaaS & Utilities (7)
                         </button>
                         <button onclick="setActiveTab('tools')" id="tab-tools"
                             class="px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 transition-all cursor-pointer">
-                            Dev Tools & Scrapers (9)
+                            Dev Tools & Scrapers (14)
                         </button>
                     </div>
                 </div>
@@ -745,7 +745,7 @@
 
     <!-- Application Script Section -->
     <script>
-        // Database of 20 projects matching the scan
+        // Database of 26 projects matching active dev repositories
         const projects = [
             {
                 id: 1,
@@ -755,7 +755,9 @@
                 tech: ["HTML5", "CSS3", "JavaScript", "PWA", "Service Worker"],
                 logo: "assets/logos/rehab-play.png",
                 category: "featured",
-                isPwa: true
+                isPwa: true,
+                playStoreUrl: "https://play.google.com/store/apps/details?id=com.rehabhouse.trhgames",
+                policySlug: "rehab-play"
             },
             {
                 id: 2,
@@ -765,7 +767,8 @@
                 tech: ["Next.js", "React", "Monaco Editor", "Tailwind CSS"],
                 logo: "assets/logos/scribax.png",
                 category: "featured",
-                isPwa: false
+                isPwa: false,
+                policySlug: "scribax"
             },
             {
                 id: 3,
@@ -775,7 +778,8 @@
                 tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
                 logo: "assets/logos/trh-feedback.png",
                 category: "featured",
-                isPwa: false
+                isPwa: false,
+                policySlug: "rehab-house-portal"
             },
             {
                 id: 4,
@@ -785,7 +789,8 @@
                 tech: ["React", "FastAPI", "Python", "Docker", "Tailwind CSS"],
                 logo: "svg-cloud",
                 category: "tools",
-                isPwa: false
+                isPwa: false,
+                policySlug: "hcp-davecloud"
             },
             {
                 id: 5,
@@ -795,7 +800,8 @@
                 tech: ["HTML5", "CSS3", "Vanilla JS", "Tailwind CSS"],
                 logo: "svg-brain",
                 category: "featured",
-                isPwa: false
+                isPwa: false,
+                policySlug: "mrb-mentalist"
             },
             {
                 id: 6,
@@ -805,7 +811,8 @@
                 tech: ["HTML5", "CSS3", "JavaScript"],
                 logo: "assets/logos/rehab-house.ico",
                 category: "featured",
-                isPwa: false
+                isPwa: false,
+                policySlug: "rehab-house-corporate"
             },
             {
                 id: 7,
@@ -815,7 +822,8 @@
                 tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
                 logo: "svg-price",
                 category: "saas",
-                isPwa: false
+                isPwa: false,
+                policySlug: "shopify-price-updater"
             },
             {
                 id: 8,
@@ -825,7 +833,8 @@
                 tech: ["Svelte", "Vite", "TypeScript", "Tailwind CSS"],
                 logo: "svg-sync",
                 category: "saas",
-                isPwa: false
+                isPwa: false,
+                policySlug: "inventory-sync-svelte"
             },
             {
                 id: 9,
@@ -835,7 +844,8 @@
                 tech: ["Vite", "HTML5", "CSS3", "Tailwind CSS"],
                 logo: "svg-trainer",
                 category: "saas",
-                isPwa: false
+                isPwa: false,
+                policySlug: "yash-dave-site"
             },
             {
                 id: 10,
@@ -845,7 +855,8 @@
                 tech: ["HTML5", "CSS3", "JavaScript"],
                 logo: "svg-calendar",
                 category: "saas",
-                isPwa: false
+                isPwa: false,
+                policySlug: "attendance-tracker"
             },
             {
                 id: 11,
@@ -855,7 +866,8 @@
                 tech: ["React", "Vite", "Tailwind CSS"],
                 logo: "svg-whatsapp",
                 category: "saas",
-                isPwa: false
+                isPwa: false,
+                policySlug: "whatsapp-sender-core"
             },
             {
                 id: 12,
@@ -865,7 +877,8 @@
                 tech: ["Python", "Web Scraping", "Data Analysis"],
                 logo: "svg-scraper",
                 category: "tools",
-                isPwa: false
+                isPwa: false,
+                policySlug: "amazon-review-miner"
             },
             {
                 id: 13,
@@ -875,7 +888,8 @@
                 tech: ["Python", "Selenium", "Web Scraping"],
                 logo: "svg-scraper",
                 category: "tools",
-                isPwa: false
+                isPwa: false,
+                policySlug: "amazon-competitor-tracker"
             },
             {
                 id: 14,
@@ -885,7 +899,8 @@
                 tech: ["JavaScript", "Web Scraping", "API Hooks"],
                 logo: "svg-scraper",
                 category: "tools",
-                isPwa: false
+                isPwa: false,
+                policySlug: "jiomart-content-gatherer"
             },
             {
                 id: 15,
@@ -895,7 +910,8 @@
                 tech: ["Python", "Automation", "Pillow"],
                 logo: "svg-image",
                 category: "tools",
-                isPwa: false
+                isPwa: false,
+                policySlug: "jio-image-extractor"
             },
             {
                 id: 16,
@@ -905,7 +921,8 @@
                 tech: ["JavaScript", "Database Storage"],
                 logo: "svg-database",
                 category: "tools",
-                isPwa: false
+                isPwa: false,
+                policySlug: "stock-database-repo"
             },
             {
                 id: 17,
@@ -915,7 +932,8 @@
                 tech: ["JavaScript", "Distribution Logic"],
                 logo: "svg-truck",
                 category: "tools",
-                isPwa: false
+                isPwa: false,
+                policySlug: "stock-dispatch-router"
             },
             {
                 id: 18,
@@ -925,7 +943,8 @@
                 tech: ["JavaScript", "Canvas API"],
                 logo: "svg-image",
                 category: "tools",
-                isPwa: false
+                isPwa: false,
+                policySlug: "image-spec-auditor"
             },
             {
                 id: 19,
@@ -935,7 +954,8 @@
                 tech: ["JavaScript", "Google Drive API"],
                 logo: "svg-drive",
                 category: "tools",
-                isPwa: false
+                isPwa: false,
+                policySlug: "drive-asset-downloader"
             },
             {
                 id: 20,
@@ -945,7 +965,74 @@
                 tech: ["Next.js", "React", "Tailwind CSS"],
                 logo: "svg-code",
                 category: "tools",
-                isPwa: false
+                isPwa: false,
+                policySlug: "codex-next-sandbox"
+            },
+            {
+                id: 21,
+                name: "ISO → Bootable USB Creator",
+                folder: "bootable-maker",
+                description: "An interactive web & CLI utility for writing ISO images safely to removable USB storage drives with partition auto-unmounting, validation, and progress tracking.",
+                tech: ["HTML5", "CSS3", "JavaScript", "Bash", "Vercel"],
+                logo: "svg-usb",
+                category: "tools",
+                isPwa: false,
+                policySlug: "iso-bootable-usb-creator"
+            },
+            {
+                id: 22,
+                name: "Direct Wholesale Price Generator",
+                folder: "direct-price",
+                description: "An automated wholesale catalog and PDF pricelist generator powered by Node.js and Puppeteer to render CSV product feeds into print-ready PDF documents.",
+                tech: ["Node.js", "Puppeteer", "JavaScript", "CSV", "PDF"],
+                logo: "svg-pdf",
+                category: "saas",
+                isPwa: false,
+                policySlug: "direct-wholesale-price-generator"
+            },
+            {
+                id: 23,
+                name: "WebP Image Batch Converter",
+                folder: "img-conv",
+                description: "An automated Python image downloading and conversion utility designed to optimize e-commerce catalog imagery into high-compression WebP format.",
+                tech: ["Python", "Pillow", "Image Processing", "Automation"],
+                logo: "svg-image",
+                category: "tools",
+                isPwa: false,
+                policySlug: "webp-image-batch-converter"
+            },
+            {
+                id: 24,
+                name: "Google Sheets Combo Builder",
+                folder: "COMBUILDER",
+                description: "A Google Apps Script automation engine for building master/child SKU bundles, unit ratios, and dynamic combo listings for e-commerce OMS.",
+                tech: ["Google Apps Script", "JavaScript", "Google Sheets", "OMS"],
+                logo: "svg-sheets",
+                category: "tools",
+                isPwa: false,
+                policySlug: "google-sheets-combo-builder"
+            },
+            {
+                id: 25,
+                name: "Google Drive SKU Asset Sync",
+                folder: "IS0 DRIVE IMG",
+                description: "A Python and Google Apps Script bridge designed to scan parent Google Drive folders and link high-resolution asset images to e-commerce SKU feeds.",
+                tech: ["Python", "Google Apps Script", "Node.js", "Google Drive API"],
+                logo: "svg-drive",
+                category: "tools",
+                isPwa: false,
+                policySlug: "google-drive-sku-asset-sync"
+            },
+            {
+                id: 26,
+                name: "Timed Cards Opening Framework",
+                folder: "timed-cards-opening",
+                description: "An interactive card reveal animation and UI transition component framework built with GSAP, Vite, and modern CSS physics.",
+                tech: ["JavaScript", "GSAP", "CSS3", "Vite"],
+                logo: "svg-cards",
+                category: "tools",
+                isPwa: false,
+                policySlug: "timed-cards-opening-framework"
             }
         ];
 
@@ -965,7 +1052,11 @@
             'svg-database': `<i class="fa-solid fa-database text-3xl text-blue-500 dark:text-blue-400"></i>`,
             'svg-truck': `<i class="fa-solid fa-truck-ramp-box text-3xl text-cyan-500 dark:text-cyan-400"></i>`,
             'svg-drive': `<i class="fa-brands fa-google-drive text-3xl text-yellow-600 dark:text-yellow-500"></i>`,
-            'svg-code': `<i class="fa-solid fa-code text-3xl text-violet-500 dark:text-violet-400"></i>`
+            'svg-code': `<i class="fa-solid fa-code text-3xl text-violet-500 dark:text-violet-400"></i>`,
+            'svg-usb': `<i class="fa-solid fa-compact-disc text-3xl text-indigo-500 dark:text-indigo-400"></i>`,
+            'svg-pdf': `<i class="fa-solid fa-file-pdf text-3xl text-emerald-500 dark:text-emerald-400"></i>`,
+            'svg-sheets': `<i class="fa-solid fa-table-cells text-3xl text-teal-500 dark:text-teal-400"></i>`,
+            'svg-cards': `<i class="fa-solid fa-clone text-3xl text-purple-500 dark:text-purple-400"></i>`
         };
 
         // Global Runtime Configuration
@@ -1078,8 +1169,9 @@
             renderProjectsList();
         }
 
-        // Generate policy slug from project name
-        function generatePolicySlug(projectName) {
+        // Generate policy slug from project name or custom policySlug property
+        function generatePolicySlug(projectName, customSlug = '') {
+            if (customSlug) return customSlug;
             return projectName
                 .toLowerCase()
                 .replace(/\s*\([^)]*\)\s*/g, '') // Remove text in parentheses
@@ -1090,8 +1182,8 @@
         }
 
         // Copy policy link to clipboard
-        function copyPolicyLink(projectName) {
-            const slug = generatePolicySlug(projectName);
+        function copyPolicyLink(projectName, customSlug = '') {
+            const slug = generatePolicySlug(projectName, customSlug);
             const policyUrl = `https://saurabh-dev-five.vercel.app/policies/${slug}.html`;
             
             navigator.clipboard.writeText(policyUrl).then(() => {
@@ -1147,6 +1239,12 @@
 
                 const card = document.createElement('div');
                 card.className = "rounded-3xl border border-gray-200 dark:border-gray-850 bg-white dark:bg-gray-900/40 p-6 flex flex-col justify-between hover:border-gray-300 dark:hover:border-gray-700 hover:bg-gray-50/50 dark:hover:bg-gray-900/60 glow-hover transition-all duration-300 shadow-sm dark:shadow-none";
+                const playStoreBtn = p.playStoreUrl ? `
+                    <a href="${p.playStoreUrl}" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white border border-emerald-600 text-xs font-semibold transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm">
+                        <i class="fa-brands fa-google-play"></i> Play Store
+                    </a>
+                ` : '';
+
                 card.innerHTML = `
                     <div class="space-y-4">
                         <div class="flex items-center justify-between">
@@ -1154,6 +1252,7 @@
                                 ${logoContent}
                             </div>
                             <div class="flex gap-2">
+                                ${p.playStoreUrl ? '<span class="text-[9px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded-full uppercase tracking-wider flex items-center gap-1"><i class="fa-brands fa-google-play"></i> Live</span>' : ''}
                                 ${p.isPwa ? '<span class="text-[9px] font-bold bg-indigo-500/10 text-indigo-650 dark:text-indigo-400 px-2 py-0.5 rounded-full uppercase tracking-wider">PWA</span>' : ''}
                                 <span class="text-[9px] font-bold bg-gray-100 dark:bg-gray-950 text-gray-500 dark:text-gray-500 px-2 py-0.5 rounded-full uppercase tracking-wider">${p.category}</span>
                             </div>
@@ -1172,10 +1271,11 @@
                             ${techTags}
                         </div>
                         <div class="flex gap-2">
-                            <button onclick="copyPolicyLink('${p.name}')" class="flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white border border-indigo-600 hover:border-indigo-700 text-xs font-semibold transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm dark:shadow-none">
+                            ${playStoreBtn}
+                            <button onclick="copyPolicyLink('${p.name}', '${p.policySlug || ''}')" class="flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white border border-indigo-600 hover:border-indigo-700 text-xs font-semibold transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm dark:shadow-none">
                                 <i class="fa-solid fa-share-nodes"></i> Share Policy
                             </button>
-                            <button onclick="openAppDetailsModal('${p.name}', '${p.folder}', '${p.description.replace(/'/g, "\\'")}', '${p.tech.join(', ')}')" class="flex-1 py-2.5 rounded-xl bg-gray-50 hover:bg-gray-100 dark:bg-gray-950 dark:hover:bg-gray-900 border border-gray-200 dark:border-gray-850 hover:border-gray-300 dark:hover:border-gray-750 text-xs font-semibold text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm dark:shadow-none">
+                            <button onclick="openAppDetailsModal('${p.name}', '${p.folder}', '${p.description.replace(/'/g, "\\'")}', '${p.tech.join(', ')}', '${p.playStoreUrl || ''}')" class="flex-1 py-2.5 rounded-xl bg-gray-50 hover:bg-gray-100 dark:bg-gray-950 dark:hover:bg-gray-900 border border-gray-200 dark:border-gray-850 hover:border-gray-300 dark:hover:border-gray-750 text-xs font-semibold text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm dark:shadow-none">
                                 <i class="fa-solid fa-circle-info"></i> View Info
                             </button>
                         </div>
@@ -1391,7 +1491,7 @@
         }
 
         // Package detail dialog (Dynamic prompt modal)
-        function openAppDetailsModal(name, folder, desc, tech) {
+        function openAppDetailsModal(name, folder, desc, tech, playStoreUrl = '') {
             const modalId = 'app-details-modal';
             let modal = document.getElementById(modalId);
             if (!modal) {
@@ -1423,15 +1523,16 @@
                         </div>
                         
                         <div>
-                            <span class="block text-xs font-bold uppercase text-gray-450 dark:text-gray-550 tracking-wider">Play Store Verified Bundle</span>
+                            <span class="block text-xs font-bold uppercase text-gray-450 dark:text-gray-550 tracking-wider">Google Play Status</span>
                             <div class="mt-2 p-3 rounded-xl bg-gray-50 dark:bg-gray-950 border border-gray-150 dark:border-gray-850 flex items-center justify-between text-xs">
                                 <span class="text-gray-500 dark:text-gray-400 font-semibold"><i class="fa-solid fa-circle-check text-emerald-500 dark:text-emerald-400 mr-2"></i>Status</span>
-                                <span class="text-indigo-600 dark:text-indigo-400 font-semibold uppercase tracking-wide">Verification Ready</span>
+                                ${playStoreUrl ? `<a href="${playStoreUrl}" target="_blank" class="text-emerald-500 font-bold uppercase tracking-wide flex items-center gap-1 hover:underline"><i class="fa-brands fa-google-play"></i> Live on Google Play</a>` : `<span class="text-indigo-600 dark:text-indigo-400 font-semibold uppercase tracking-wide">Verification Ready</span>`}
                             </div>
                         </div>
                     </div>
 
                     <div class="pt-4 border-t border-gray-150 dark:border-gray-850 flex justify-end gap-3">
+                        ${playStoreUrl ? `<a href="${playStoreUrl}" target="_blank" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"><i class="fa-brands fa-google-play"></i> Open Play Store</a>` : ''}
                         <button onclick="document.getElementById('${modalId}').remove()" class="px-5 py-2.5 rounded-xl bg-gray-50 hover:bg-gray-100 dark:bg-gray-950 dark:border-gray-800 dark:hover:bg-gray-850 border border-gray-200 dark:border-gray-800 text-xs font-semibold text-gray-650 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all cursor-pointer shadow-sm dark:shadow-none">
                             Close Specification
                         </button>
