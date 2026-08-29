@@ -239,6 +239,48 @@
         .admin-tab-btn {
             margin-bottom: 4px;
         }
+
+        /* Cyber Vault Login & Professional Admin Panel CSS */
+        @keyframes vaultPulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(99, 102, 241, 0.25), inset 0 0 15px rgba(99, 102, 241, 0.15); }
+            50% { box-shadow: 0 0 50px rgba(99, 102, 241, 0.5), inset 0 0 25px rgba(99, 102, 241, 0.3); }
+        }
+        @keyframes keyholeSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes cardFlip3D {
+            0% { transform: perspective(1000px) rotateX(-20deg) scale(0.9); opacity: 0; }
+            100% { transform: perspective(1000px) rotateX(0deg) scale(1); opacity: 1; }
+        }
+        .animate-card-flip {
+            animation: cardFlip3D 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        .cyber-vault-card {
+            animation: vaultPulse 4s infinite ease-in-out;
+        }
+        .keyhole-glow {
+            transition: all 0.3s ease;
+        }
+
+        /* Live Edit Clickable Elements */
+        body.admin-live-active [data-admin-edit] {
+            cursor: pointer !important;
+            position: relative;
+        }
+        body.admin-live-active [data-admin-edit]:hover {
+            outline: 2px dashed #818cf8 !important;
+            outline-offset: 4px !important;
+            border-radius: 8px !important;
+            background-color: rgba(99, 102, 241, 0.08) !important;
+        }
+
+        /* Prevent Horizontal Scroll in App CRUD Modal */
+        #app-crud-modal .modal-content {
+            max-width: 600px;
+            width: 100%;
+            overflow-x: hidden;
+        }
     </style>
 </head>
 
@@ -929,115 +971,73 @@
     <!--            ADMIN PANEL MODALS             -->
     <!-- ========================================== -->
 
-            <!-- 1. Admin Login Modal (3D Interactive Briefcase & Agent Character Animation) -->
+                <!-- 1. Admin Login Modal (Ultra-Sleek 3D Cyber Lock Vault) -->
     <div id="admin-login-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-black/85 backdrop-blur-2xl transition-all duration-300">
-        
-        <!-- 3D Scene Wrapper -->
-        <div id="login-scene-wrapper" class="w-full max-w-lg relative flex flex-col items-center animate-briefcase-pop">
+        <div id="login-card-container" class="w-full max-w-md rounded-3xl border border-indigo-500/30 bg-gray-950/95 p-8 shadow-2xl space-y-6 relative overflow-hidden text-left cyber-vault-card animate-card-flip">
             
+            <!-- Floating Cyber Orbs -->
+            <div class="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-gradient-to-tr from-indigo-600/30 to-purple-600/30 blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-16 -left-16 w-44 h-44 rounded-full bg-gradient-to-tr from-emerald-600/20 to-indigo-600/20 blur-3xl pointer-events-none"></div>
+
             <!-- Close Button -->
-            <button onclick="closeAdminLoginModal()" class="absolute -top-10 right-2 text-gray-400 hover:text-white transition-colors cursor-pointer text-xl z-30">
+            <button onclick="closeAdminLoginModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white transition-colors cursor-pointer text-lg z-20">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
-            <!-- 3D Interactive Character & Briefcase Header -->
-            <div class="relative w-full flex items-end justify-center mb-[-24px] z-20 pointer-events-none" id="agent-character-stage">
-                
-                <!-- 3D Agent Character SVG -->
-                <div class="animate-char-idle relative flex items-end justify-center" id="agent-body-wrapper">
-                    <svg class="w-32 h-36 drop-shadow-2xl" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Agent Body Coat -->
-                        <path d="M30 75C30 65 38 55 60 55C82 55 90 65 90 75L95 135H25L30 75Z" fill="#1e1b4b" stroke="#4f46e5" stroke-width="2"/>
-                        <path d="M45 58L60 90L75 58" stroke="#818cf8" stroke-width="3" stroke-linecap="round"/>
-                        <path d="M54 75L60 85L66 75" fill="#ef4444"/> <!-- Red Tie -->
-                        
-                        <!-- Agent Head -->
-                        <rect x="40" y="18" width="40" height="38" rx="14" fill="#0f172a" stroke="#6366f1" stroke-width="3"/>
-                        
-                        <!-- Cool Agent Sunglasses / Visor -->
-                        <rect id="agent-glasses" x="44" y="28" width="32" height="14" rx="5" fill="#020617" stroke="#38bdf8" stroke-width="2"/>
-                        
-                        <!-- Glowing Agent Eyes -->
-                        <circle id="agent-eye-left" class="agent-eyes" cx="52" cy="35" r="3.5" fill="#38bdf8"/>
-                        <circle id="agent-eye-right" class="agent-eyes" cx="68" cy="35" r="3.5" fill="#38bdf8"/>
-                        <circle cx="53" cy="34" r="1" fill="#ffffff"/>
-                        <circle cx="69" cy="34" r="1" fill="#ffffff"/>
-
-                        <!-- Secret Agent Badge -->
-                        <rect x="70" y="80" width="12" height="16" rx="3" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"/>
-                        <circle cx="76" cy="88" r="3" fill="#1e1b4b"/>
-                        
-                        <!-- Agent Hands / Arms -->
-                        <g id="agent-hands-group" class="agent-hands">
-                            <circle cx="32" cy="95" r="7" fill="#312e81" stroke="#6366f1" stroke-width="2"/>
-                            <circle cx="88" cy="95" r="7" fill="#312e81" stroke="#6366f1" stroke-width="2"/>
-                        </g>
-                    </svg>
+            <!-- Cyber Shield Lock Header -->
+            <div class="flex flex-col items-center justify-center pt-2 text-center" id="vault-header-wrapper">
+                <div class="relative w-20 h-20 mb-3 flex items-center justify-center">
+                    <div class="absolute inset-0 rounded-2xl bg-indigo-600/20 border border-indigo-500/40 rotate-45 animate-pulse"></div>
+                    <div class="absolute inset-1 rounded-2xl bg-purple-600/20 border border-purple-500/30 -rotate-12"></div>
+                    
+                    <div id="vault-lock-icon" class="relative z-10 h-12 w-12 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-white text-xl shadow-lg shadow-indigo-600/40 transition-transform duration-300">
+                        <i class="fa-solid fa-shield-halved text-2xl"></i>
+                    </div>
                 </div>
+                
+                <h3 class="text-2xl font-extrabold text-white tracking-tight">Admin Security Console</h3>
+                <p class="text-xs text-indigo-400 font-medium mt-1">Enter master password to access site management</p>
             </div>
 
-            <!-- 3D Leather Vault Briefcase Login Form -->
-            <div id="login-card-container" class="w-full rounded-3xl border border-gray-200 dark:border-gray-800 bg-white/95 dark:bg-gray-900/95 p-8 shadow-2xl space-y-6 relative overflow-hidden text-left transition-all duration-300">
-                
-                <!-- Briefcase Metallic Latch Deco -->
-                <div class="flex items-center justify-between pb-2 border-b border-gray-200 dark:border-gray-800">
-                    <div class="flex items-center gap-2">
-                        <div class="h-3 w-3 rounded-full bg-amber-500 shadow-sm"></div>
-                        <span class="text-[11px] font-mono font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400">Security Vault Briefcase</span>
+            <!-- Login Form -->
+            <form onsubmit="handleAdminLoginSubmit(event)" class="space-y-5 relative z-10">
+                <div>
+                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Master Admin Key</label>
+                    <div class="relative">
+                        <input type="password" id="admin-login-password" required 
+                            placeholder="Enter password..."
+                            class="w-full px-4 py-3.5 bg-gray-900/90 border border-gray-800 rounded-2xl text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 pr-12 transition-all font-mono text-sm shadow-inner">
+                        <button type="button" onclick="togglePasswordVisibility('admin-login-password', this)" class="absolute right-3.5 top-3.5 text-gray-400 hover:text-white transition-colors">
+                            <i class="fa-solid fa-eye text-base"></i>
+                        </button>
                     </div>
-                    <div class="flex items-center gap-1.5 text-xs text-indigo-500 font-mono font-semibold">
-                        <i class="fa-solid fa-lock"></i> Encrypted
+                    
+                    <!-- Error Alert -->
+                    <div id="admin-login-error" class="hidden text-xs text-rose-400 font-semibold mt-2.5 flex items-center gap-2 p-3 rounded-xl bg-rose-500/10 border border-rose-500/20">
+                        <i class="fa-solid fa-triangle-exclamation text-sm"></i> <span id="admin-login-error-text">Invalid security key.</span>
+                    </div>
+
+                    <!-- Brute Force Lockout Banner -->
+                    <div id="admin-lockout-banner" class="hidden space-y-2 mt-2.5 p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs">
+                        <div class="flex items-center justify-between font-bold">
+                            <span><i class="fa-solid fa-lock mr-1"></i> Security Rate Lockout</span>
+                            <span id="lockout-timer-text">30s</span>
+                        </div>
+                        <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                            <div id="lockout-progress-bar" class="bg-amber-500 h-full w-full transition-all duration-1000"></div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Title Header -->
-                <div class="text-center pt-1">
-                    <h3 class="text-2xl font-extrabold text-gray-900 dark:text-white tracking-tight">Admin Authentication</h3>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Enter security key to unlock portfolio control center</p>
+                <div class="flex gap-3 pt-2">
+                    <button type="button" onclick="closeAdminLoginModal()" class="flex-1 py-3.5 rounded-2xl bg-gray-900 hover:bg-gray-800 text-gray-300 text-xs font-bold transition-all cursor-pointer border border-gray-800">
+                        Cancel
+                    </button>
+                    <button type="submit" id="admin-login-submit-btn" class="flex-1 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 transition-all cursor-pointer flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-key"></i> Authenticate
+                    </button>
                 </div>
-
-                <!-- Login Form -->
-                <form onsubmit="handleAdminLoginSubmit(event)" class="space-y-5">
-                    <div>
-                        <label class="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Admin Security Key / Password</label>
-                        <div class="relative">
-                            <input type="password" id="admin-login-password" required 
-                                onfocus="handlePasswordFocus(true)" 
-                                onblur="handlePasswordFocus(false)"
-                                placeholder="Enter admin password..."
-                                class="w-full px-4 py-3.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-2xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 pr-12 transition-all font-mono text-sm shadow-inner">
-                            <button type="button" onclick="togglePasswordVisibility('admin-login-password', this)" class="absolute right-3.5 top-3.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
-                                <i class="fa-solid fa-eye text-base"></i>
-                            </button>
-                        </div>
-                        
-                        <!-- Security Error Alert -->
-                        <div id="admin-login-error" class="hidden text-xs text-rose-500 font-semibold mt-2.5 flex items-center gap-2 p-3 rounded-xl bg-rose-500/10 border border-rose-500/20">
-                            <i class="fa-solid fa-circle-exclamation text-sm"></i> <span id="admin-login-error-text">Invalid security key. Please try again.</span>
-                        </div>
-
-                        <!-- Brute Force Lockout Banner -->
-                        <div id="admin-lockout-banner" class="hidden space-y-2 mt-2.5 p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 text-xs">
-                            <div class="flex items-center justify-between font-bold">
-                                <span><i class="fa-solid fa-lock mr-1"></i> Security Rate Lockout</span>
-                                <span id="lockout-timer-text">30s</span>
-                            </div>
-                            <div class="w-full bg-gray-200 dark:bg-gray-800 h-2 rounded-full overflow-hidden">
-                                <div id="lockout-progress-bar" class="bg-amber-500 h-full w-full transition-all duration-1000"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-3 pt-2">
-                        <button type="button" onclick="closeAdminLoginModal()" class="flex-1 py-3.5 rounded-2xl bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 text-xs font-bold transition-all cursor-pointer">
-                            Cancel
-                        </button>
-                        <button type="submit" id="admin-login-submit-btn" class="flex-1 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 transition-all cursor-pointer flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-key"></i> Authenticate
-                        </button>
-                    </div>
-                </form>
-            </div>
+            </form>
         </div>
     </div>
 
@@ -1411,96 +1411,80 @@
         </div>
     </div>
 
-    <!-- 3. App CRUD Form Modal (Add / Edit App) -->
-    <div id="app-crud-modal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4 bg-black/75 backdrop-blur-md transition-all duration-300">
-        <div class="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-8 shadow-2xl space-y-6 text-left">
+        <!-- 3. App CRUD Form Modal (Add / Edit App - Fully Responsive No-Scroll) -->
+    <div id="app-crud-modal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl transition-all duration-300">
+        <div class="modal-content w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-3xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 sm:p-8 shadow-2xl space-y-5 text-left">
             <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-800 pb-4">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white" id="crud-modal-title">Add New Application</h3>
-                <button onclick="closeAppCrudModal()" class="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors cursor-pointer">
-                    <i class="fa-solid fa-xmark text-lg"></i>
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white" id="crud-modal-title">Add New Application</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Manage details, tech stack, live links, and logos.</p>
+                </div>
+                <button onclick="closeAppCrudModal()" class="text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors cursor-pointer text-lg">
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
 
             <form onsubmit="handleSaveAppCrud(event)" class="space-y-4 text-xs">
                 <input type="hidden" id="crud-app-id" value="">
                 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div>
-                        <label class="block font-semibold text-gray-500 mb-1">Application Name *</label>
-                        <input type="text" id="crud-app-name" required placeholder="e.g. My New Web App" class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white">
+                        <label class="block font-bold text-gray-600 dark:text-gray-400 mb-1">Application Name *</label>
+                        <input type="text" id="crud-app-name" required placeholder="e.g. My New Web App" class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500">
                     </div>
                     <div>
-                        <label class="block font-semibold text-gray-500 mb-1">Dev Folder Name *</label>
-                        <input type="text" id="crud-app-folder" required placeholder="e.g. my-new-app" class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white">
+                        <label class="block font-bold text-gray-600 dark:text-gray-400 mb-1">Dev Folder Name *</label>
+                        <input type="text" id="crud-app-folder" required placeholder="e.g. my-new-app" class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 font-mono">
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div>
-                        <label class="block font-semibold text-gray-500 mb-1">Category *</label>
-                        <select id="crud-app-category" required class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white">
+                        <label class="block font-bold text-gray-600 dark:text-gray-400 mb-1">Category *</label>
+                        <select id="crud-app-category" required class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500">
                             <option value="featured">Featured</option>
                             <option value="saas">SaaS</option>
                             <option value="tools">Tools</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block font-semibold text-gray-500 mb-1">App/Game Logo (Upload File or Select Preset) *</label>
-                        <div class="space-y-2">
-                            <div class="flex gap-2 items-center">
-                                <input type="file" id="crud-app-logo-file" accept="image/*" onchange="handleLogoFileUpload(event)" class="text-xs text-gray-400 file:mr-2 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-700 cursor-pointer">
-                                <span class="text-[10px] text-gray-500 uppercase font-bold">OR</span>
-                                <select id="crud-app-logo" required class="flex-1 px-3.5 py-2 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white text-xs">
-                            <option value="svg-code">Code Icon (Default)</option>
-                            <option value="svg-cloud">Cloud Storage</option>
-                            <option value="svg-brain">Brain / Mentalist</option>
-                            <option value="svg-price">Price Tag / E-commerce</option>
-                            <option value="svg-sync">Sync / Inventory</option>
-                            <option value="svg-trainer">Cap / Training</option>
-                            <option value="svg-calendar">Calendar / Attendance</option>
-                            <option value="svg-whatsapp">WhatsApp Messenger</option>
-                            <option value="svg-scraper">Scraper / Spider</option>
-                            <option value="svg-image">Image Auditor</option>
-                            <option value="svg-database">Database / Repo</option>
-                            <option value="svg-truck">Truck / Distribution</option>
-                            <option value="svg-drive">Google Drive</option>
-                            <option value="svg-usb">USB / Bootable</option>
-                            <option value="svg-pdf">PDF Generator</option>
-                            <option value="svg-sheets">Google Sheets</option>
-                            <option value="svg-cards">Cards Physics</option>
-                            <option value="assets/logos/rehab-play.png">Rehab Play Logo</option>
-                            <option value="assets/logos/scribax.png">ScribaX Logo</option>
-                            <option value="assets/logos/trh-feedback.png">TRH Feedback Logo</option>
-                        </select>
+                        <label class="block font-bold text-gray-600 dark:text-gray-400 mb-1">App/Game Logo *</label>
+                        <div class="flex gap-2 items-center">
+                            <input type="file" id="crud-app-logo-file" accept="image/*" onchange="handleLogoFileUpload(event)" class="w-full text-xs text-gray-400 file:mr-2 file:py-1.5 file:px-2.5 file:rounded-xl file:border-0 file:text-[11px] file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-700 cursor-pointer">
+                            <select id="crud-app-logo" required class="hidden">
+                                <option value="svg-code">Code Icon</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
                 <div>
-                    <label class="block font-semibold text-gray-500 mb-1">Project Description *</label>
-                    <textarea id="crud-app-desc" rows="3" required placeholder="Enter concise description of features and usage..." class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white"></textarea>
+                    <label class="block font-bold text-gray-600 dark:text-gray-400 mb-1">Live Demo / App URL (Optional)</label>
+                    <input type="url" id="crud-app-liveurl" placeholder="https://scribax.saurabh.dev or https://..." class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 font-mono">
                 </div>
 
                 <div>
-                    <label class="block font-semibold text-gray-500 mb-1">Tech Stack Tags (Comma separated) *</label>
-                    <input type="text" id="crud-app-tech" required placeholder="e.g. HTML5, CSS3, JavaScript, React" class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white">
+                    <label class="block font-bold text-gray-600 dark:text-gray-400 mb-1">Project Description *</label>
+                    <textarea id="crud-app-desc" rows="3" required placeholder="Enter concise description..." class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500"></textarea>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                    <label class="block font-bold text-gray-600 dark:text-gray-400 mb-1">Tech Stack Tags (Comma separated) *</label>
+                    <input type="text" id="crud-app-tech" required placeholder="e.g. HTML5, CSS3, JavaScript, React" class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div>
-                        <label class="block font-semibold text-gray-500 mb-1">Live App / Demo URL</label>
-                        <input type="url" id="crud-app-liveurl" placeholder="https://..." class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white">
+                        <label class="block font-bold text-gray-600 dark:text-gray-400 mb-1">Google Play Store URL (Optional)</label>
+                        <input type="url" id="crud-app-playstore" placeholder="https://play.google.com/store/apps/..." class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 font-mono text-[11px]">
                     </div>
                     <div>
-                        <label class="block font-semibold text-gray-500 mb-1">Google Play Store URL</label>
-                        <input type="url" id="crud-app-playstore" placeholder="https://play.google.com/store/..." class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white">
-                    </div>
-                    <div>
-                        <label class="block font-semibold text-gray-500 mb-1">Custom Policy Slug</label>
-                        <input type="text" id="crud-app-policyslug" placeholder="e.g. my-app-policy" class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white">
+                        <label class="block font-bold text-gray-600 dark:text-gray-400 mb-1">Custom Policy Slug (Optional)</label>
+                        <input type="text" id="crud-app-policyslug" placeholder="e.g. my-app-policy" class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 font-mono text-[11px]">
                     </div>
                 </div>
 
-                <div class="flex items-center gap-2 pt-2">
+                <div class="flex items-center gap-2 pt-1">
                     <input type="checkbox" id="crud-app-ispwa" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 h-4 w-4">
                     <label for="crud-app-ispwa" class="font-semibold text-gray-700 dark:text-gray-300">Is Progressive Web App (PWA)</label>
                 </div>
@@ -1509,7 +1493,7 @@
                     <button type="button" onclick="closeAppCrudModal()" class="px-5 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-bold transition-all cursor-pointer">
                         Cancel
                     </button>
-                    <button type="submit" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold shadow transition-all cursor-pointer">
+                    <button type="submit" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold shadow-lg shadow-indigo-600/25 transition-all cursor-pointer">
                         Save App Details
                     </button>
                 </div>
@@ -1517,7 +1501,7 @@
         </div>
     </div>
 
-    <!-- 4. Quick Field Edit Modal -->
+<!-- 4. Quick Field Edit Modal -->
     <div id="quick-edit-modal" class="fixed inset-0 z-[120] hidden flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm transition-all duration-300">
         <div class="w-full max-w-lg rounded-3xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-2xl space-y-4 text-left">
             <div class="flex justify-between items-center">
@@ -2086,6 +2070,7 @@
 
 
 
+
     <!-- Application Script Section -->
     <script>
         // Baseline default data structure for zero-code portfolio management
@@ -2438,7 +2423,7 @@
         let activeCategoryTab = 'all';
         let currentAdminPolicySlug = 'general';
 
-        // Security Brute-Force Rate Limiting State
+        // Security Rate Limiter State
         let failedLoginAttempts = 0;
         let isLockedOut = false;
         let lockoutTimerInterval = null;
@@ -2622,9 +2607,6 @@
             document.getElementById('admin-login-error').classList.add('hidden');
             document.getElementById('admin-login-password').value = '';
             
-            setAgentEyeColor('#38bdf8');
-            document.getElementById('agent-body-wrapper')?.classList.remove('agent-protect');
-            
             if (!isLockedOut) {
                 setTimeout(() => {
                     document.getElementById('admin-login-password').focus();
@@ -2634,26 +2616,6 @@
 
         function closeAdminLoginModal() {
             document.getElementById('admin-login-modal').classList.add('hidden');
-            document.getElementById('agent-body-wrapper')?.classList.remove('agent-protect');
-        }
-
-        // Mascot Animations
-        function handlePasswordFocus(isFocused) {
-            const wrapper = document.getElementById('agent-body-wrapper');
-            if (wrapper) {
-                if (isFocused) {
-                    wrapper.classList.add('agent-protect');
-                } else {
-                    wrapper.classList.remove('agent-protect');
-                }
-            }
-        }
-
-        function setAgentEyeColor(color) {
-            const eyeL = document.getElementById('agent-eye-left');
-            const eyeR = document.getElementById('agent-eye-right');
-            if (eyeL) eyeL.setAttribute('fill', color);
-            if (eyeR) eyeR.setAttribute('fill', color);
         }
 
         // Lockout Rate Limiter
@@ -2701,7 +2663,6 @@
             submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Authenticating...`;
 
             let isAuthenticated = false;
-            let authToken = null;
 
             try {
                 const apiRes = await fetch('/api/admin-auth', {
@@ -2714,7 +2675,6 @@
                     const data = await apiRes.json();
                     if (data.success) {
                         isAuthenticated = true;
-                        authToken = data.token;
                         sessionStorage.setItem('saurabh_dev_admin_token', data.token);
                         sessionStorage.setItem('saurabh_dev_admin_expires', data.expiresAt || (Date.now() + 14400000));
                     }
@@ -2749,19 +2709,13 @@
                 failedLoginAttempts = 0;
                 sessionStorage.setItem('saurabh_dev_admin_logged_in', 'true');
                 
-                setAgentEyeColor('#10b981');
-                document.getElementById('agent-body-wrapper')?.classList.remove('agent-protect');
-                
-                setTimeout(() => {
-                    closeAdminLoginModal();
-                    updateAdminNavButtonState();
-                    openAdminDashboard();
-                    showToast("Authentication Success", "Welcome to Admin Control Center.", true);
-                }, 350);
+                closeAdminLoginModal();
+                updateAdminNavButtonState();
+                openAdminDashboard();
+                showToast("Authentication Success", "Welcome to Admin Control Center.", true);
 
             } else {
                 failedLoginAttempts++;
-                setAgentEyeColor('#ef4444');
                 const container = document.getElementById('login-card-container');
                 if (container) {
                     container.classList.add('shake-3d');
@@ -2824,10 +2778,10 @@
                 const btn = document.getElementById(`tab-btn-${t}`);
                 const view = document.getElementById(`admin-view-${t}`);
                 if (t === tabName) {
-                    if (btn) btn.className = "admin-tab-btn w-full px-4 py-3 rounded-xl text-xs font-bold text-left flex items-center gap-3 transition-all cursor-pointer bg-indigo-600 text-white shadow-md shadow-indigo-600/20";
+                    if (btn) btn.className = "admin-tab-btn w-full px-4.5 py-3.5 rounded-2xl text-xs font-bold text-left flex items-center gap-3.5 transition-all cursor-pointer bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-600/25 border border-indigo-500/30";
                     if (view) view.classList.remove('hidden');
                 } else {
-                    if (btn) btn.className = "admin-tab-btn w-full px-4 py-3 rounded-xl text-xs font-bold text-left flex items-center gap-3 transition-all cursor-pointer text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white";
+                    if (btn) btn.className = "admin-tab-btn w-full px-4.5 py-3.5 rounded-2xl text-xs font-bold text-left flex items-center gap-3.5 transition-all cursor-pointer text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800/80 hover:text-gray-900 dark:hover:text-white border border-transparent";
                     if (view) view.classList.add('hidden');
                 }
             });
@@ -2870,14 +2824,14 @@
             const reader = new FileReader();
             reader.onload = function(e) {
                 const base64Url = e.target.result;
-                const logoInput = document.getElementById('crud-app-logo');
-                if (logoInput) {
-                    let optionExists = Array.from(logoInput.options).some(o => o.value === base64Url);
+                const logoSelect = document.getElementById('crud-app-logo');
+                if (logoSelect) {
+                    let optionExists = Array.from(logoSelect.options).some(o => o.value === base64Url);
                     if (!optionExists) {
                         const newOption = new Option(`Uploaded Logo (${file.name})`, base64Url);
-                        logoInput.add(newOption, 0);
+                        logoSelect.add(newOption, 0);
                     }
-                    logoInput.value = base64Url;
+                    logoSelect.value = base64Url;
                 }
                 showToast("Logo Uploaded", `Converted "${file.name}" to Data URL.`, true);
             };
@@ -2938,15 +2892,15 @@
                                 ${iconDisplay}
                             </div>
                             <div>
-                                <div class="font-bold text-gray-900 dark:text-white">${p.name}</div>
-                                <a href="${targetUrl}" target="_blank" class="font-mono text-[11px] text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1 mt-0.5">
+                                <div class="font-bold text-gray-900 dark:text-white text-xs sm:text-sm">${p.name}</div>
+                                <a href="${targetUrl}" target="_blank" class="font-mono text-[10px] sm:text-[11px] text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1 mt-0.5">
                                     <i class="fa-solid fa-link text-[9px]"></i> ${targetUrl.replace(/^https?:\/\//, '')}
                                 </a>
                             </div>
                         </div>
                     </td>
                     <td class="p-3.5">
-                        <span class="px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
+                        <span class="px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
                             ${p.category}
                         </span>
                     </td>
@@ -3189,7 +3143,6 @@
             if (!currentPolicy) return;
             currentAdminPolicySlug = currentPolicy.slug;
 
-            // Update tab styles
             const container = document.getElementById('admin-policy-tabs-container');
             if (container) {
                 Array.from(container.children).forEach((btn, idx) => {
@@ -3209,7 +3162,6 @@
             if (label) label.innerText = `Editing HTML/Text Content for: ${currentPolicy.title} (Slug: /policies/${currentPolicy.slug}.html)`;
             if (textarea) textarea.value = currentPolicy.content || '';
             
-            // Protect baseline general policy from accidental deletion
             if (delBtn) {
                 if (currentPolicy.slug === 'general') {
                     delBtn.classList.add('hidden');
@@ -3382,6 +3334,7 @@
                 body.classList.add('admin-live-active');
                 if (banner) banner.classList.remove('hidden');
                 document.querySelectorAll('.admin-edit-btn').forEach(btn => btn.classList.remove('hidden'));
+                closeAdminDashboard();
                 showToast("Live Edit ON", "Click any pen icon or highlighted text to edit in real time.", true);
             } else {
                 body.classList.remove('admin-live-active');
@@ -3443,7 +3396,12 @@
             initSiteData();
             await loadEnvConfig();
 
+            // FIXED: Ignore hotkey navigation when user is typing inside any form field (Input / Textarea / Select)!
             document.addEventListener('keydown', (e) => {
+                const activeEl = document.activeElement;
+                if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable)) {
+                    return; // Ignore hotkey while typing inside form inputs!
+                }
                 if (e.shiftKey && (e.key === 'A' || e.key === 'a')) {
                     handleAdminNavClick();
                 }
