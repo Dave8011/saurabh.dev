@@ -281,6 +281,18 @@
             width: 100%;
             overflow-x: hidden;
         }
+
+        /* Single Line Clean Admin Buttons */
+        .admin-view-policies button,
+        .admin-tab-btn,
+        #admin-view-policies button,
+        #admin-policy-tabs-container button {
+            white-space: nowrap !important;
+            flex-shrink: 0 !important;
+        }
+        button {
+            white-space: nowrap;
+        }
     </style>
 </head>
 
@@ -475,23 +487,7 @@
                             <span class="text-xs text-gray-500 font-mono">saurabh_profile.json</span>
                         </div>
                         <!-- Terminal code -->
-                        <pre class="font-mono text-xs text-indigo-300 leading-relaxed overflow-x-auto"><code>{
-  <span class="text-purple-400">"developer"</span>: <span class="text-green-400">"Saurabh"</span>,
-  <span class="text-purple-400">"status"</span>: <span class="text-green-400">"Active Portfolio"</span>,
-  <span class="text-purple-400">"core_focus"</span>: [
-    <span class="text-orange-400">"PWA"</span>, <span class="text-orange-400">"Offline Utilities"</span>,
-    <span class="text-orange-400">"Scrapers"</span>, <span class="text-orange-400">"React/Next.js"</span>
-  ],
-  <span class="text-purple-400">"play_console"</span>: {
-    <span class="text-purple-400">"status"</span>: <span class="text-green-400">"Live on Play Store"</span>,
-    <span class="text-purple-400">"app_id"</span>: <span class="text-green-400">"com.rehabhouse.trhgames"</span>,
-    <span class="text-purple-400">"compliance"</span>: <span class="text-orange-300">true</span>
-  },
-  <span class="text-purple-400">"active_projects"</span>: <span class="text-yellow-400">26</span>,
-  <span class="text-purple-400">"contact"</span>: {
-    <span class="text-purple-400">"email"</span>: <span class="text-green-400">"saurabhdave8@gmail.com"</span>
-  }
-}</code></pre>
+                        <pre id="hero-json-pre" data-admin-edit="heroJsonSnippet" onclick="quickEditField('heroJsonSnippet', 'JSON Profile Snippet', 'textarea')" class="font-mono text-xs text-gray-300 overflow-x-auto leading-relaxed cursor-pointer hover:bg-gray-900/60 p-2 rounded-xl transition-all"></pre>
                     </div>
                 </div>
             </div>
@@ -1324,11 +1320,11 @@
                     <form onsubmit="handleSavePolicyText(event)" class="space-y-4">
                         <div class="flex justify-between items-center">
                             <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400" id="admin-policy-editor-label">Editing Policy Content</label>
-                            <div class="flex items-center gap-2">
-                                <button type="button" onclick="deleteCurrentPolicy()" id="btn-delete-policy" class="px-3 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5">
+                            <div class="flex items-center gap-3 shrink-0">
+                                <button type="button" onclick="deleteCurrentPolicy()" id="btn-delete-policy" class="px-4 py-2.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap border border-rose-500/20 shrink-0">
                                     <i class="fa-solid fa-trash text-xs"></i> Delete Policy
                                 </button>
-                                <button type="submit" class="px-4 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow transition-all cursor-pointer flex items-center gap-1.5">
+                                <button type="submit" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-lg shadow-indigo-600/25 transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap shrink-0">
                                     <i class="fa-solid fa-floppy-disk"></i> Save Policy Document
                                 </button>
                             </div>
@@ -2071,6 +2067,7 @@
 
 
 
+
     <!-- Application Script Section -->
     <script>
         // Baseline default data structure for zero-code portfolio management
@@ -2085,6 +2082,11 @@
             heroStat1Lbl: "Projects Developed",
             heroStat2Val: "Privacy Compliant",
             heroStat3Val: "Full Stack & PWA",
+            heroBtn1Text: "View Projects Suite",
+            heroBtn2Text: "Policy Center",
+            heroJsonSnippet: `{\n  "developer": "Saurabh",\n  "status": "Active Portfolio",\n  "core_focus": [\n    "PWA", "Offline Utilities",\n    "Scrapers", "React/Next.js"\n  ],\n  "play_console": {\n    "status": "Live on Play Store",\n    "app_id": "com.rehabhouse.trhgames",\n    "compliance": true\n  },\n  "active_projects": 26,\n  "contact": {\n    "email": "saurabhdave8@gmail.com"\n  }\n}`,
+            projectsTitle: "Applications & Software Suite",
+            projectsSubtitle: "A comprehensive catalogue of 26 active packages spanning Progressive Web Apps (PWAs), online and offline utilities, administrative systems, and backend automation modules.",
             contactEmail: "saurabhdave8@gmail.com",
             contactLocation: "Mumbai, Maharashtra, India",
             contactResponseTime: "Within 24 to 48 Hours",
@@ -2536,6 +2538,23 @@
             const stat3Val = document.getElementById('hero-stat-3-val');
             if (stat3Val) stat3Val.innerText = SITE_DATA.heroStat3Val || "Full Stack & PWA";
 
+            // Hero Buttons & JSON Snippet
+            const btn1 = document.getElementById('hero-btn-1-text');
+            if (btn1) btn1.innerText = SITE_DATA.heroBtn1Text || "View Projects Suite";
+
+            const btn2 = document.getElementById('hero-btn-2-text');
+            if (btn2) btn2.innerText = SITE_DATA.heroBtn2Text || "Policy Center";
+
+            const jsonPre = document.getElementById('hero-json-pre');
+            if (jsonPre) jsonPre.innerText = SITE_DATA.heroJsonSnippet || DEFAULT_SITE_DATA.heroJsonSnippet;
+
+            // Applications Section Titles
+            const projTitle = document.getElementById('projects-title');
+            if (projTitle) projTitle.innerText = SITE_DATA.projectsTitle || "Applications & Software Suite";
+
+            const projSub = document.getElementById('projects-subtitle');
+            if (projSub) projSub.innerText = SITE_DATA.projectsSubtitle || "A comprehensive catalogue of 26 active packages...";
+
             // Contact Info
             CONFIG.SUPPORT_EMAIL = SITE_DATA.contactEmail || "saurabhdave8@gmail.com";
             CONFIG.WEB3FORMS_ACCESS_KEY = SITE_DATA.web3formsKey || "";
@@ -2924,10 +2943,10 @@
                             <button onclick="moveProjectDown(${p.id})" title="Move Down" class="h-8 w-8 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-300 flex items-center justify-center cursor-pointer transition-all">
                                 <i class="fa-solid fa-arrow-down text-xs"></i>
                             </button>
-                            <button onclick="openEditProjectModal(${p.id})" title="Edit App" class="h-8 px-3 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 font-semibold text-xs flex items-center gap-1.5 cursor-pointer transition-all border border-indigo-500/20">
+                            <button onclick="openEditProjectModal(${p.id})" title="Edit App" class="h-8 px-3 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 font-semibold text-xs flex items-center gap-1.5 cursor-pointer transition-all border border-indigo-500/20 whitespace-nowrap">
                                 <i class="fa-solid fa-pen text-[11px]"></i> Edit
                             </button>
-                            <button onclick="deleteProjectCard(${p.id})" title="Delete App" class="h-8 px-3 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 font-semibold text-xs flex items-center gap-1.5 cursor-pointer transition-all border border-rose-500/20">
+                            <button onclick="deleteProjectCard(${p.id})" title="Delete App" class="h-8 px-3 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 font-semibold text-xs flex items-center gap-1.5 cursor-pointer transition-all border border-rose-500/20 whitespace-nowrap">
                                 <i class="fa-solid fa-trash text-[11px]"></i>
                             </button>
                         </div>
@@ -3122,9 +3141,9 @@
                 const isActive = pol.slug === currentAdminPolicySlug;
                 
                 if (isActive) {
-                    btn.className = "px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-md shadow-indigo-600/20 cursor-pointer flex items-center gap-1.5";
+                    btn.className = "px-4 py-2.5 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-md shadow-indigo-600/20 cursor-pointer flex items-center gap-1.5 whitespace-nowrap shrink-0";
                 } else {
-                    btn.className = "px-4 py-2 rounded-xl text-xs font-bold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer flex items-center gap-1.5 transition-all";
+                    btn.className = "px-4 py-2.5 rounded-xl text-xs font-bold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer flex items-center gap-1.5 transition-all whitespace-nowrap shrink-0";
                 }
 
                 btn.innerHTML = `<i class="fa-solid fa-file-contract text-[10px]"></i> ${pol.title}`;
@@ -3148,9 +3167,9 @@
                 Array.from(container.children).forEach((btn, idx) => {
                     const pol = list[idx];
                     if (pol && pol.slug === currentAdminPolicySlug) {
-                        btn.className = "px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-md shadow-indigo-600/20 cursor-pointer flex items-center gap-1.5";
+                        btn.className = "px-4 py-2.5 rounded-xl text-xs font-bold bg-indigo-600 text-white shadow-md shadow-indigo-600/20 cursor-pointer flex items-center gap-1.5 whitespace-nowrap shrink-0";
                     } else {
-                        btn.className = "px-4 py-2 rounded-xl text-xs font-bold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer flex items-center gap-1.5 transition-all";
+                        btn.className = "px-4 py-2.5 rounded-xl text-xs font-bold bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer flex items-center gap-1.5 transition-all whitespace-nowrap shrink-0";
                     }
                 });
             }
@@ -3159,7 +3178,7 @@
             const textarea = document.getElementById('admin-policy-textarea');
             const delBtn = document.getElementById('btn-delete-policy');
 
-            if (label) label.innerText = `Editing HTML/Text Content for: ${currentPolicy.title} (Slug: /policies/${currentPolicy.slug}.html)`;
+            if (label) label.innerText = `Editing Content: ${currentPolicy.title} (/policies/${currentPolicy.slug}.html)`;
             if (textarea) textarea.value = currentPolicy.content || '';
             
             if (delBtn) {
@@ -3186,13 +3205,19 @@
         }
 
         function openAddNewPolicyModal() {
-            document.getElementById('new-policy-title').value = '';
-            document.getElementById('new-policy-slug').value = '';
-            document.getElementById('add-policy-modal').classList.remove('hidden');
+            const modal = document.getElementById('add-policy-modal');
+            if (modal) {
+                document.getElementById('new-policy-title').value = '';
+                document.getElementById('new-policy-slug').value = '';
+                modal.classList.remove('hidden');
+            } else {
+                console.error("add-policy-modal not found.");
+            }
         }
 
         function closeAddPolicyModal() {
-            document.getElementById('add-policy-modal').classList.add('hidden');
+            const modal = document.getElementById('add-policy-modal');
+            if (modal) modal.classList.add('hidden');
         }
 
         function handleCreateNewPolicy(e) {
@@ -3396,11 +3421,10 @@
             initSiteData();
             await loadEnvConfig();
 
-            // FIXED: Ignore hotkey navigation when user is typing inside any form field (Input / Textarea / Select)!
             document.addEventListener('keydown', (e) => {
                 const activeEl = document.activeElement;
                 if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable)) {
-                    return; // Ignore hotkey while typing inside form inputs!
+                    return;
                 }
                 if (e.shiftKey && (e.key === 'A' || e.key === 'a')) {
                     handleAdminNavClick();
