@@ -1202,21 +1202,21 @@
                                         oninput="onPasswordInput()">
                                     <button type="button" onclick="togglePasswordVisibility('admin-login-password',this)" class="absolute right-3.5 top-3.5 cursor-pointer transition-colors" style="color:rgba(165,180,252,0.4);" onmouseenter="this.style.color='rgba(165,180,252,1)'" onmouseleave="this.style.color='rgba(165,180,252,0.4)'"><i class="fa-solid fa-eye text-base"></i></button>
                                 </div>
-                                <div id="admin-login-error" class="hidden items-center gap-2 text-xs font-semibold mt-2.5 p-2.5 rounded-xl" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);color:#fca5a5;">
+                                <div id="admin-login-error" style="display:none;" class="flex items-center gap-2 text-xs font-semibold mt-2.5 p-2.5 rounded-xl" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);color:#fca5a5;">
                                     <i class="fa-solid fa-triangle-exclamation"></i><span id="admin-login-error-text">Invalid security key.</span>
                                 </div>
-                                <div id="admin-lockout-banner" class="hidden mt-2.5 p-3 rounded-xl space-y-2" style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.25);color:#fcd34d;">
+                                <div id="admin-lockout-banner" style="display:none;" class="mt-2.5 p-3 rounded-xl space-y-2" style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.25);color:#fcd34d;">
                                     <div class="flex items-center justify-between text-xs font-bold"><span><i class="fa-solid fa-lock mr-1"></i> Rate Lockout</span><span id="lockout-timer-text">30s</span></div>
                                     <div class="w-full h-1.5 rounded-full overflow-hidden" style="background:rgba(255,255,255,0.1);"><div id="lockout-progress-bar" class="h-full rounded-full transition-all duration-1000" style="background:#f59e0b;width:100%;"></div></div>
                                 </div>
                             </div>
-                            <div id="typing-indicator" class="hidden items-center gap-1.5 px-1">
+                            <div id="typing-indicator" style="display:none;" class="flex items-center gap-1.5 px-1">
                                 <div style="width:6px;height:6px;border-radius:50%;background:#818cf8;animation:typingDot 1.2s ease-in-out infinite;"></div>
                                 <div style="width:6px;height:6px;border-radius:50%;background:#a78bfa;animation:typingDot 1.2s ease-in-out infinite;animation-delay:0.2s;"></div>
                                 <div style="width:6px;height:6px;border-radius:50%;background:#818cf8;animation:typingDot 1.2s ease-in-out infinite;animation-delay:0.4s;"></div>
                                 <span class="text-[10px] ml-1" style="color:rgba(165,180,252,0.4);">encrypting...</span>
                             </div>
-                            <div id="auth-progress-wrap" class="hidden">
+                            <div id="auth-progress-wrap" style="display:none;">
                                 <div class="w-full h-1 rounded-full overflow-hidden" style="background:rgba(255,255,255,0.06);"><div id="auth-progress-bar" class="h-full rounded-full" style="background:linear-gradient(90deg,#4f46e5,#7c3aed,#a855f7);width:0%;transition:width 1.5s ease;"></div></div>
                                 <div class="text-[10px] text-center mt-1.5" style="color:rgba(165,180,252,0.5);">Authenticating identity...</div>
                             </div>
@@ -1233,7 +1233,7 @@
     </div>
 
 <!-- 2. Main Admin Dashboard Modal -->
-    <div id="admin-dashboard-modal" class="fixed inset-0 z-[100] hidden" style="background: rgba(0,0,0,0.88); backdrop-filter: blur(16px);">
+    <div id="admin-dashboard-modal" class="fixed inset-0 z-[100]" style="display:none;" style="background: rgba(0,0,0,0.88); backdrop-filter: blur(16px);">
         <div class="flex h-full w-full">
 
             <!-- ── SIDEBAR ─────────────────────────────── -->
@@ -1310,7 +1310,7 @@
                 <div class="flex-1 overflow-y-auto p-6 space-y-0" style="scrollbar-width: thin; scrollbar-color: rgba(99,102,241,0.3) transparent;">
 
                     <!-- ── TAB 1: OVERVIEW ──────────────────────── -->
-                    <div id="admin-view-overview" class="space-y-6">
+                    <div id="admin-view-overview" style="display:none;" class="space-y-6">
                         <!-- Stats row -->
                         <div class="grid grid-cols-3 gap-4">
                             <div class="p-5 rounded-2xl" style="background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);">
@@ -1359,7 +1359,7 @@
                     </div>
 
                     <!-- ── TAB 2: PROJECTS CATALOG ──────────────── -->
-                    <div id="admin-view-projects" class="hidden space-y-5">
+                    <div id="admin-view-projects" style="display:none;" class="space-y-5">
                         <!-- Header -->
                         <div class="flex items-center justify-between">
                             <div>
@@ -1394,7 +1394,7 @@
                     </div>
 
                     <!-- ── TAB 3: SITE COPY & LINKS ─────────────── -->
-                    <div id="admin-view-content" class="hidden space-y-6">
+                    <div id="admin-view-content" style="display:none;" class="space-y-6">
                         <div>
                             <h3 class="text-lg font-black text-white">Site Copy & Links</h3>
                             <p class="text-xs mt-0.5" style="color: rgba(165,180,252,0.5);">Edit all headlines, bio text, stats, and contact details.</p>
@@ -1475,7 +1475,7 @@
                     </div>
 
                     <!-- ── TAB 4: PRIVACY POLICIES ──────────────── -->
-                    <div id="admin-view-policies" class="hidden space-y-5">
+                    <div id="admin-view-policies" style="display:none;" class="space-y-5">
                         <div class="flex items-center justify-between">
                             <div>
                                 <h3 class="text-lg font-black text-white">Privacy Policies</h3>
@@ -1509,7 +1509,7 @@
                     </div>
 
                     <!-- ── TAB 5: SECURITY & BACKUPS ────────────── -->
-                    <div id="admin-view-settings" class="hidden space-y-5">
+                    <div id="admin-view-settings" style="display:none;" class="space-y-5">
                         <div>
                             <h3 class="text-lg font-black text-white">Security & Backups</h3>
                             <p class="text-xs mt-0.5" style="color: rgba(165,180,252,0.5);">Manage admin password, export data, and restore backups.</p>
@@ -1589,7 +1589,7 @@
     </div>
 
     <!-- ── ADD NEW POLICY MODAL ─────────────────────────── -->
-    <div id="add-policy-modal" class="fixed inset-0 z-[120] hidden items-center justify-center p-4" style="background: rgba(0,0,0,0.85); backdrop-filter: blur(16px);">
+    <div id="add-policy-modal" class="fixed inset-0 z-[120]" style="display:none; align-items:center; justify-content:center; padding:1rem;" style="background: rgba(0,0,0,0.85); backdrop-filter: blur(16px);">
         <div class="w-full max-w-md rounded-3xl p-7 space-y-5" style="background: rgba(10,8,25,0.98); border: 1px solid rgba(99,102,241,0.3); box-shadow: 0 25px 60px rgba(99,102,241,0.25);">
             <div class="flex items-center justify-between">
                 <h3 class="text-lg font-black text-white">Add New Policy Page</h3>
@@ -1618,7 +1618,7 @@
     </div>
 
     <!-- ── QUICK FIELD EDIT MODAL ───────────────────────── -->
-    <div id="quick-edit-modal" class="fixed inset-0 z-[120] hidden items-center justify-center p-4" style="background: rgba(0,0,0,0.85); backdrop-filter: blur(16px);">
+    <div id="quick-edit-modal" class="fixed inset-0 z-[120]" style="display:none; align-items:center; justify-content:center; padding:1rem;" style="background: rgba(0,0,0,0.85); backdrop-filter: blur(16px);">
         <div class="w-full max-w-md rounded-3xl p-7 space-y-5" style="background: rgba(10,8,25,0.98); border: 1px solid rgba(99,102,241,0.3); box-shadow: 0 25px 60px rgba(99,102,241,0.25);">
             <div class="flex items-center justify-between">
                 <h3 id="quick-edit-title" class="text-lg font-black text-white">Quick Edit</h3>
@@ -3121,7 +3121,7 @@
             modal.style.display = 'flex';
             modal.style.alignItems = 'center';
             modal.style.justifyContent = 'center';
-            document.getElementById('admin-login-error').classList.add('hidden');
+            const errDiv2 = document.getElementById('admin-login-error'); if (errDiv2) errDiv2.style.display = 'none';
             document.getElementById('admin-login-password').value = '';
             setCharState('idle');
             
@@ -3290,13 +3290,16 @@
                 openAdminLoginModal();
                 return;
             }
-            document.getElementById('admin-dashboard-modal').classList.remove('hidden');
+            const dash = document.getElementById('admin-dashboard-modal');
+            if (dash) dash.style.display = 'flex';
             switchAdminTab('overview');
             updateOverviewCounters();
+            loadGithubConfig();
         }
 
         function closeAdminDashboard() {
-            document.getElementById('admin-dashboard-modal').classList.add('hidden');
+            const dash = document.getElementById('admin-dashboard-modal');
+            if (dash) dash.style.display = 'none';
         }
 
         function switchAdminTab(tabName) {
@@ -3311,8 +3314,7 @@
                         btn.style.boxShadow = "0 4px 16px rgba(99,102,241,0.3)";
                     }
                     if (view) {
-                        view.classList.remove('hidden');
-                        view.style.display = '';
+                        view.style.display = 'block';
                     }
                 } else {
                     if (btn) {
@@ -3321,7 +3323,7 @@
                         btn.style.boxShadow = "";
                     }
                     if (view) {
-                        view.classList.add('hidden');
+                        view.style.display = 'none';
                     }
                 }
             });
