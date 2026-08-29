@@ -1081,7 +1081,7 @@
             <div class="orb-2 absolute" style="bottom:20%;right:15%;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(168,85,247,0.18) 0%,transparent 70%);"></div>
         </div>
         <!-- Content: Character + Card -->
-        <div id="login-scene" class="absolute inset-0 flex items-end justify-center px-4" style="padding-bottom:8vh;opacity:0;transform:translateY(40px);transition:all 0.6s cubic-bezier(0.34,1.56,0.64,1);">
+        <div id="login-scene" class="absolute inset-0 flex items-end justify-center px-4" style="padding-bottom:8vh;opacity:1;transform:translateY(0);transition:all 0.4s ease;">
             <div class="flex items-end gap-0 w-full max-w-lg">
                 <!-- CHARACTER -->
                 <div id="login-character" class="relative flex-shrink-0 select-none" style="width:120px;z-index:10;transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);">
@@ -3118,16 +3118,27 @@
 
         function openAdminLoginModal() {
             const modal = document.getElementById('admin-login-modal');
-            modal.style.display = 'flex';
-            modal.style.alignItems = 'center';
-            modal.style.justifyContent = 'center';
-            const errDiv2 = document.getElementById('admin-login-error'); if (errDiv2) errDiv2.style.display = 'none';
-            document.getElementById('admin-login-password').value = '';
+            if (modal) {
+                modal.style.display = 'flex';
+                modal.style.alignItems = 'center';
+                modal.style.justifyContent = 'center';
+            }
+            const scene = document.getElementById('login-scene');
+            if (scene) {
+                scene.style.opacity = '1';
+                scene.style.transform = 'translateY(0)';
+            }
+            const errDiv2 = document.getElementById('admin-login-error'); 
+            if (errDiv2) errDiv2.style.display = 'none';
+            
+            const pwInput = document.getElementById('admin-login-password');
+            if (pwInput) pwInput.value = '';
+            
             setCharState('idle');
             
             if (!isLockedOut) {
                 setTimeout(() => {
-                    document.getElementById('admin-login-password').focus();
+                    if (pwInput) pwInput.focus();
                 }, 200);
             }
         }
