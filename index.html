@@ -2931,18 +2931,76 @@
             applySiteDataToDom();
         }
 
-        function saveSiteData(showToastMsg = true, customMsg = "Site data saved successfully.") {
+        async function saveSiteData(showToastMsg = true, customMsg = "Changes saved successfully.") {
             try {
+                // 1. Instant local persistence & DOM update
                 localStorage.setItem('saurabh_dev_admin_data', JSON.stringify(SITE_DATA));
                 projects = SITE_DATA.projects || [];
                 applySiteDataToDom();
-                if (showToastMsg) {
-                    const fullToastMsg = `${customMsg}\n⚡ Live Reflection: Instant (0s) local / 15-30s Vercel deployment.`;
-                    showToast("Changes Saved Successfully", fullToastMsg, true);
+
+                // 2. Re-render all DOM views inside the admin panel & site
+                if (typeof renderAdminProjectsTable === 'function') renderAdminProjectsTable();
+                if (typeof renderAdminPolicyTabs === 'function') renderAdminPolicyTabs();
+                if (typeof populateCopyAndLinksForm === 'function') populateCopyAndLinksForm();
+                if (typeof updateOverviewCounters === 'function') updateOverviewCounters();
+
+                if (showToastMsg) showToast("⏳ Syncing...", "Saving locally & pushing to GitHub live repo...", true);
+
+                let serverSynced = false;
+                
+                // Call Vercel Serverless Function (/api/saveConfig or /api/github-sync)
+                const endpoints = ['/api/saveConfig', '/api/github-sync'];
+                
+                for (const url of endpoints) {
+                    if (serverSynced) break;
+                    try {
+                        const apiRes = await fetch(url, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ configData: SITE_DATA, data: SITE_DATA })
+                        });
+                        if (apiRes.ok) {
+                            const resData = await apiRes.json();
+                            if (resData.success) {
+                                serverSynced = true;
+                            }
+                        }
+                    } catch(err) {
+                        // local / static mode
+                    }
                 }
-            } catch (e) {
-                console.error("Failed to save SITE_DATA:", e);
-                showToast("Save Failed", "Could not write to localStorage.", false);
+
+                if (showToastMsg) {
+                    if (serverSynced) {
+                        showToast("✅ Live Site Updated!", `${customMsg}\n\n🟢 Pushed to GitHub via Vercel Serverless — Vercel auto-deploys live in ~15-30s!\n⚡ Admin View: Updated instantly`, true);
+                    } else {
+                        showToast("💾 Saved Locally", `${customMsg}\n\n⚡ Admin View & Local Preview updated instantly!\n(Ensure GITHUB_PAT is set in Vercel Environment Variables for automatic live site sync)`, true);
+                    }
+                }
+            } catch(e) {
+                console.error("Save failed:", e);
+                showToast("Save Failed", "Could not write to local storage.", false);
+            }
+        }
+
+        async function fetchRemoteSiteData() {
+            try {
+                const res = await fetch('/site_data.json?t=' + Date.now());
+                if (res.ok) {
+                    const remote = await res.json();
+                    if (remote && typeof remote === 'object' && Object.keys(remote).length > 0) {
+                        const local = localStorage.getItem('saurabh_dev_admin_data');
+                        if (!local) {
+                            SITE_DATA = Object.assign({}, DEFAULT_SITE_DATA, remote);
+                            if (remote.policiesList) SITE_DATA.policiesList = remote.policiesList;
+                            projects = SITE_DATA.projects || [];
+                            applySiteDataToDom();
+                            console.log("✅ Live site_data.json loaded from server.");
+                        }
+                    }
+                }
+            } catch(e) {
+                // Static / local fallback
             }
         }
 
@@ -4165,6 +4223,7 @@
         document.addEventListener("DOMContentLoaded", async () => {
             initSiteData();
             await loadEnvConfig();
+            fetchRemoteSiteData();
             loadGithubConfig();
             fetchRemoteSiteData();
 
