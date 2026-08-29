@@ -293,6 +293,112 @@
         button {
             white-space: nowrap;
         }
+
+        /* =====================================================
+           REACTIVE CHARACTER LOGIN CARD ANIMATION
+           Inspired by: Login Form Bag Animation (Visme Reel)
+        ====================================================== */
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        @keyframes floatBag {
+            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+            50% { transform: translateY(-6px) rotate(3deg); }
+        }
+        @keyframes characterIdle {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-4px) rotate(-1deg); }
+            75% { transform: translateY(-2px) rotate(1deg); }
+        }
+        @keyframes characterLean {
+            0% { transform: translateX(0) rotate(0deg); }
+            100% { transform: translateX(18px) rotate(8deg); }
+        }
+        @keyframes characterShy {
+            0% { transform: translateX(0) rotate(0deg); }
+            100% { transform: translateX(-20px) rotate(-10deg); }
+        }
+        @keyframes characterSuccess {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.12) rotate(-5deg); }
+            50% { transform: scale(1.12) rotate(5deg); }
+            75% { transform: scale(1.1) rotate(-3deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+        @keyframes characterShake {
+            0%, 100% { transform: translateX(0) rotate(0); }
+            15% { transform: translateX(-8px) rotate(-4deg); }
+            30% { transform: translateX(8px) rotate(4deg); }
+            45% { transform: translateX(-6px) rotate(-2deg); }
+            60% { transform: translateX(6px) rotate(2deg); }
+            75% { transform: translateX(-4px) rotate(-1deg); }
+        }
+        @keyframes eyePeek {
+            0% { transform: scaleY(0); opacity: 0; }
+            100% { transform: scaleY(1); opacity: 1; }
+        }
+        @keyframes bagBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.05); }
+        }
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+            33% { transform: translate(20px, -20px) scale(1.1); opacity: 0.9; }
+            66% { transform: translate(-10px, 15px) scale(0.95); opacity: 0.5; }
+        }
+        @keyframes slideInFromBottom {
+            0% { transform: translateY(60px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes cardEntrance {
+            0% { transform: perspective(1000px) rotateX(15deg) scale(0.85); opacity: 0; }
+            100% { transform: perspective(1000px) rotateX(0deg) scale(1); opacity: 1; }
+        }
+        @keyframes particleRise {
+            0% { transform: translateY(0); opacity: 0.8; }
+            100% { transform: translateY(-120px); opacity: 0; }
+        }
+        @keyframes bagSuccess {
+            0% { transform: scale(1) rotate(0deg); }
+            30% { transform: scale(1.3) rotate(-15deg); }
+            60% { transform: scale(1.3) rotate(15deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+        @keyframes scanLine {
+            0% { top: 0%; opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        @keyframes typingDot {
+            0%, 100% { transform: scale(0.5); opacity: 0.3; }
+            50% { transform: scale(1); opacity: 1; }
+        }
+
+        .char-idle { animation: characterIdle 3s ease-in-out infinite; }
+        .char-lean { animation: characterLean 0.4s ease-out forwards; }
+        .char-shy  { animation: characterShy  0.4s ease-out forwards; }
+        .char-success { animation: characterSuccess 0.8s ease-in-out; }
+        .char-shake { animation: characterShake 0.5s ease-in-out; }
+        .bag-idle { animation: floatBag 3.5s ease-in-out infinite; }
+        .bag-success { animation: bagSuccess 0.8s ease-in-out; }
+
+        .login-card-inner {
+            animation: cardEntrance 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            transform-style: preserve-3d;
+        }
+
+        .orb-1 { animation: orbFloat 8s ease-in-out infinite; }
+        .orb-2 { animation: orbFloat 6s ease-in-out infinite reverse; animation-delay: -2s; }
+        .orb-3 { animation: orbFloat 10s ease-in-out infinite; animation-delay: -4s; }
+
+        /* Particle dots */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particleRise 2s ease-out forwards;
+        }
     </style>
 </head>
 
@@ -967,447 +1073,593 @@
     <!--            ADMIN PANEL MODALS             -->
     <!-- ========================================== -->
 
-                <!-- 1. Admin Login Modal (Ultra-Sleek 3D Cyber Lock Vault) -->
-    <div id="admin-login-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 bg-black/85 backdrop-blur-2xl transition-all duration-300">
-        <div id="login-card-container" class="w-full max-w-md rounded-3xl border border-indigo-500/30 bg-gray-950/95 p-8 shadow-2xl space-y-6 relative overflow-hidden text-left cyber-vault-card animate-card-flip">
-            
-            <!-- Floating Cyber Orbs -->
-            <div class="absolute -top-16 -right-16 w-44 h-44 rounded-full bg-gradient-to-tr from-indigo-600/30 to-purple-600/30 blur-3xl pointer-events-none"></div>
-            <div class="absolute -bottom-16 -left-16 w-44 h-44 rounded-full bg-gradient-to-tr from-emerald-600/20 to-indigo-600/20 blur-3xl pointer-events-none"></div>
+                    <!-- 1. Admin Login Modal (Reactive Character - Bag Form Animation) -->
+    <div id="admin-login-modal" class="fixed inset-0 z-[100] hidden" style="display: none;" style="background: rgba(0,0,0,0.92); backdrop-filter: blur(20px);">
 
-            <!-- Close Button -->
-            <button onclick="closeAdminLoginModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white transition-colors cursor-pointer text-lg z-20">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
+        <!-- Floating Ambient Orbs -->
+        <div class="orb-1 absolute top-1/4 left-1/4 w-64 h-64 rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(99,102,241,0.25) 0%, transparent 70%);"></div>
+        <div class="orb-2 absolute bottom-1/3 right-1/4 w-48 h-48 rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(168,85,247,0.2) 0%, transparent 70%);"></div>
+        <div class="orb-3 absolute top-1/2 right-1/3 w-32 h-32 rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(59,130,246,0.2) 0%, transparent 70%);"></div>
 
-            <!-- Cyber Shield Lock Header -->
-            <div class="flex flex-col items-center justify-center pt-2 text-center" id="vault-header-wrapper">
-                <div class="relative w-20 h-20 mb-3 flex items-center justify-center">
-                    <div class="absolute inset-0 rounded-2xl bg-indigo-600/20 border border-indigo-500/40 rotate-45 animate-pulse"></div>
-                    <div class="absolute inset-1 rounded-2xl bg-purple-600/20 border border-purple-500/30 -rotate-12"></div>
-                    
-                    <div id="vault-lock-icon" class="relative z-10 h-12 w-12 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-white text-xl shadow-lg shadow-indigo-600/40 transition-transform duration-300">
-                        <i class="fa-solid fa-shield-halved text-2xl"></i>
-                    </div>
+        <!-- Outer wrapper: Character + Card side by side -->
+        <div class="relative flex items-end gap-0 w-full max-w-lg" style="animation: slideInFromBottom 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards;">
+
+            <!-- ============ SVG CHARACTER ============ -->
+            <div id="login-character" class="char-idle relative flex-shrink-0 select-none" style="width: 110px; margin-bottom: -4px; z-index: 10;">
+                <svg viewBox="0 0 120 220" xmlns="http://www.w3.org/2000/svg" width="110" height="210">
+                    <!-- Shadow -->
+                    <ellipse cx="60" cy="215" rx="30" ry="5" fill="rgba(99,102,241,0.3)"/>
+
+                    <!-- Legs -->
+                    <rect x="45" y="155" width="14" height="50" rx="7" fill="#1e1b4b"/>
+                    <rect x="63" y="155" width="14" height="50" rx="7" fill="#1e1b4b"/>
+
+                    <!-- Shoes -->
+                    <ellipse cx="52" cy="204" rx="10" ry="5" fill="#312e81"/>
+                    <ellipse cx="70" cy="204" rx="10" ry="5" fill="#312e81"/>
+
+                    <!-- Body / Jacket -->
+                    <rect x="36" y="100" width="48" height="60" rx="14" fill="#4f46e5"/>
+                    <!-- Jacket lapels -->
+                    <polygon points="60,105 48,110 52,145 60,140" fill="#3730a3"/>
+                    <polygon points="60,105 72,110 68,145 60,140" fill="#3730a3"/>
+                    <!-- Tie knot -->
+                    <polygon points="60,108 56,115 60,122 64,115" fill="#f59e0b"/>
+                    <!-- Shirt collar -->
+                    <polygon points="55,104 60,110 65,104 62,100 58,100" fill="#e0e7ff"/>
+
+                    <!-- Arms - default position -->
+                    <g id="char-arm-left">
+                        <rect x="18" y="102" width="20" height="12" rx="6" fill="#4f46e5" transform="rotate(20, 28, 108)"/>
+                    </g>
+                    <g id="char-arm-right">
+                        <rect x="82" y="102" width="20" height="12" rx="6" fill="#4f46e5" transform="rotate(-20, 92, 108)"/>
+                    </g>
+
+                    <!-- Neck -->
+                    <rect x="53" y="85" width="14" height="18" rx="7" fill="#fde68a"/>
+
+                    <!-- Head -->
+                    <ellipse cx="60" cy="72" rx="26" ry="28" fill="#fde68a"/>
+
+                    <!-- Hair -->
+                    <ellipse cx="60" cy="50" rx="26" ry="14" fill="#92400e"/>
+                    <rect x="34" y="44" width="12" height="20" rx="6" fill="#92400e"/>
+                    <rect x="74" y="44" width="12" height="20" rx="6" fill="#92400e"/>
+
+                    <!-- Sunglasses frame -->
+                    <g id="char-glasses">
+                        <rect x="36" y="65" width="18" height="12" rx="5" fill="#1e1b4b" opacity="0.95"/>
+                        <rect x="58" y="65" width="18" height="12" rx="5" fill="#1e1b4b" opacity="0.95"/>
+                        <rect x="54" y="68" width="4" height="4" fill="#1e1b4b" opacity="0.95"/>
+                        <!-- Lenses -->
+                        <rect x="37" y="66" width="16" height="10" rx="4" fill="#4338ca" opacity="0.7"/>
+                        <rect x="59" y="66" width="16" height="10" rx="4" fill="#4338ca" opacity="0.7"/>
+                        <!-- Shine -->
+                        <line x1="38" y1="68" x2="42" y2="70" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                        <line x1="60" y1="68" x2="64" y2="70" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                    </g>
+
+                    <!-- Peek eyes (shown when password hidden) -->
+                    <g id="char-peek-eyes" style="display: none;">
+                        <ellipse cx="47" cy="71" rx="7" ry="5" fill="white"/>
+                        <ellipse cx="73" cy="71" rx="7" ry="5" fill="white"/>
+                        <ellipse cx="49" cy="72" rx="4" ry="4" fill="#1e1b4b"/>
+                        <ellipse cx="75" cy="72" rx="4" ry="4" fill="#1e1b4b"/>
+                        <ellipse cx="50" cy="71" rx="1.5" ry="1.5" fill="white"/>
+                        <ellipse cx="76" cy="71" rx="1.5" ry="1.5" fill="white"/>
+                    </g>
+
+                    <!-- Cover hands (shown on password focus) -->
+                    <g id="char-cover-hands" style="display: none; opacity: 0; transition: opacity 0.3s;">
+                        <ellipse cx="44" cy="70" rx="14" ry="10" fill="#fde68a"/>
+                        <ellipse cx="76" cy="70" rx="14" ry="10" fill="#fde68a"/>
+                        <!-- finger lines -->
+                        <line x1="35" y1="65" x2="35" y2="75" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="39" y1="62" x2="39" y2="77" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="43" y1="61" x2="43" y2="78" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="67" y1="62" x2="67" y2="77" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="71" y1="61" x2="71" y2="78" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="75" y1="62" x2="75" y2="77" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- Smile mouth -->
+                    <path id="char-smile" d="M50 82 Q60 90 70 82" stroke="#92400e" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+                    <!-- Sad mouth -->
+                    <path id="char-sad" d="M50 88 Q60 82 70 88" stroke="#92400e" stroke-width="2" fill="none" stroke-linecap="round" style="display:none;"/>
+
+                    <!-- Star/sparkle on success -->
+                    <g id="char-sparkles" style="display: none;">
+                        <text x="20" y="55" font-size="14">✨</text>
+                        <text x="85" y="45" font-size="10">⭐</text>
+                    </g>
+                </svg>
+
+                <!-- Briefcase below character -->
+                <div id="login-bag" class="bag-idle absolute" style="bottom: -2px; right: -8px; font-size: 32px; filter: drop-shadow(0 4px 8px rgba(99,102,241,0.5));">
+                    🧳
                 </div>
-                
-                <h3 class="text-2xl font-extrabold text-white tracking-tight">Admin Security Console</h3>
-                <p class="text-xs text-indigo-400 font-medium mt-1">Enter master password to access site management</p>
             </div>
 
-            <!-- Login Form -->
-            <form onsubmit="handleAdminLoginSubmit(event)" class="space-y-5 relative z-10">
-                <div>
-                    <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Master Admin Key</label>
-                    <div class="relative">
-                        <input type="password" id="admin-login-password" required 
-                            placeholder="Enter password..."
-                            class="w-full px-4 py-3.5 bg-gray-900/90 border border-gray-800 rounded-2xl text-white placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 pr-12 transition-all font-mono text-sm shadow-inner">
-                        <button type="button" onclick="togglePasswordVisibility('admin-login-password', this)" class="absolute right-3.5 top-3.5 text-gray-400 hover:text-white transition-colors">
-                            <i class="fa-solid fa-eye text-base"></i>
-                        </button>
-                    </div>
-                    
-                    <!-- Error Alert -->
-                    <div id="admin-login-error" class="hidden text-xs text-rose-400 font-semibold mt-2.5 flex items-center gap-2 p-3 rounded-xl bg-rose-500/10 border border-rose-500/20">
-                        <i class="fa-solid fa-triangle-exclamation text-sm"></i> <span id="admin-login-error-text">Invalid security key.</span>
+            <!-- ============ LOGIN CARD ============ -->
+            <div id="login-card-container" class="login-card-inner flex-1 rounded-3xl border border-indigo-500/30 overflow-hidden relative"
+                 style="background: linear-gradient(145deg, rgba(15,10,40,0.98) 0%, rgba(25,15,60,0.98) 100%); box-shadow: 0 25px 60px rgba(99,102,241,0.3), 0 0 0 1px rgba(99,102,241,0.2), inset 0 1px 0 rgba(255,255,255,0.05);">
+
+                <!-- Scan line effect -->
+                <div class="absolute left-0 right-0 h-0.5 z-10 pointer-events-none" id="login-scan-line"
+                     style="background: linear-gradient(90deg, transparent, rgba(99,102,241,0.8), transparent); animation: scanLine 3s linear infinite; top: 0;"></div>
+
+                <!-- Card top glow -->
+                <div class="absolute top-0 left-0 right-0 h-1 pointer-events-none" style="background: linear-gradient(90deg, transparent, rgba(99,102,241,0.8), rgba(168,85,247,0.8), transparent);"></div>
+
+                <div class="p-6 space-y-5">
+                    <!-- Header -->
+                    <div class="text-center space-y-1">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-2"
+                             style="background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3); color: #a5b4fc;">
+                            <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></div>
+                            Secure Access Portal
+                        </div>
+                        <h3 class="text-xl font-black text-white tracking-tight">Admin Security Console</h3>
+                        <p class="text-[11px] font-medium" style="color: rgba(165,180,252,0.7);">Enter master password to unlock site management</p>
                     </div>
 
-                    <!-- Brute Force Lockout Banner -->
-                    <div id="admin-lockout-banner" class="hidden space-y-2 mt-2.5 p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs">
-                        <div class="flex items-center justify-between font-bold">
-                            <span><i class="fa-solid fa-lock mr-1"></i> Security Rate Lockout</span>
-                            <span id="lockout-timer-text">30s</span>
+                    <!-- Form -->
+                    <form onsubmit="handleAdminLoginSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase tracking-widest mb-2" style="color: rgba(165,180,252,0.6);">
+                                <i class="fa-solid fa-key mr-1"></i>Master Admin Key
+                            </label>
+                            <div class="relative">
+                                <input type="password" id="admin-login-password" required
+                                    placeholder="••••••••••••"
+                                    onfocus="onPasswordFocus()"
+                                    onblur="onPasswordBlur()"
+                                    oninput="onPasswordInput()"
+                                    class="w-full px-4 py-3.5 rounded-2xl text-white placeholder-gray-600 pr-12 font-mono text-sm transition-all"
+                                    style="background: rgba(255,255,255,0.04); border: 1px solid rgba(99,102,241,0.3); outline: none;"
+                                    onfocus="this.style.borderColor='rgba(99,102,241,0.8)'; this.style.boxShadow='0 0 20px rgba(99,102,241,0.2)'; onPasswordFocus();"
+                                    onblur="this.style.borderColor='rgba(99,102,241,0.3)'; this.style.boxShadow='none'; onPasswordBlur();">
+                                <button type="button" onclick="togglePasswordVisibility('admin-login-password', this)"
+                                    class="absolute right-3.5 top-3.5 transition-colors cursor-pointer"
+                                    style="color: rgba(165,180,252,0.5);"
+                                    onmouseenter="this.style.color='rgba(165,180,252,1)'"
+                                    onmouseleave="this.style.color='rgba(165,180,252,0.5)'">
+                                    <i class="fa-solid fa-eye text-base"></i>
+                                </button>
+                            </div>
+
+                            <!-- Error -->
+                            <div id="admin-login-error" class="hidden text-xs font-semibold mt-2.5 flex items-center gap-2 p-2.5 rounded-xl"
+                                 style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.25); color: #fca5a5;">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                <span id="admin-login-error-text">Invalid security key.</span>
+                            </div>
+
+                            <!-- Lockout Banner -->
+                            <div id="admin-lockout-banner" class="hidden mt-2.5 p-3 rounded-xl space-y-2"
+                                 style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.25); color: #fcd34d;">
+                                <div class="flex items-center justify-between text-xs font-bold">
+                                    <span><i class="fa-solid fa-lock mr-1"></i> Rate Lockout Active</span>
+                                    <span id="lockout-timer-text">30s</span>
+                                </div>
+                                <div class="w-full h-1.5 rounded-full overflow-hidden" style="background: rgba(255,255,255,0.1);">
+                                    <div id="lockout-progress-bar" class="h-full rounded-full transition-all duration-1000" style="background: #f59e0b; width: 100%;"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
-                            <div id="lockout-progress-bar" class="bg-amber-500 h-full w-full transition-all duration-1000"></div>
+
+                        <!-- Typing indicator dots -->
+                        <div id="typing-indicator" class="hidden flex items-center gap-1.5 px-1">
+                            <div class="w-1.5 h-1.5 rounded-full bg-indigo-400" style="animation: typingDot 1.2s ease-in-out infinite; animation-delay: 0s;"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-purple-400" style="animation: typingDot 1.2s ease-in-out infinite; animation-delay: 0.2s;"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-indigo-400" style="animation: typingDot 1.2s ease-in-out infinite; animation-delay: 0.4s;"></div>
+                            <span class="text-[10px] ml-1" style="color: rgba(165,180,252,0.5);">encrypting input...</span>
                         </div>
-                    </div>
+
+                        <!-- Buttons -->
+                        <div class="flex gap-3 pt-1">
+                            <button type="button" onclick="closeAdminLoginModal()"
+                                class="flex-shrink-0 px-5 py-3 rounded-2xl text-xs font-bold cursor-pointer transition-all"
+                                style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: rgba(156,163,175,1);"
+                                onmouseenter="this.style.background='rgba(255,255,255,0.08)'"
+                                onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
+                                Cancel
+                            </button>
+                            <button type="submit" id="admin-login-submit-btn"
+                                class="flex-1 py-3 rounded-2xl text-xs font-bold text-white cursor-pointer transition-all flex items-center justify-center gap-2"
+                                style="background: linear-gradient(135deg, #4f46e5, #7c3aed); box-shadow: 0 8px 24px rgba(99,102,241,0.4);"
+                                onmouseenter="this.style.boxShadow='0 12px 32px rgba(99,102,241,0.6)'; this.style.transform='translateY(-1px)'"
+                                onmouseleave="this.style.boxShadow='0 8px 24px rgba(99,102,241,0.4)'; this.style.transform='translateY(0)'">
+                                <i class="fa-solid fa-shield-halved"></i> Authenticate
+                            </button>
+                        </div>
+                    </form>
                 </div>
 
-                <div class="flex gap-3 pt-2">
-                    <button type="button" onclick="closeAdminLoginModal()" class="flex-1 py-3.5 rounded-2xl bg-gray-900 hover:bg-gray-800 text-gray-300 text-xs font-bold transition-all cursor-pointer border border-gray-800">
-                        Cancel
-                    </button>
-                    <button type="submit" id="admin-login-submit-btn" class="flex-1 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 transition-all cursor-pointer flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-key"></i> Authenticate
-                    </button>
-                </div>
-            </form>
+                <!-- Bottom glow strip -->
+                <div class="h-px w-full" style="background: linear-gradient(90deg, transparent, rgba(99,102,241,0.5), rgba(168,85,247,0.5), transparent);"></div>
+            </div>
         </div>
     </div>
 
 <!-- 2. Main Admin Dashboard Modal -->
-    <div id="admin-dashboard-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-lg transition-all duration-300">
-        <div class="w-full max-w-6xl h-[92vh] max-h-[850px] rounded-3xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-2xl flex flex-col overflow-hidden relative text-left">
-            
-            <!-- Dashboard Top Header Bar -->
-            <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-800 bg-gray-50/80 dark:bg-gray-950/80 flex flex-wrap items-center justify-between gap-4 flex-shrink-0">
-                <div class="flex items-center gap-3">
-                    <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-md">
-                        <i class="fa-solid fa-sliders"></i>
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <h2 class="text-lg font-bold text-gray-900 dark:text-white tracking-tight">Site Admin Control Center</h2>
-                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 uppercase tracking-wider">
-                                <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Active Session
-                            </span>
+    <div id="admin-dashboard-modal" class="fixed inset-0 z-[100] hidden" style="background: rgba(0,0,0,0.88); backdrop-filter: blur(16px);">
+        <div class="flex h-full w-full">
+
+            <!-- ── SIDEBAR ─────────────────────────────── -->
+            <div class="flex-shrink-0 w-56 h-full flex flex-col" style="background: rgba(10,8,25,0.97); border-right: 1px solid rgba(99,102,241,0.2);">
+                <!-- Brand -->
+                <div class="px-5 py-5 border-b" style="border-color: rgba(99,102,241,0.2);">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-xl flex items-center justify-center" style="background: linear-gradient(135deg,#4f46e5,#7c3aed);">
+                            <i class="fa-solid fa-sliders text-white text-sm"></i>
                         </div>
-                        <p class="text-xs text-gray-500 dark:text-gray-400">saurabh.dev zero-code content management</p>
+                        <div>
+                            <div class="text-white font-black text-sm leading-none">Admin Panel</div>
+                            <div class="text-[10px] mt-0.5" style="color: rgba(165,180,252,0.5);">saurabh.dev</div>
+                        </div>
+                    </div>
+                    <div class="mt-3 flex items-center gap-2 px-2.5 py-1.5 rounded-lg" style="background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.2);">
+                        <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse flex-shrink-0"></div>
+                        <span class="text-[10px] font-bold text-emerald-400">ACTIVE SESSION</span>
                     </div>
                 </div>
 
-                <div class="flex items-center gap-3">
-                    <!-- Live Edit Mode Toggle -->
-                    <label class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-indigo-500/10 border border-indigo-500/30 text-xs font-semibold text-indigo-600 dark:text-indigo-300 cursor-pointer">
-                        <input type="checkbox" id="toggle-live-edit" onchange="toggleLiveEditMode(this.checked)" class="sr-only peer">
-                        <div class="w-8 h-4 bg-gray-300 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-indigo-600 relative"></div>
-                        <span>Live Edit Overlay</span>
-                    </label>
+                <!-- Nav Items -->
+                <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+                    <button id="tab-btn-overview"  onclick="switchAdminTab('overview')"  class="admin-tab-btn w-full px-3.5 py-2.5 rounded-xl text-xs font-semibold text-left flex items-center gap-3 transition-all cursor-pointer text-gray-400 hover:text-white hover:bg-white/5">
+                        <i class="fa-solid fa-chart-pie w-4 text-center"></i> Dashboard Overview
+                    </button>
+                    <button id="tab-btn-projects" onclick="switchAdminTab('projects')" class="admin-tab-btn w-full px-3.5 py-2.5 rounded-xl text-xs font-semibold text-left flex items-center gap-3 transition-all cursor-pointer text-gray-400 hover:text-white hover:bg-white/5">
+                        <i class="fa-solid fa-grid-2 w-4 text-center"></i> Projects Catalog
+                    </button>
+                    <button id="tab-btn-content"  onclick="switchAdminTab('content')"  class="admin-tab-btn w-full px-3.5 py-2.5 rounded-xl text-xs font-semibold text-left flex items-center gap-3 transition-all cursor-pointer text-gray-400 hover:text-white hover:bg-white/5">
+                        <i class="fa-solid fa-pen-nib w-4 text-center"></i> Site Copy & Links
+                    </button>
+                    <button id="tab-btn-policies" onclick="switchAdminTab('policies')" class="admin-tab-btn w-full px-3.5 py-2.5 rounded-xl text-xs font-semibold text-left flex items-center gap-3 transition-all cursor-pointer text-gray-400 hover:text-white hover:bg-white/5">
+                        <i class="fa-solid fa-file-shield w-4 text-center"></i> Privacy Policies
+                    </button>
+                    <button id="tab-btn-settings" onclick="switchAdminTab('settings')" class="admin-tab-btn w-full px-3.5 py-2.5 rounded-xl text-xs font-semibold text-left flex items-center gap-3 transition-all cursor-pointer text-gray-400 hover:text-white hover:bg-white/5">
+                        <i class="fa-solid fa-shield-halved w-4 text-center"></i> Security & Backups
+                    </button>
 
-                    <!-- Export HTML Button -->
-                    
+                    <div class="pt-4 border-t mt-4" style="border-color: rgba(99,102,241,0.15);">
+                        <!-- Live Edit Toggle -->
+                        <div class="flex items-center justify-between px-3.5 py-2.5 rounded-xl" style="background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.2);">
+                            <span class="text-[10px] font-bold text-indigo-400 flex items-center gap-1.5"><i class="fa-solid fa-eye"></i> Live Edit</span>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="toggle-live-edit" class="sr-only peer" onchange="toggleLiveEditMode(this.checked)">
+                                <div class="w-8 h-4 bg-gray-700 rounded-full peer peer-checked:bg-indigo-600 transition-all after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:after:translate-x-4"></div>
+                            </label>
+                        </div>
+                    </div>
+                </nav>
 
-                    <!-- Close Button -->
-                    <button onclick="closeAdminDashboard()" class="h-9 w-9 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-300 flex items-center justify-center transition-all cursor-pointer">
-                        <i class="fa-solid fa-xmark text-lg"></i>
+                <!-- Logout -->
+                <div class="px-3 pb-4">
+                    <button onclick="logoutAdmin()" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-3 cursor-pointer transition-all text-rose-400 hover:bg-rose-500/10">
+                        <i class="fa-solid fa-right-from-bracket w-4 text-center"></i> Logout Session
                     </button>
                 </div>
             </div>
 
-            <!-- Dashboard Body: Sidebar + Main Content -->
-            <div class="flex-grow flex flex-col md:flex-row overflow-hidden">
-                
-                <!-- Sidebar Nav Tabs -->
-                <div class="w-full md:w-64 border-r border-gray-200 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-950/40 p-4 space-y-1 flex-shrink-0 overflow-y-auto">
-                    <button onclick="switchAdminTab('overview')" id="tab-btn-overview" class="admin-tab-btn w-full px-4 py-3 rounded-xl text-xs font-bold text-left flex items-center gap-3 transition-all cursor-pointer">
-                        <i class="fa-solid fa-chart-pie text-sm"></i> Dashboard Overview
-                    </button>
-                    <button onclick="switchAdminTab('projects')" id="tab-btn-projects" class="admin-tab-btn w-full px-4 py-3 rounded-xl text-xs font-bold text-left flex items-center gap-3 transition-all cursor-pointer">
-                        <i class="fa-solid fa-cubes text-sm"></i> Projects Catalog (CRUD)
-                    </button>
-                    <button onclick="switchAdminTab('content')" id="tab-btn-content" class="admin-tab-btn w-full px-4 py-3 rounded-xl text-xs font-bold text-left flex items-center gap-3 transition-all cursor-pointer">
-                        <i class="fa-solid fa-heading text-sm"></i> Site Copy & Links
-                    </button>
-                    <button onclick="switchAdminTab('policies')" id="tab-btn-policies" class="admin-tab-btn w-full px-4 py-3 rounded-xl text-xs font-bold text-left flex items-center gap-3 transition-all cursor-pointer">
-                        <i class="fa-solid fa-file-contract text-sm"></i> Privacy Policies Editor
-                    </button>
-                    <button onclick="switchAdminTab('settings')" id="tab-btn-settings" class="admin-tab-btn w-full px-4 py-3 rounded-xl text-xs font-bold text-left flex items-center gap-3 transition-all cursor-pointer">
-                        <i class="fa-solid fa-gear text-sm"></i> Security & Backups
-                    </button>
-
-                    <div class="pt-6 border-t border-gray-200 dark:border-gray-800 mt-6 space-y-2">
-                        <button onclick="logoutAdmin()" class="w-full px-4 py-2.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-bold text-left flex items-center gap-2 transition-all cursor-pointer">
-                            <i class="fa-solid fa-right-from-bracket"></i> Logout Admin Session
-                        </button>
+            <!-- ── MAIN CONTENT AREA ──────────────────── -->
+            <div class="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
+                <!-- Top bar -->
+                <div class="flex-shrink-0 px-6 py-4 flex items-center justify-between border-b" style="border-color: rgba(99,102,241,0.2); background: rgba(10,8,25,0.6);">
+                    <div>
+                        <h2 class="text-white font-black text-lg tracking-tight">Site Admin Control Center</h2>
+                        <p class="text-xs mt-0.5" style="color: rgba(165,180,252,0.5);">saurabh.dev zero-code content management</p>
                     </div>
+                    <button onclick="closeAdminDashboard()" class="w-9 h-9 rounded-xl flex items-center justify-center cursor-pointer transition-all text-gray-400 hover:text-white hover:bg-white/10">
+                        <i class="fa-solid fa-xmark text-base"></i>
+                    </button>
                 </div>
 
-                <!-- Main Content Pane -->
-                <div class="flex-grow p-6 overflow-y-auto bg-white dark:bg-gray-900 text-left">
-                    
-                    <!-- TAB 1: OVERVIEW -->
-                    <div id="admin-view-overview" class="admin-tab-view space-y-6">
+                <!-- Tab content -->
+                <div class="flex-1 overflow-y-auto p-6 space-y-0" style="scrollbar-width: thin; scrollbar-color: rgba(99,102,241,0.3) transparent;">
+
+                    <!-- ── TAB 1: OVERVIEW ──────────────────────── -->
+                    <div id="admin-view-overview" class="space-y-6">
+                        <!-- Stats row -->
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="p-5 rounded-2xl" style="background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.2);">
+                                <div class="text-3xl font-black text-white" id="overview-count-total">0</div>
+                                <div class="text-xs font-semibold mt-1" style="color: rgba(165,180,252,0.7);">Total Projects</div>
+                            </div>
+                            <div class="p-5 rounded-2xl" style="background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2);">
+                                <div class="text-3xl font-black text-emerald-400" id="overview-count-featured">0</div>
+                                <div class="text-xs font-semibold mt-1" style="color: rgba(52,211,153,0.6);">Featured Apps</div>
+                            </div>
+                            <div class="p-5 rounded-2xl" style="background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.2);">
+                                <div class="text-3xl font-black text-purple-400" id="overview-count-saas">0</div>
+                                <div class="text-xs font-semibold mt-1" style="color: rgba(168,85,247,0.6);">Tools & SaaS</div>
+                            </div>
+                        </div>
+
+                        <!-- Quick actions -->
                         <div>
-                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Website Performance & Control</h3>
-                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Manage all content, project repositories, policy terms, and links without writing code.</p>
-                        </div>
-
-                        <!-- Stats Cards Grid -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                            <div class="p-5 rounded-2xl bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-xs font-bold uppercase text-gray-400 tracking-wider">Total Repositories</span>
-                                    <div class="h-8 w-8 rounded-lg bg-indigo-500/10 text-indigo-500 flex items-center justify-center"><i class="fa-solid fa-cubes text-sm"></i></div>
-                                </div>
-                                <div class="text-3xl font-extrabold text-gray-900 dark:text-white mt-2" id="overview-count-total">26</div>
-                                <div class="text-[11px] text-gray-500 mt-1">Active dev repositories</div>
-                            </div>
-                            <div class="p-5 rounded-2xl bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-xs font-bold uppercase text-gray-400 tracking-wider">Featured Apps</span>
-                                    <div class="h-8 w-8 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center"><i class="fa-solid fa-star text-sm"></i></div>
-                                </div>
-                                <div class="text-3xl font-extrabold text-gray-900 dark:text-white mt-2" id="overview-count-featured">6</div>
-                                <div class="text-[11px] text-gray-500 mt-1">Highlighted applications</div>
-                            </div>
-                            <div class="p-5 rounded-2xl bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-xs font-bold uppercase text-gray-400 tracking-wider">SaaS & Tools</span>
-                                    <div class="h-8 w-8 rounded-lg bg-purple-500/10 text-purple-500 flex items-center justify-center"><i class="fa-solid fa-toolbox text-sm"></i></div>
-                                </div>
-                                <div class="text-3xl font-extrabold text-gray-900 dark:text-white mt-2" id="overview-count-saas">20</div>
-                                <div class="text-[11px] text-gray-500 mt-1">SaaS & operational modules</div>
-                            </div>
-                            <div class="p-5 rounded-2xl bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-xs font-bold uppercase text-gray-400 tracking-wider">Policy Documents</span>
-                                    <div class="h-8 w-8 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center"><i class="fa-solid fa-shield-halved text-sm"></i></div>
-                                </div>
-                                <div class="text-3xl font-extrabold text-gray-900 dark:text-white mt-2">5</div>
-                                <div class="text-[11px] text-gray-500 mt-1">Privacy & compliance tabs</div>
+                            <h4 class="text-xs font-bold uppercase tracking-widest mb-3" style="color: rgba(165,180,252,0.5);">Quick Actions</h4>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                <button onclick="openAddProjectModal()" class="p-4 rounded-2xl flex flex-col items-center gap-2 text-xs font-bold text-white cursor-pointer transition-all" style="background: linear-gradient(135deg,#4f46e5,#7c3aed); box-shadow: 0 4px 16px rgba(99,102,241,0.3);" onmouseenter="this.style.transform='translateY(-2px)'" onmouseleave="this.style.transform='translateY(0)'">
+                                    <i class="fa-solid fa-circle-plus text-xl"></i> Add App
+                                </button>
+                                <button onclick="switchAdminTab('content')" class="p-4 rounded-2xl flex flex-col items-center gap-2 text-xs font-bold text-indigo-400 cursor-pointer transition-all" style="background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.2);" onmouseenter="this.style.transform='translateY(-2px)'" onmouseleave="this.style.transform='translateY(0)'">
+                                    <i class="fa-solid fa-pen-nib text-xl"></i> Edit Text
+                                </button>
+                                <button onclick="switchAdminTab('policies')" class="p-4 rounded-2xl flex flex-col items-center gap-2 text-xs font-bold text-amber-400 cursor-pointer transition-all" style="background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2);" onmouseenter="this.style.transform='translateY(-2px)'" onmouseleave="this.style.transform='translateY(0)'">
+                                    <i class="fa-solid fa-file-shield text-xl"></i> Policies
+                                </button>
+                                <button onclick="switchAdminTab('settings')" class="p-4 rounded-2xl flex flex-col items-center gap-2 text-xs font-bold text-emerald-400 cursor-pointer transition-all" style="background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2);" onmouseenter="this.style.transform='translateY(-2px)'" onmouseleave="this.style.transform='translateY(0)'">
+                                    <i class="fa-solid fa-shield-halved text-xl"></i> Security
+                                </button>
                             </div>
                         </div>
 
-                        <!-- Quick Actions -->
-                        <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 space-y-4">
-                            <h4 class="text-sm font-bold uppercase text-gray-400 tracking-wider">Quick Actions</h4>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-                                <button onclick="openAddProjectModal()" class="p-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow flex flex-col items-center justify-center gap-2 transition-all cursor-pointer">
-                                    <i class="fa-solid fa-circle-plus text-xl"></i> Add New Application
-                                </button>
-                                <button onclick="switchAdminTab('content')" class="p-4 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-850 text-gray-900 dark:text-white text-xs font-bold shadow-sm flex flex-col items-center justify-center gap-2 transition-all cursor-pointer">
-                                    <i class="fa-solid fa-pen-to-square text-xl text-indigo-500"></i> Edit Hero & Site Text
-                                </button>
-                                <button onclick="switchAdminTab('policies')" class="p-4 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-850 text-gray-900 dark:text-white text-xs font-bold shadow-sm flex flex-col items-center justify-center gap-2 transition-all cursor-pointer">
-                                    <i class="fa-solid fa-file-contract text-xl text-amber-500"></i> Update Privacy Policies
-                                </button>
-                                
+                        <!-- Info card -->
+                        <div class="p-5 rounded-2xl flex items-center gap-4" style="background: rgba(52,211,153,0.06); border: 1px solid rgba(52,211,153,0.15);">
+                            <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background: rgba(52,211,153,0.15);">
+                                <i class="fa-solid fa-bolt text-emerald-400"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-bold text-white">⚡ Live Sync Active</div>
+                                <div class="text-xs mt-0.5" style="color: rgba(165,180,252,0.5);">Changes save instantly to browser. Vercel deployment takes 15–30s.</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- TAB 2: PROJECTS CATALOG (CRUD) -->
-                    <div id="admin-view-projects" class="admin-tab-view hidden space-y-6">
-                        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-gray-200 dark:border-gray-800 pb-4">
+                    <!-- ── TAB 2: PROJECTS CATALOG ──────────────── -->
+                    <div id="admin-view-projects" class="hidden space-y-5">
+                        <!-- Header -->
+                        <div class="flex items-center justify-between">
                             <div>
-                                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Projects Catalog Suite</h3>
-                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Add, edit, reorder, or remove project cards displayed on the portfolio.</p>
+                                <h3 class="text-lg font-black text-white">Projects Catalog</h3>
+                                <p class="text-xs mt-0.5" style="color: rgba(165,180,252,0.5);">Add, edit, reorder, or remove project cards.</p>
                             </div>
-                            <button onclick="openAddProjectModal()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-xs font-bold shadow flex items-center gap-2 cursor-pointer transition-all">
-                                <i class="fa-solid fa-plus"></i> Add New App Card
+                            <button onclick="openAddProjectModal()" class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold text-white cursor-pointer transition-all" style="background: linear-gradient(135deg,#4f46e5,#7c3aed); box-shadow: 0 4px 16px rgba(99,102,241,0.35);" onmouseenter="this.style.opacity='0.9'" onmouseleave="this.style.opacity='1'">
+                                <i class="fa-solid fa-plus"></i> Add New App
                             </button>
                         </div>
 
-                        <!-- Filter and Search -->
-                        <div class="flex flex-wrap items-center justify-between gap-4">
-                            <input type="text" id="admin-project-search" oninput="renderAdminProjectsTable()" placeholder="Search apps by name, folder, tech stack..."
-                                class="w-full sm:w-80 px-4 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-xs text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                            <select id="admin-project-filter" onchange="renderAdminProjectsTable()" class="px-4 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-xs text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                                <option value="all">All Categories</option>
+                        <!-- Search & filter bar -->
+                        <div class="flex gap-3">
+                            <input type="text" id="admin-project-search" oninput="renderAdminProjectsTable()" placeholder="Search by name, folder or tech..."
+                                class="flex-1 px-4 py-2.5 rounded-xl text-xs text-white placeholder-gray-600 focus:outline-none"
+                                style="background: rgba(255,255,255,0.04); border: 1px solid rgba(99,102,241,0.2);"
+                                onfocus="this.style.borderColor='rgba(99,102,241,0.5)'" onblur="this.style.borderColor='rgba(99,102,241,0.2)'">
+                            <select id="admin-project-filter" onchange="renderAdminProjectsTable()"
+                                class="px-4 py-2.5 rounded-xl text-xs text-gray-300 cursor-pointer focus:outline-none"
+                                style="background: rgba(255,255,255,0.04); border: 1px solid rgba(99,102,241,0.2);">
+                                <option value="all">All</option>
                                 <option value="featured">Featured</option>
                                 <option value="saas">SaaS</option>
                                 <option value="tools">Tools</option>
                             </select>
                         </div>
 
-                        <!-- Projects Table -->
-                        <div class="rounded-2xl border border-gray-200 dark:border-gray-800 overflow-x-auto shadow-sm">
-                            <table class="w-full text-left border-collapse text-xs">
-                                <thead>
-                                    <tr class="bg-gray-50 dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 text-gray-500 font-bold uppercase tracking-wider">
-                                        <th class="p-3.5">App / Repository</th>
-                                        <th class="p-3.5">Category</th>
-                                        <th class="p-3.5">Tech Stack</th>
-                                        <th class="p-3.5">Badges</th>
-                                        <th class="p-3.5 text-right">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="admin-projects-tbody" class="divide-y divide-gray-200 dark:divide-gray-800">
-                                    <!-- Populated via JS -->
-                                </tbody>
-                            </table>
+                        <!-- Projects List — CARD BASED (no wide table) -->
+                        <div id="admin-projects-tbody" class="space-y-2">
+                            <!-- Populated via JS -->
                         </div>
                     </div>
 
-                    <!-- TAB 3: SITE COPY & LINKS -->
-                    <div id="admin-view-content" class="admin-tab-view hidden space-y-6">
+                    <!-- ── TAB 3: SITE COPY & LINKS ─────────────── -->
+                    <div id="admin-view-content" class="hidden space-y-6">
                         <div>
-                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Site Copy & Links Replacer</h3>
-                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Replace hero headlines, bio paragraphs, emails, and external links across the entire site.</p>
+                            <h3 class="text-lg font-black text-white">Site Copy & Links</h3>
+                            <p class="text-xs mt-0.5" style="color: rgba(165,180,252,0.5);">Edit all headlines, bio text, stats, and contact details.</p>
                         </div>
 
-                        <form onsubmit="handleSaveCopyAndLinks(event)" class="space-y-6">
-                            
-                            <!-- Hero Section Copy -->
-                            <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 space-y-4">
-                                <h4 class="text-sm font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider flex items-center gap-2">
-                                    <i class="fa-solid fa-heading"></i> Hero Section Text
-                                </h4>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <form onsubmit="handleSaveCopyAndLinks(event)" class="space-y-5">
+                            <!-- Hero Copy -->
+                            <div class="p-5 rounded-2xl space-y-4" style="background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.2);">
+                                <h4 class="text-xs font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2"><i class="fa-solid fa-heading"></i> Hero Section</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                                     <div>
-                                        <label class="block text-xs font-semibold text-gray-500 mb-1">Status Badge Text</label>
-                                        <input type="text" id="edit-hero-badge" class="w-full px-3.5 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl text-xs text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500">
+                                        <label class="block text-[10px] font-bold uppercase text-gray-500 mb-1">Status Badge Text</label>
+                                        <input type="text" id="edit-hero-badge" class="w-full px-3.5 py-2.5 rounded-xl text-xs text-white focus:outline-none" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(99,102,241,0.2);" onfocus="this.style.borderColor='rgba(99,102,241,0.5)'" onblur="this.style.borderColor='rgba(99,102,241,0.2)'">
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-semibold text-gray-500 mb-1">Main Headline (Line 1)</label>
-                                        <input type="text" id="edit-hero-title-main" class="w-full px-3.5 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl text-xs text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500">
-                                    </div>
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-semibold text-gray-500 mb-1">Gradient Headline Subtitle (Line 2)</label>
-                                    <input type="text" id="edit-hero-title-sub" class="w-full px-3.5 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl text-xs text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-semibold text-gray-500 mb-1">Hero Bio Paragraph</label>
-                                    <textarea id="edit-hero-bio" rows="3" class="w-full px-3.5 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl text-xs text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500"></textarea>
-                                </div>
-                            </div>
-
-                            <!-- Hero Stats Section -->
-                            <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 space-y-4">
-                                <h4 class="text-sm font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider flex items-center gap-2">
-                                    <i class="fa-solid fa-chart-line"></i> Hero Stats Badges
-                                </h4>
-                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                    <div>
-                                        <label class="block text-xs font-semibold text-gray-500 mb-1">Stat 1 Value / Count</label>
-                                        <input type="text" id="edit-stat1-val" class="w-full px-3.5 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl text-xs text-gray-900 dark:text-white">
+                                        <label class="block text-[10px] font-bold uppercase text-gray-500 mb-1">Main Headline (Line 1)</label>
+                                        <input type="text" id="edit-hero-title-main" class="w-full px-3.5 py-2.5 rounded-xl text-xs text-white focus:outline-none" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(99,102,241,0.2);" onfocus="this.style.borderColor='rgba(99,102,241,0.5)'" onblur="this.style.borderColor='rgba(99,102,241,0.2)'">
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-semibold text-gray-500 mb-1">Stat 1 Label</label>
-                                        <input type="text" id="edit-stat1-lbl" class="w-full px-3.5 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl text-xs text-gray-900 dark:text-white">
+                                        <label class="block text-[10px] font-bold uppercase text-gray-500 mb-1">Gradient Subtitle (Line 2)</label>
+                                        <input type="text" id="edit-hero-title-sub" class="w-full px-3.5 py-2.5 rounded-xl text-xs text-white focus:outline-none" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(99,102,241,0.2);" onfocus="this.style.borderColor='rgba(99,102,241,0.5)'" onblur="this.style.borderColor='rgba(99,102,241,0.2)'">
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-semibold text-gray-500 mb-1">Stat 2 Badge Label</label>
-                                        <input type="text" id="edit-stat2-val" class="w-full px-3.5 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl text-xs text-gray-900 dark:text-white">
+                                        <label class="block text-[10px] font-bold uppercase text-gray-500 mb-1">Bio Paragraph</label>
+                                        <textarea id="edit-hero-bio" rows="2" class="w-full px-3.5 py-2.5 rounded-xl text-xs text-white focus:outline-none resize-none" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(99,102,241,0.2);" onfocus="this.style.borderColor='rgba(99,102,241,0.5)'" onblur="this.style.borderColor='rgba(99,102,241,0.2)'"></textarea>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Contact & Links Section -->
-                            <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 space-y-4">
-                                <h4 class="text-sm font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider flex items-center gap-2">
-                                    <i class="fa-solid fa-link"></i> Contact Email & Form Integrations
-                                </h4>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Stats -->
+                            <div class="p-5 rounded-2xl space-y-4" style="background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.2);">
+                                <h4 class="text-xs font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2"><i class="fa-solid fa-chart-bar"></i> Hero Stats</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                                     <div>
-                                        <label class="block text-xs font-semibold text-gray-500 mb-1">Official Support Email</label>
-                                        <input type="email" id="edit-contact-email" class="w-full px-3.5 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl text-xs text-gray-900 dark:text-white">
+                                        <label class="block text-[10px] font-bold uppercase text-gray-500 mb-1">Stat 1 Value</label>
+                                        <input type="text" id="edit-stat1-val" class="w-full px-3.5 py-2.5 rounded-xl text-xs text-white focus:outline-none" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(99,102,241,0.2);" onfocus="this.style.borderColor='rgba(99,102,241,0.5)'" onblur="this.style.borderColor='rgba(99,102,241,0.2)'">
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-semibold text-gray-500 mb-1">Developer Location</label>
-                                        <input type="text" id="edit-contact-location" class="w-full px-3.5 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl text-xs text-gray-900 dark:text-white">
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-xs font-semibold text-gray-500 mb-1">Web3Forms Access Key (Optional)</label>
-                                        <input type="text" id="edit-web3forms-key" placeholder="Enter Key from web3forms.com" class="w-full px-3.5 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl text-xs text-gray-900 dark:text-white">
+                                        <label class="block text-[10px] font-bold uppercase text-gray-500 mb-1">Stat 1 Label</label>
+                                        <input type="text" id="edit-stat1-lbl" class="w-full px-3.5 py-2.5 rounded-xl text-xs text-white focus:outline-none" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(99,102,241,0.2);" onfocus="this.style.borderColor='rgba(99,102,241,0.5)'" onblur="this.style.borderColor='rgba(99,102,241,0.2)'">
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-semibold text-gray-500 mb-1">Formspree Form ID (Optional)</label>
-                                        <input type="text" id="edit-formspree-id" placeholder="Enter Form ID from formspree.io" class="w-full px-3.5 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl text-xs text-gray-900 dark:text-white">
+                                        <label class="block text-[10px] font-bold uppercase text-gray-500 mb-1">Stat 2 (Google Play Label)</label>
+                                        <input type="text" id="edit-stat2-val" class="w-full px-3.5 py-2.5 rounded-xl text-xs text-white focus:outline-none" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(99,102,241,0.2);" onfocus="this.style.borderColor='rgba(99,102,241,0.5)'" onblur="this.style.borderColor='rgba(99,102,241,0.2)'">
                                     </div>
                                 </div>
                             </div>
 
-                            <button type="submit" class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-lg shadow-indigo-600/25 flex items-center gap-2 cursor-pointer transition-all">
-                                <i class="fa-solid fa-floppy-disk"></i> Save & Apply Copy Changes
-                            </button>
+                            <!-- Contact -->
+                            <div class="p-5 rounded-2xl space-y-4" style="background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.2);">
+                                <h4 class="text-xs font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2"><i class="fa-solid fa-envelope"></i> Contact & Integrations</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-[10px] font-bold uppercase text-gray-500 mb-1">Contact Email</label>
+                                        <input type="email" id="edit-contact-email" class="w-full px-3.5 py-2.5 rounded-xl text-xs text-white focus:outline-none" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(99,102,241,0.2);" onfocus="this.style.borderColor='rgba(99,102,241,0.5)'" onblur="this.style.borderColor='rgba(99,102,241,0.2)'">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold uppercase text-gray-500 mb-1">Contact Location</label>
+                                        <input type="text" id="edit-contact-location" class="w-full px-3.5 py-2.5 rounded-xl text-xs text-white focus:outline-none" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(99,102,241,0.2);" onfocus="this.style.borderColor='rgba(99,102,241,0.5)'" onblur="this.style.borderColor='rgba(99,102,241,0.2)'">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold uppercase text-gray-500 mb-1">Web3Forms Key</label>
+                                        <input type="text" id="edit-web3forms-key" class="w-full px-3.5 py-2.5 rounded-xl text-xs text-white focus:outline-none font-mono" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(99,102,241,0.2);" onfocus="this.style.borderColor='rgba(99,102,241,0.5)'" onblur="this.style.borderColor='rgba(99,102,241,0.2)'">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold uppercase text-gray-500 mb-1">Formspree ID</label>
+                                        <input type="text" id="edit-formspree-id" class="w-full px-3.5 py-2.5 rounded-xl text-xs text-white focus:outline-none font-mono" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(99,102,241,0.2);" onfocus="this.style.borderColor='rgba(99,102,241,0.5)'" onblur="this.style.borderColor='rgba(99,102,241,0.2)'">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-end">
+                                <button type="submit" class="px-6 py-3 rounded-xl text-sm font-bold text-white cursor-pointer transition-all" style="background: linear-gradient(135deg,#4f46e5,#7c3aed); box-shadow: 0 4px 16px rgba(99,102,241,0.3);">
+                                    <i class="fa-solid fa-floppy-disk mr-2"></i>Save All Changes
+                                </button>
+                            </div>
                         </form>
                     </div>
 
-                    <!-- TAB 4: POLICIES EDITOR -->
-                    <div id="admin-view-policies" class="hidden space-y-6">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-gray-200 dark:border-gray-800">
-                        <div>
-                            <h3 class="text-lg font-bold text-gray-900 dark:text-white">Dynamic Privacy Policies & Compliance Suite</h3>
-                            <p class="text-xs text-gray-500 dark:text-gray-400">Add, edit, or remove custom legal policies for specific apps, games, or general compliance.</p>
-                        </div>
-                        <button onclick="openAddNewPolicyModal()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold text-xs shadow-lg shadow-indigo-600/25 transition-all cursor-pointer flex items-center gap-2">
-                            <i class="fa-solid fa-plus"></i> Add New App Policy
-                        </button>
-                    </div>
-
-                    <!-- Dynamic Policy Tabs Container -->
-                    <div class="flex flex-wrap gap-2 pb-2 border-b border-gray-200 dark:border-gray-800" id="admin-policy-tabs-container">
-                        <!-- Rendered dynamically -->
-                    </div>
-
-                    <!-- Policy Editor & Controls -->
-                    <form onsubmit="handleSavePolicyText(event)" class="space-y-4">
-                        <div class="flex justify-between items-center">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400" id="admin-policy-editor-label">Editing Policy Content</label>
-                            <div class="flex items-center gap-3 shrink-0">
-                                <button type="button" onclick="deleteCurrentPolicy()" id="btn-delete-policy" class="px-4 py-2.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap border border-rose-500/20 shrink-0">
-                                    <i class="fa-solid fa-trash text-xs"></i> Delete Policy
-                                </button>
-                                <button type="submit" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-lg shadow-indigo-600/25 transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap shrink-0">
-                                    <i class="fa-solid fa-floppy-disk"></i> Save Policy Document
-                                </button>
+                    <!-- ── TAB 4: PRIVACY POLICIES ──────────────── -->
+                    <div id="admin-view-policies" class="hidden space-y-5">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-lg font-black text-white">Privacy Policies</h3>
+                                <p class="text-xs mt-0.5" style="color: rgba(165,180,252,0.5);">Add, edit, or remove legal policy pages for any app or game.</p>
                             </div>
+                            <button onclick="openAddNewPolicyModal()" class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold text-white cursor-pointer" style="background: linear-gradient(135deg,#4f46e5,#7c3aed); box-shadow: 0 4px 16px rgba(99,102,241,0.3);">
+                                <i class="fa-solid fa-plus"></i> Add Policy
+                            </button>
                         </div>
 
-                        <textarea id="admin-policy-textarea" rows="14" class="w-full p-4 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-2xl text-gray-900 dark:text-white font-mono text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none leading-relaxed"></textarea>
-                    </form>
-                </div>
+                        <!-- Policy Tabs -->
+                        <div id="admin-policy-tabs-container" class="flex flex-wrap gap-2 pb-2 border-b" style="border-color: rgba(99,102,241,0.2);">
+                            <!-- Rendered by JS -->
+                        </div>
 
-<div id="admin-view-settings" class="admin-tab-view hidden space-y-6">
+                        <!-- Policy Editor -->
+                        <form onsubmit="handleSavePolicyText(event)" class="space-y-4">
+                            <div class="flex items-center justify-between flex-wrap gap-3">
+                                <label id="admin-policy-editor-label" class="text-xs font-bold uppercase tracking-widest" style="color: rgba(165,180,252,0.6);">Editing Policy</label>
+                                <div class="flex items-center gap-2">
+                                    <button type="button" onclick="deleteCurrentPolicy()" id="btn-delete-policy" class="hidden items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold cursor-pointer transition-all text-rose-400" style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2);">
+                                        <i class="fa-solid fa-trash"></i> Delete
+                                    </button>
+                                    <button type="submit" class="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-white cursor-pointer" style="background: linear-gradient(135deg,#4f46e5,#7c3aed);">
+                                        <i class="fa-solid fa-floppy-disk"></i> Save Policy
+                                    </button>
+                                </div>
+                            </div>
+                            <textarea id="admin-policy-textarea" rows="16" class="w-full p-4 rounded-2xl text-xs font-mono text-white focus:outline-none resize-none" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(99,102,241,0.2); line-height: 1.7;" onfocus="this.style.borderColor='rgba(99,102,241,0.5)'" onblur="this.style.borderColor='rgba(99,102,241,0.2)'"></textarea>
+                        </form>
+                    </div>
+
+                    <!-- ── TAB 5: SECURITY & BACKUPS ────────────── -->
+                    <div id="admin-view-settings" class="hidden space-y-5">
                         <div>
-                            <h3 class="text-xl font-bold text-gray-900 dark:text-white">Security & Data Backup Management</h3>
-                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Change admin password, export updated index.html, or restore backup JSON configs.</p>
+                            <h3 class="text-lg font-black text-white">Security & Backups</h3>
+                            <p class="text-xs mt-0.5" style="color: rgba(165,180,252,0.5);">Manage admin password, export data, and restore backups.</p>
                         </div>
 
-                        <!-- Password Update Card -->
-                        <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 space-y-4 max-w-xl">
-                            <h4 class="text-sm font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                                <i class="fa-solid fa-key text-indigo-500"></i> Change Admin Password
-                            </h4>
-                            <form onsubmit="handleAdminPasswordChange(event)" class="space-y-4">
+                        <!-- Change Password -->
+                        <div class="p-5 rounded-2xl space-y-4" style="background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.2);">
+                            <h4 class="text-xs font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2"><i class="fa-solid fa-key"></i> Change Admin Password</h4>
+                            <form onsubmit="handleAdminPasswordChange(event)" class="grid grid-cols-1 md:grid-cols-2 gap-3">
                                 <div>
-                                    <label class="block text-xs font-semibold text-gray-500 mb-1">New Password</label>
-                                    <input type="password" id="new-admin-password" required minlength="4" placeholder="Enter new password" class="w-full px-3.5 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl text-xs text-gray-900 dark:text-white">
+                                    <label class="block text-[10px] font-bold uppercase text-gray-500 mb-1">New Password</label>
+                                    <input type="password" id="new-admin-password" placeholder="Min 3 characters" class="w-full px-3.5 py-2.5 rounded-xl text-xs text-white focus:outline-none" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(99,102,241,0.2);" onfocus="this.style.borderColor='rgba(99,102,241,0.5)'" onblur="this.style.borderColor='rgba(99,102,241,0.2)'">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-semibold text-gray-500 mb-1">Confirm New Password</label>
-                                    <input type="password" id="confirm-admin-password" required minlength="4" placeholder="Re-enter new password" class="w-full px-3.5 py-2.5 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl text-xs text-gray-900 dark:text-white">
+                                    <label class="block text-[10px] font-bold uppercase text-gray-500 mb-1">Confirm Password</label>
+                                    <input type="password" id="confirm-admin-password" placeholder="Confirm new password" class="w-full px-3.5 py-2.5 rounded-xl text-xs text-white focus:outline-none" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(99,102,241,0.2);" onfocus="this.style.borderColor='rgba(99,102,241,0.5)'" onblur="this.style.borderColor='rgba(99,102,241,0.2)'">
                                 </div>
-                                <button type="submit" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow flex items-center gap-1.5 cursor-pointer">
-                                    <i class="fa-solid fa-lock"></i> Update Password
-                                </button>
+                                <div class="md:col-span-2 flex justify-end">
+                                    <button type="submit" class="px-5 py-2.5 rounded-xl text-xs font-bold text-white cursor-pointer" style="background: linear-gradient(135deg,#4f46e5,#7c3aed);">
+                                        <i class="fa-solid fa-lock mr-2"></i>Update Password
+                                    </button>
+                                </div>
                             </form>
                         </div>
 
-                        <!-- Export & Import Backups -->
-                        <div class="p-6 rounded-2xl bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 space-y-4">
-                            <h4 class="text-sm font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                                <i class="fa-solid fa-database text-emerald-500"></i> Data Backups & 1-Click Code Exporter
-                            </h4>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <div class="p-4 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 space-y-2">
-                                    <span class="text-xs font-bold text-gray-900 dark:text-white block">1-Click HTML Exporter</span>
-                                    <p class="text-[11px] text-gray-500">Generates a complete updated index.html file containing all your edits to commit to your dev environment.</p>
-                                    
-                                </div>
-                                <div class="p-4 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 space-y-2">
-                                    <span class="text-xs font-bold text-gray-900 dark:text-white block">Export JSON Backup</span>
-                                    <p class="text-[11px] text-gray-500">Downloads a lightweight site_data_backup.json containing all portfolio settings and project arrays.</p>
-                                    <button onclick="exportJsonBackup()" class="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow flex items-center justify-center gap-2 cursor-pointer transition-all">
-                                        <i class="fa-solid fa-download"></i> Download JSON
-                                    </button>
-                                </div>
-                                <div class="p-4 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 space-y-2">
-                                    <span class="text-xs font-bold text-gray-900 dark:text-white block">Restore from JSON Backup</span>
-                                    <p class="text-[11px] text-gray-500">Upload a saved site_data_backup.json file to restore portfolio content immediately.</p>
-                                    <input type="file" id="import-json-input" accept=".json" onchange="handleImportJson(event)" class="hidden">
-                                    <button onclick="document.getElementById('import-json-input').click()" class="w-full py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow flex items-center justify-center gap-2 cursor-pointer transition-all">
-                                        <i class="fa-solid fa-upload"></i> Restore JSON File
-                                    </button>
-                                </div>
+                        <!-- Backup & Restore -->
+                        <div class="p-5 rounded-2xl space-y-4" style="background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.2);">
+                            <h4 class="text-xs font-bold uppercase tracking-widest text-indigo-400 flex items-center gap-2"><i class="fa-solid fa-database"></i> Data Backup & Restore</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <button onclick="exportJsonBackup()" class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-xs font-bold cursor-pointer transition-all text-emerald-400" style="background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2);">
+                                    <i class="fa-solid fa-download"></i> Export JSON Backup
+                                </button>
+                                <label class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-xs font-bold cursor-pointer transition-all text-indigo-400" style="background: rgba(99,102,241,0.08); border: 1px solid rgba(99,102,241,0.2);">
+                                    <i class="fa-solid fa-upload"></i> Import & Restore
+                                    <input type="file" accept=".json" class="hidden" onchange="handleImportJson(event)">
+                                </label>
+                                <button onclick="resetToDefaults()" class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-xs font-bold cursor-pointer transition-all text-rose-400" style="background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2);">
+                                    <i class="fa-solid fa-rotate-left"></i> Reset to Defaults
+                                </button>
                             </div>
-                        </div>
-
-                        <!-- Reset Defaults Card -->
-                        <div class="p-6 rounded-2xl bg-rose-500/5 border border-rose-500/20 space-y-3">
-                            <h4 class="text-sm font-bold text-rose-600 dark:text-rose-400 flex items-center gap-2">
-                                <i class="fa-solid fa-triangle-exclamation"></i> Reset to Factory Defaults
-                            </h4>
-                            <p class="text-xs text-gray-600 dark:text-gray-400">Clears all saved browser edits and resets portfolio content to initial system baseline defaults.</p>
-                            <button onclick="resetToDefaults()" class="px-5 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold shadow flex items-center gap-2 cursor-pointer transition-all">
-                                <i class="fa-solid fa-rotate-left"></i> Reset All Data to Baseline Defaults
-                            </button>
                         </div>
                     </div>
 
-                </div>
-            </div>
+                </div><!-- end tab content -->
+            </div><!-- end main content -->
+        </div><!-- end flex -->
+    </div>
 
+    <!-- ── ADD NEW POLICY MODAL ─────────────────────────── -->
+    <div id="add-policy-modal" class="fixed inset-0 z-[120] hidden items-center justify-center p-4" style="background: rgba(0,0,0,0.85); backdrop-filter: blur(16px);">
+        <div class="w-full max-w-md rounded-3xl p-7 space-y-5" style="background: rgba(10,8,25,0.98); border: 1px solid rgba(99,102,241,0.3); box-shadow: 0 25px 60px rgba(99,102,241,0.25);">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-black text-white">Add New Policy Page</h3>
+                <button onclick="closeAddPolicyModal()" class="w-8 h-8 rounded-lg flex items-center justify-center cursor-pointer text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleCreateNewPolicy(event)" class="space-y-4">
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-widest mb-1.5" style="color: rgba(165,180,252,0.6);">Policy Title *</label>
+                    <input type="text" id="new-policy-title" required placeholder="e.g. My Game Policy" class="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-gray-600 focus:outline-none" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(99,102,241,0.3);" onfocus="this.style.borderColor='rgba(99,102,241,0.7)'" onblur="this.style.borderColor='rgba(99,102,241,0.3)'">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-widest mb-1.5" style="color: rgba(165,180,252,0.6);">URL Slug Key *</label>
+                    <input type="text" id="new-policy-slug" required placeholder="e.g. my-game-policy" class="w-full px-4 py-3 rounded-xl text-sm text-white placeholder-gray-600 focus:outline-none font-mono" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(99,102,241,0.3);" onfocus="this.style.borderColor='rgba(99,102,241,0.7)'" onblur="this.style.borderColor='rgba(99,102,241,0.3)'">
+                    <p class="text-[10px] mt-1.5" style="color: rgba(165,180,252,0.4);">Will be accessible at /policies/my-game-policy.html</p>
+                </div>
+                <div class="flex gap-3 pt-2">
+                    <button type="button" onclick="closeAddPolicyModal()" class="flex-1 py-3 rounded-xl text-xs font-bold cursor-pointer transition-all text-gray-400" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);">Cancel</button>
+                    <button type="submit" class="flex-1 py-3 rounded-xl text-xs font-bold text-white cursor-pointer" style="background: linear-gradient(135deg,#4f46e5,#7c3aed); box-shadow: 0 4px 16px rgba(99,102,241,0.3);">
+                        <i class="fa-solid fa-plus mr-1.5"></i> Create Policy
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
-        <!-- 3. App CRUD Form Modal (Add / Edit App - Fully Responsive No-Scroll) -->
+    <!-- ── QUICK FIELD EDIT MODAL ───────────────────────── -->
+    <div id="quick-edit-modal" class="fixed inset-0 z-[120] hidden items-center justify-center p-4" style="background: rgba(0,0,0,0.85); backdrop-filter: blur(16px);">
+        <div class="w-full max-w-md rounded-3xl p-7 space-y-5" style="background: rgba(10,8,25,0.98); border: 1px solid rgba(99,102,241,0.3); box-shadow: 0 25px 60px rgba(99,102,241,0.25);">
+            <div class="flex items-center justify-between">
+                <h3 id="quick-edit-title" class="text-lg font-black text-white">Quick Edit</h3>
+                <button onclick="closeQuickEditModal()" class="w-8 h-8 rounded-lg flex items-center justify-center cursor-pointer text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleQuickEditSubmit(event)" class="space-y-4">
+                <input type="hidden" id="quick-edit-key">
+                <div id="quick-edit-input-container"></div>
+                <div class="flex gap-3 pt-2">
+                    <button type="button" onclick="closeQuickEditModal()" class="flex-1 py-3 rounded-xl text-xs font-bold cursor-pointer text-gray-400" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);">Cancel</button>
+                    <button type="submit" class="flex-1 py-3 rounded-xl text-xs font-bold text-white cursor-pointer" style="background: linear-gradient(135deg,#4f46e5,#7c3aed);">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<!-- 3. App CRUD Form Modal (Add / Edit App - Fully Responsive No-Scroll) -->
     <div id="app-crud-modal" class="fixed inset-0 z-[110] hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl transition-all duration-300">
         <div class="modal-content w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-3xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 sm:p-8 shadow-2xl space-y-5 text-left">
             <div class="flex justify-between items-center border-b border-gray-200 dark:border-gray-800 pb-4">
@@ -2583,6 +2835,142 @@
         }
 
         // ----------------------------------------------------
+        //    REACTIVE CHARACTER CONTROLLER (Login Animation)
+        // ----------------------------------------------------
+        let charState = 'idle'; // idle | lean | shy | success | shake
+        let charTypingTimeout = null;
+        let isPasswordVisible = false;
+
+        function setCharState(state) {
+            charState = state;
+            const char = document.getElementById('login-character');
+            const coverHands = document.getElementById('char-cover-hands');
+            const peekEyes = document.getElementById('char-peek-eyes');
+            const glasses = document.getElementById('char-glasses');
+            const smile = document.getElementById('char-smile');
+            const sad = document.getElementById('char-sad');
+            const sparkles = document.getElementById('char-sparkles');
+            const bag = document.getElementById('login-bag');
+            const typing = document.getElementById('typing-indicator');
+
+            if (!char) return;
+
+            // Reset
+            char.classList.remove('char-idle', 'char-lean', 'char-shy', 'char-success', 'char-shake');
+
+            if (state === 'idle') {
+                char.classList.add('char-idle');
+                if (coverHands) { coverHands.style.display = 'none'; coverHands.style.opacity = '0'; }
+                if (peekEyes) peekEyes.style.display = 'none';
+                if (glasses) glasses.style.display = 'block';
+                if (smile) smile.style.display = 'block';
+                if (sad) sad.style.display = 'none';
+                if (sparkles) sparkles.style.display = 'none';
+                if (typing) typing.classList.add('hidden');
+
+            } else if (state === 'lean') {
+                char.classList.add('char-lean');
+                if (coverHands) { coverHands.style.display = 'none'; coverHands.style.opacity = '0'; }
+                if (glasses) glasses.style.display = 'block';
+                if (peekEyes) peekEyes.style.display = 'none';
+                if (smile) smile.style.display = 'block';
+                if (sad) sad.style.display = 'none';
+                if (sparkles) sparkles.style.display = 'none';
+                if (typing) typing.classList.remove('hidden');
+
+            } else if (state === 'shy') {
+                // Password field — cover eyes
+                char.classList.add('char-shy');
+                if (glasses) glasses.style.display = 'none';
+                if (peekEyes) peekEyes.style.display = 'none';
+                if (coverHands) { coverHands.style.display = 'block'; setTimeout(() => { coverHands.style.opacity = '1'; }, 50); }
+                if (smile) smile.style.display = 'block';
+                if (sad) sad.style.display = 'none';
+                if (sparkles) sparkles.style.display = 'none';
+                if (typing) typing.classList.remove('hidden');
+
+            } else if (state === 'peek') {
+                // Peeking through hands
+                if (glasses) glasses.style.display = 'none';
+                if (coverHands) { coverHands.style.display = 'block'; coverHands.style.opacity = '1'; }
+                if (peekEyes) peekEyes.style.display = 'block';
+                if (typing) typing.classList.remove('hidden');
+
+            } else if (state === 'success') {
+                char.classList.add('char-success');
+                if (coverHands) { coverHands.style.display = 'none'; coverHands.style.opacity = '0'; }
+                if (glasses) glasses.style.display = 'block';
+                if (peekEyes) peekEyes.style.display = 'none';
+                if (smile) smile.style.display = 'block';
+                if (sad) sad.style.display = 'none';
+                if (sparkles) sparkles.style.display = 'block';
+                if (bag) bag.classList.add('bag-success');
+                if (typing) typing.classList.add('hidden');
+                // Launch particles
+                spawnSuccessParticles();
+
+            } else if (state === 'shake') {
+                char.classList.add('char-shake');
+                if (coverHands) { coverHands.style.display = 'none'; coverHands.style.opacity = '0'; }
+                if (glasses) glasses.style.display = 'block';
+                if (peekEyes) peekEyes.style.display = 'none';
+                if (smile) smile.style.display = 'none';
+                if (sad) sad.style.display = 'block';
+                if (sparkles) sparkles.style.display = 'none';
+                if (bag) { bag.style.transform = 'rotate(-20deg) scale(0.85)'; setTimeout(() => { bag.style.transform = ''; }, 600); }
+                if (typing) typing.classList.add('hidden');
+                setTimeout(() => { setCharState('idle'); }, 600);
+            }
+        }
+
+        function onPasswordFocus() {
+            // Eyes covered when typing password
+            setCharState('shy');
+        }
+
+        function onPasswordBlur() {
+            const passInput = document.getElementById('admin-login-password');
+            if (passInput && passInput.value.length > 0) {
+                // Peek after stopping
+                setCharState('peek');
+            } else {
+                setCharState('idle');
+            }
+        }
+
+        function onPasswordInput() {
+            clearTimeout(charTypingTimeout);
+            setCharState('shy');
+            charTypingTimeout = setTimeout(() => {
+                const passInput = document.getElementById('admin-login-password');
+                if (passInput && document.activeElement !== passInput) {
+                    setCharState('idle');
+                }
+            }, 3000);
+        }
+
+        function spawnSuccessParticles() {
+            const modal = document.getElementById('admin-login-modal');
+            if (!modal) return;
+            const colors = ['#818cf8', '#a78bfa', '#34d399', '#fbbf24', '#f472b6'];
+            for (let i = 0; i < 18; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.cssText = `
+                    width: ${4 + Math.random() * 6}px;
+                    height: ${4 + Math.random() * 6}px;
+                    background: ${colors[Math.floor(Math.random() * colors.length)]};
+                    left: ${20 + Math.random() * 60}%;
+                    bottom: 30%;
+                    animation-duration: ${1.2 + Math.random() * 1.2}s;
+                    animation-delay: ${Math.random() * 0.5}s;
+                `;
+                modal.appendChild(p);
+                setTimeout(() => p.remove(), 2500);
+            }
+        }
+
+        // ----------------------------------------------------
         //            ADMIN AUTHENTICATION & NAV
         // ----------------------------------------------------
         function isAdminLoggedIn() {
@@ -2622,19 +3010,25 @@
         }
 
         function openAdminLoginModal() {
-            document.getElementById('admin-login-modal').classList.remove('hidden');
+            const modal = document.getElementById('admin-login-modal');
+            modal.style.display = 'flex';
+            modal.style.alignItems = 'center';
+            modal.style.justifyContent = 'center';
             document.getElementById('admin-login-error').classList.add('hidden');
             document.getElementById('admin-login-password').value = '';
+            setCharState('idle');
             
             if (!isLockedOut) {
                 setTimeout(() => {
                     document.getElementById('admin-login-password').focus();
-                }, 150);
+                }, 200);
             }
         }
 
         function closeAdminLoginModal() {
-            document.getElementById('admin-login-modal').classList.add('hidden');
+            const modal = document.getElementById('admin-login-modal');
+            modal.style.display = 'none';
+            setCharState('idle');
         }
 
         // Lockout Rate Limiter
@@ -2728,17 +3122,23 @@
                 failedLoginAttempts = 0;
                 sessionStorage.setItem('saurabh_dev_admin_logged_in', 'true');
                 
-                closeAdminLoginModal();
-                updateAdminNavButtonState();
-                openAdminDashboard();
+                setCharState('success');
+                setTimeout(() => {
+                    closeAdminLoginModal();
+                    setCharState('idle');
+                    updateAdminNavButtonState();
+                    openAdminDashboard();
+                }, 900);
                 showToast("Authentication Success", "Welcome to Admin Control Center.", true);
 
             } else {
                 failedLoginAttempts++;
+                setCharState('shake');
                 const container = document.getElementById('login-card-container');
                 if (container) {
-                    container.classList.add('shake-3d');
-                    setTimeout(() => container.classList.remove('shake-3d'), 600);
+                    container.style.animation = 'none';
+                    container.style.transform = 'translateX(-6px)';
+                    setTimeout(() => { container.style.transform = ''; container.style.animation = ''; }, 80);
                 }
 
                 const errBox = document.getElementById('admin-login-error');
@@ -2797,11 +3197,24 @@
                 const btn = document.getElementById(`tab-btn-${t}`);
                 const view = document.getElementById(`admin-view-${t}`);
                 if (t === tabName) {
-                    if (btn) btn.className = "admin-tab-btn w-full px-4.5 py-3.5 rounded-2xl text-xs font-bold text-left flex items-center gap-3.5 transition-all cursor-pointer bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-600/25 border border-indigo-500/30";
-                    if (view) view.classList.remove('hidden');
+                    if (btn) {
+                        btn.className = "admin-tab-btn w-full px-3.5 py-2.5 rounded-xl text-xs font-semibold text-left flex items-center gap-3 transition-all cursor-pointer text-white";
+                        btn.style.background = "linear-gradient(135deg, #4f46e5, #7c3aed)";
+                        btn.style.boxShadow = "0 4px 16px rgba(99,102,241,0.3)";
+                    }
+                    if (view) {
+                        view.classList.remove('hidden');
+                        view.style.display = '';
+                    }
                 } else {
-                    if (btn) btn.className = "admin-tab-btn w-full px-4.5 py-3.5 rounded-2xl text-xs font-bold text-left flex items-center gap-3.5 transition-all cursor-pointer text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800/80 hover:text-gray-900 dark:hover:text-white border border-transparent";
-                    if (view) view.classList.add('hidden');
+                    if (btn) {
+                        btn.className = "admin-tab-btn w-full px-3.5 py-2.5 rounded-xl text-xs font-semibold text-left flex items-center gap-3 transition-all cursor-pointer text-gray-400 hover:text-white hover:bg-white/5";
+                        btn.style.background = "";
+                        btn.style.boxShadow = "";
+                    }
+                    if (view) {
+                        view.classList.add('hidden');
+                    }
                 }
             });
 
@@ -2881,78 +3294,52 @@
             tbody.innerHTML = '';
 
             if (filtered.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="5" class="p-6 text-center text-gray-400">No applications match the search criteria.</td>
-                    </tr>
-                `;
+                tbody.innerHTML = '<div class="text-center py-10 text-gray-500 text-xs">No projects found.</div>';
                 return;
             }
 
-            filtered.forEach((p, idx) => {
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-gray-50 dark:hover:bg-gray-950/60 transition-colors";
-                
+            const emojiMap = { 'svg-cloud': '☁️', 'svg-brain': '🧠', 'svg-price': '🏷️', 'svg-sync': '🔄', 'svg-trainer': '🎓', 'svg-calendar': '📅', 'svg-whatsapp': '💬', 'svg-scraper': '🕷️', 'svg-image': '🖼️', 'svg-database': '🗄️', 'svg-truck': '🚚', 'svg-drive': '💾', 'svg-code': '💻', 'svg-usb': '💿', 'svg-pdf': '📄', 'svg-sheets': '📊', 'svg-cards': '🃏' };
+
+            filtered.forEach((p) => {
                 let iconDisplay = '';
-                if (p.logo.startsWith('data:image/') || p.logo.startsWith('http') || p.logo.startsWith('assets/')) {
-                    iconDisplay = `<img src="${p.logo}" class="h-6 w-6 object-contain rounded">`;
-                } else if (p.logo.startsWith('svg-')) {
-                    iconDisplay = svgIcons[p.logo] || '<i class="fa-solid fa-code text-lg text-indigo-400"></i>';
+                if (p.logo && (p.logo.startsWith('data:image/') || p.logo.startsWith('http') || p.logo.startsWith('assets/'))) {
+                    iconDisplay = `<img src="${p.logo}" class="h-8 w-8 object-contain rounded-xl">`;
+                } else if (p.logo && p.logo.startsWith('svg-')) {
+                    iconDisplay = `<span class="text-xl">${emojiMap[p.logo] || '📦'}</span>`;
                 } else {
-                    iconDisplay = `<img src="${p.logo}" class="h-6 w-6 object-contain">`;
+                    iconDisplay = '<span class="text-xl">📦</span>';
                 }
 
                 const targetUrl = p.liveUrl || `https://github.com/SaurabhDave8/${p.folder}`;
+                const techBadges = p.tech.slice(0, 3).map(t => `<span class="px-1.5 py-0.5 rounded text-[9px] font-mono" style="background:rgba(99,102,241,0.12);color:rgba(165,180,252,0.8)">${t}</span>`).join('');
+                const extraTech = p.tech.length > 3 ? `<span class="text-[9px] text-gray-500">+${p.tech.length - 3}</span>` : '';
 
-                tr.innerHTML = `
-                    <td class="p-3.5">
-                        <div class="flex items-center gap-3">
-                            <div class="h-9 w-9 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-                                ${iconDisplay}
-                            </div>
-                            <div>
-                                <div class="font-bold text-gray-900 dark:text-white text-xs sm:text-sm">${p.name}</div>
-                                <a href="${targetUrl}" target="_blank" class="font-mono text-[10px] sm:text-[11px] text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1 mt-0.5">
-                                    <i class="fa-solid fa-link text-[9px]"></i> ${targetUrl.replace(/^https?:\/\//, '')}
-                                </a>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="p-3.5">
-                        <span class="px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
-                            ${p.category}
-                        </span>
-                    </td>
-                    <td class="p-3.5">
-                        <div class="flex flex-wrap gap-1 max-w-xs">
-                            ${p.tech.slice(0, 3).map(t => `<span class="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-[9px] text-gray-500 dark:text-gray-400">${t}</span>`).join('')}
-                            ${p.tech.length > 3 ? `<span class="text-[9px] text-gray-400">+${p.tech.length - 3}</span>` : ''}
-                        </div>
-                    </td>
-                    <td class="p-3.5">
-                        <div class="flex gap-1.5">
-                            ${p.playStoreUrl ? '<span class="px-2 py-0.5 rounded-full text-[9px] font-bold bg-emerald-500/10 text-emerald-500">Play Store</span>' : ''}
-                            ${p.isPwa ? '<span class="px-2 py-0.5 rounded-full text-[9px] font-bold bg-purple-500/10 text-purple-400">PWA</span>' : ''}
-                        </div>
-                    </td>
-                    <td class="p-3.5 text-right">
-                        <div class="flex items-center justify-end gap-2">
-                            <button onclick="moveProjectUp(${p.id})" title="Move Up" class="h-8 w-8 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-300 flex items-center justify-center cursor-pointer transition-all">
-                                <i class="fa-solid fa-arrow-up text-xs"></i>
-                            </button>
-                            <button onclick="moveProjectDown(${p.id})" title="Move Down" class="h-8 w-8 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-500 dark:text-gray-300 flex items-center justify-center cursor-pointer transition-all">
-                                <i class="fa-solid fa-arrow-down text-xs"></i>
-                            </button>
-                            <button onclick="openEditProjectModal(${p.id})" title="Edit App" class="h-8 px-3 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 font-semibold text-xs flex items-center gap-1.5 cursor-pointer transition-all border border-indigo-500/20 whitespace-nowrap">
-                                <i class="fa-solid fa-pen text-[11px]"></i> Edit
-                            </button>
-                            <button onclick="deleteProjectCard(${p.id})" title="Delete App" class="h-8 px-3 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 font-semibold text-xs flex items-center gap-1.5 cursor-pointer transition-all border border-rose-500/20 whitespace-nowrap">
-                                <i class="fa-solid fa-trash text-[11px]"></i>
-                            </button>
-                        </div>
-                    </td>
+                const row = document.createElement('div');
+                row.className = 'flex items-center gap-3 p-3.5 rounded-2xl transition-all';
+                row.style.cssText = 'background: rgba(255,255,255,0.025); border: 1px solid rgba(99,102,241,0.1);';
+                row.onmouseenter = function(){ this.style.background = 'rgba(99,102,241,0.08)'; this.style.borderColor = 'rgba(99,102,241,0.25)'; };
+                row.onmouseleave = function(){ this.style.background = 'rgba(255,255,255,0.025)'; this.style.borderColor = 'rgba(99,102,241,0.1)'; };
+
+                row.innerHTML = `
+                    <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(255,255,255,0.04);">${iconDisplay}</div>
+                    <div class="flex-1 min-w-0">
+                        <div class="font-bold text-white text-xs truncate">${p.name}</div>
+                        <a href="${targetUrl}" target="_blank" class="text-[10px] font-mono truncate block hover:underline" style="color:rgba(165,180,252,0.5);">${targetUrl.replace(/^https?:\/\//, '').substring(0,45)}${targetUrl.length > 50 ? '…' : ''}</a>
+                    </div>
+                    <span class="flex-shrink-0 px-2 py-0.5 rounded-lg text-[9px] font-bold uppercase hidden sm:block" style="background:rgba(99,102,241,0.15);color:#a5b4fc">${p.category}</span>
+                    <div class="flex-shrink-0 hidden md:flex flex-wrap gap-1">${techBadges}${extraTech}</div>
+                    <div class="flex-shrink-0 flex gap-1">
+                        ${p.isPwa ? '<span class="text-[9px] font-bold px-1.5 py-0.5 rounded" style="background:rgba(168,85,247,0.15);color:#c084fc">PWA</span>' : ''}
+                        ${p.playStoreUrl ? '<span class="text-[9px] font-bold px-1.5 py-0.5 rounded" style="background:rgba(52,211,153,0.15);color:#34d399">PS</span>' : ''}
+                    </div>
+                    <div class="flex-shrink-0 flex items-center gap-1.5">
+                        <button onclick="moveProjectUp(${p.id})" class="w-7 h-7 rounded-lg flex items-center justify-center cursor-pointer text-gray-500 hover:text-white transition-all" style="background:rgba(255,255,255,0.04);" title="Up"><i class="fa-solid fa-arrow-up text-[10px]"></i></button>
+                        <button onclick="moveProjectDown(${p.id})" class="w-7 h-7 rounded-lg flex items-center justify-center cursor-pointer text-gray-500 hover:text-white transition-all" style="background:rgba(255,255,255,0.04);" title="Down"><i class="fa-solid fa-arrow-down text-[10px]"></i></button>
+                        <button onclick="openEditProjectModal(${p.id})" class="h-7 px-3 rounded-lg flex items-center gap-1 cursor-pointer text-indigo-400 text-[11px] font-bold transition-all" style="background:rgba(99,102,241,0.12);" onmouseenter="this.style.background='rgba(99,102,241,0.25)'" onmouseleave="this.style.background='rgba(99,102,241,0.12)'" title="Edit"><i class="fa-solid fa-pen text-[10px]"></i> Edit</button>
+                        <button onclick="deleteProjectCard(${p.id})" class="w-7 h-7 rounded-lg flex items-center justify-center cursor-pointer text-rose-400 transition-all" style="background:rgba(239,68,68,0.08);" onmouseenter="this.style.background='rgba(239,68,68,0.2)'" onmouseleave="this.style.background='rgba(239,68,68,0.08)'" title="Delete"><i class="fa-solid fa-trash text-[10px]"></i></button>
+                    </div>
                 `;
-                tbody.appendChild(tr);
+                tbody.appendChild(row);
             });
         }
 
@@ -3183,9 +3570,9 @@
             
             if (delBtn) {
                 if (currentPolicy.slug === 'general') {
-                    delBtn.classList.add('hidden');
+                    delBtn.style.display = 'none';
                 } else {
-                    delBtn.classList.remove('hidden');
+                    delBtn.style.display = 'flex';
                 }
             }
         }
@@ -3209,15 +3596,17 @@
             if (modal) {
                 document.getElementById('new-policy-title').value = '';
                 document.getElementById('new-policy-slug').value = '';
-                modal.classList.remove('hidden');
+                modal.style.display = 'flex';
+                modal.style.alignItems = 'center';
+                modal.style.justifyContent = 'center';
             } else {
-                console.error("add-policy-modal not found.");
+                console.error("add-policy-modal not found in DOM.");
             }
         }
 
         function closeAddPolicyModal() {
             const modal = document.getElementById('add-policy-modal');
-            if (modal) modal.classList.add('hidden');
+            if (modal) modal.style.display = 'none';
         }
 
         function handleCreateNewPolicy(e) {
@@ -3391,7 +3780,8 @@
                 `;
             }
 
-            document.getElementById('quick-edit-modal').classList.remove('hidden');
+            const qem = document.getElementById('quick-edit-modal');
+            if (qem) { qem.style.display = 'flex'; qem.style.alignItems = 'center'; qem.style.justifyContent = 'center'; }
         }
 
         function quickEditHeroTitles() {
@@ -3399,7 +3789,8 @@
         }
 
         function closeQuickEditModal() {
-            document.getElementById('quick-edit-modal').classList.add('hidden');
+            const qem = document.getElementById('quick-edit-modal');
+            if (qem) qem.style.display = 'none';
         }
 
         function handleQuickEditSubmit(e) {
