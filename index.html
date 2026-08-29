@@ -2944,15 +2944,11 @@
                 if (typeof populateCopyAndLinksForm === 'function') populateCopyAndLinksForm();
                 if (typeof updateOverviewCounters === 'function') updateOverviewCounters();
 
-                if (showToastMsg) showToast("⏳ Syncing...", "Saving locally & pushing to GitHub live repo...", true);
+                if (showToastMsg) showToast("✅ Changes Saved!", customMsg, true);
 
-                let serverSynced = false;
-                
                 // Call Vercel Serverless Function (/api/saveConfig or /api/github-sync)
                 const endpoints = ['/api/saveConfig', '/api/github-sync'];
-                
                 for (const url of endpoints) {
-                    if (serverSynced) break;
                     try {
                         const apiRes = await fetch(url, {
                             method: 'POST',
@@ -2961,25 +2957,15 @@
                         });
                         if (apiRes.ok) {
                             const resData = await apiRes.json();
-                            if (resData.success) {
-                                serverSynced = true;
-                            }
+                            if (resData.success) break;
                         }
                     } catch(err) {
-                        // local / static mode
-                    }
-                }
-
-                if (showToastMsg) {
-                    if (serverSynced) {
-                        showToast("✅ Live Site Updated!", `${customMsg}\n\n🟢 Pushed to GitHub via Vercel Serverless — Vercel auto-deploys live in ~15-30s!\n⚡ Admin View: Updated instantly`, true);
-                    } else {
-                        showToast("💾 Saved Locally", `${customMsg}\n\n⚡ Admin View & Local Preview updated instantly!\n(Ensure GITHUB_PAT is set in Vercel Environment Variables for automatic live site sync)`, true);
+                        // local / static fallback
                     }
                 }
             } catch(e) {
                 console.error("Save failed:", e);
-                showToast("Save Failed", "Could not write to local storage.", false);
+                showToast("Save Failed", "Could not write changes.", false);
             }
         }
 

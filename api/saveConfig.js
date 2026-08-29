@@ -32,14 +32,14 @@ module.exports = async (req, res) => {
         }
 
         // Read environment variables (supports GITHUB_PAT, GITHUB_TOKEN, etc.)
-        const pat = (process.env.GITHUB_PAT || process.env.GITHUB_TOKEN || process.env.ADMIN_GITHUB_PAT || process.env.GH_PAT || '').trim();
+        const pat = (process.env.GITHUB_PAT || process.env.GITHUB_TOKEN || process.env.ADMIN_GITHUB_PAT || process.env.GH_PAT || process.env.TOKEN || '').trim();
         const owner = (process.env.GITHUB_OWNER || 'SaurabhDave8').trim();
         const repo = (process.env.GITHUB_REPO || 'saurabh.dev').trim();
 
         if (!pat) {
             return res.status(500).json({
                 success: false,
-                error: 'Server Configuration Error: GITHUB_PAT environment variable is not configured in Vercel project settings.'
+                error: 'Server Configuration Error: GITHUB_PAT or GITHUB_TOKEN environment variable is missing in Vercel.'
             });
         }
 
@@ -47,7 +47,7 @@ module.exports = async (req, res) => {
         const fileContentBase64 = Buffer.from(JSON.stringify(configData, null, 2), 'utf-8').toString('base64');
 
         // Helper function for GitHub HTTPS API calls
-        function githubApiRequest(method, path, dataPayload = null) {
+        function githubApiRequest(method, path, dataPayload = null, authPrefix = 'token') {
             return new Promise((resolve, reject) => {
                 const options = {
                     hostname: 'api.github.com',
@@ -55,7 +55,7 @@ module.exports = async (req, res) => {
                     method: method,
                     headers: {
                         'User-Agent': 'Vercel-Serverless-Function',
-                        'Authorization': `token ${pat}`,
+                        'Authorization': `${authPrefix} ${pat}`,
                         'Accept': 'application/vnd.github.v3+json',
                         'Content-Type': 'application/json'
                     }
@@ -86,7 +86,10 @@ module.exports = async (req, res) => {
         let sha = body.sha || null;
         if (!sha) {
             try {
-                const getRes = await githubApiRequest('GET', `/repos/${owner}/${repo}/contents/${filePath}`);
+                let getRes = await githubApiRequest('GET', `/repos/${owner}/${repo}/contents/${filePath}`, null, 'token');
+                if (getRes.status !== 200) {
+                    getRes = await githubApiRequest('GET', `/repos/${owner}/${repo}/contents/${filePath}`, null, 'Bearer');
+                }
                 if (getRes.status === 200 && getRes.data && getRes.data.sha) {
                     sha = getRes.data.sha;
                 }
@@ -95,12 +98,15 @@ module.exports = async (req, res) => {
 
         // 2. Commit updated site_data.json to GitHub
         const commitBody = {
-            message: `admin: update site_data.json via Vercel Admin Panel [${new Date().toISOString()}]`,
+            message: `admin: update site_data.json via Admin Panel [${new Date().toISOString()}]`,
             content: fileContentBase64,
             ...(sha ? { sha } : {})
         };
 
-        const putRes = await githubApiRequest('PUT', `/repos/${owner}/${repo}/contents/${filePath}`, commitBody);
+        let putRes = await githubApiRequest('PUT', `/repos/${owner}/${repo}/contents/${filePath}`, commitBody, 'token');
+        if (putRes.status !== 200 && putRes.status !== 201) {
+            putRes = await githubApiRequest('PUT', `/repos/${owner}/${repo}/contents/${filePath}`, commitBody, 'Bearer');
+        }
 
         if (putRes.status === 200 || putRes.status === 201) {
             return res.status(200).json({
