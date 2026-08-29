@@ -1073,167 +1073,139 @@
     <!--            ADMIN PANEL MODALS             -->
     <!-- ========================================== -->
 
-                    <!-- 1. Admin Login Modal (Ultra Reactive Character Animation) -->
-    <div id="admin-login-modal" class="fixed inset-0 z-[100]" style="display:none; background: rgba(0,0,0,0.92); backdrop-filter: blur(24px);">
-        <!-- Ambient Orbs -->
-        <div class="absolute inset-0 pointer-events-none overflow-hidden">
-            <div class="orb-1 absolute" style="top:15%;left:20%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,0.2) 0%,transparent 70%);"></div>
-            <div class="orb-2 absolute" style="bottom:20%;right:15%;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(168,85,247,0.18) 0%,transparent 70%);"></div>
+                    <!-- 1. Admin Login Modal (Enterprise Cyber Vault UI) -->
+    <div id="admin-login-modal" class="fixed inset-0 z-[150]" style="display:none; background:#070913;">
+        
+        <!-- Ambient Grid & Glow Background -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden" style="background-image: radial-gradient(circle at 50% 30%, rgba(99,102,241,0.15) 0%, transparent 60%), radial-gradient(circle at 80% 80%, rgba(168,85,247,0.1) 0%, transparent 50%);">
+            <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 32px 32px;"></div>
         </div>
-        <!-- Content: Character + Card -->
-        <div id="login-scene" class="absolute inset-0 flex items-end justify-center px-4" style="padding-bottom:8vh;opacity:1;transform:translateY(0);transition:all 0.4s ease;">
-            <div class="flex items-end gap-0 w-full max-w-lg">
-                <!-- CHARACTER -->
-                <div id="login-character" class="relative flex-shrink-0 select-none" style="width:120px;z-index:10;transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);">
-                    <svg id="char-svg" viewBox="0 0 120 230" xmlns="http://www.w3.org/2000/svg" width="120" height="220">
-                        <ellipse cx="60" cy="223" rx="28" ry="5" fill="rgba(99,102,241,0.25)"/>
-                        <rect x="44" y="158" width="14" height="52" rx="7" fill="#1e1b4b"/>
-                        <rect x="62" y="158" width="14" height="52" rx="7" fill="#1e1b4b"/>
-                        <ellipse cx="51" cy="209" rx="11" ry="5.5" fill="#312e81"/>
-                        <ellipse cx="69" cy="209" rx="11" ry="5.5" fill="#312e81"/>
-                        <rect x="36" y="100" width="48" height="62" rx="15" fill="#4f46e5"/>
-                        <polygon points="60,106 48,112 53,148 60,143" fill="#3730a3"/>
-                        <polygon points="60,106 72,112 67,148 60,143" fill="#3730a3"/>
-                        <polygon points="60,109 56,116 60,124 64,116" fill="#f59e0b"/>
-                        <polygon points="55,105 60,111 65,105 62,101 58,101" fill="#e0e7ff"/>
-                        <!-- Normal arms -->
-                        <g id="arm-left-group"><rect x="16" y="103" width="22" height="12" rx="6" fill="#4f46e5" transform="rotate(15,36,108)"/></g>
-                        <g id="arm-right-group"><rect x="82" y="103" width="22" height="12" rx="6" fill="#4f46e5" transform="rotate(-15,84,108)"/></g>
-                        <!-- Raised arms (celebration) -->
-                        <g id="arms-raised" style="display:none;">
-                            <rect x="8" y="88" width="22" height="12" rx="6" fill="#4f46e5" transform="rotate(-60,30,94)"/>
-                            <rect x="90" y="88" width="22" height="12" rx="6" fill="#4f46e5" transform="rotate(60,90,94)"/>
-                        </g>
-                        <!-- Cover hands -->
-                        <g id="char-cover-hands" style="display:none;opacity:0;transition:opacity 0.3s;">
-                            <ellipse cx="44" cy="69" rx="14" ry="11" fill="#fde68a"/>
-                            <line x1="33" y1="63" x2="33" y2="75" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
-                            <line x1="37" y1="61" x2="37" y2="76" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
-                            <line x1="41" y1="60" x2="41" y2="77" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
-                            <ellipse cx="76" cy="69" rx="14" ry="11" fill="#fde68a"/>
-                            <line x1="67" y1="61" x2="67" y2="76" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
-                            <line x1="71" y1="60" x2="71" y2="77" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
-                            <line x1="75" y1="61" x2="75" y2="76" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
-                        </g>
-                        <rect x="52" y="84" width="16" height="19" rx="8" fill="#fde68a"/>
-                        <ellipse cx="60" cy="70" rx="28" ry="30" fill="#fde68a"/>
-                        <ellipse cx="60" cy="47" rx="28" ry="15" fill="#92400e"/>
-                        <rect x="32" y="42" width="13" height="22" rx="7" fill="#92400e"/>
-                        <rect x="75" y="42" width="13" height="22" rx="7" fill="#92400e"/>
-                        <!-- Sunglasses -->
-                        <g id="char-glasses">
-                            <rect x="34" y="62" width="21" height="14" rx="6" fill="#1e1b4b" opacity="0.96"/>
-                            <rect x="65" y="62" width="21" height="14" rx="6" fill="#1e1b4b" opacity="0.96"/>
-                            <rect x="55" y="65" width="10" height="6" fill="#1e1b4b" opacity="0.96"/>
-                            <rect x="35" y="63" width="19" height="12" rx="5" fill="#4338ca" opacity="0.75"/>
-                            <rect x="66" y="63" width="19" height="12" rx="5" fill="#4338ca" opacity="0.75"/>
-                            <ellipse cx="39" cy="66" rx="3" ry="2" fill="white" opacity="0.35"/>
-                            <ellipse cx="70" cy="66" rx="3" ry="2" fill="white" opacity="0.35"/>
-                        </g>
-                        <!-- Open eyes -->
-                        <g id="char-eyes" style="display:none;">
-                            <ellipse cx="46" cy="69" rx="8" ry="7" fill="white"/>
-                            <ellipse cx="74" cy="69" rx="8" ry="7" fill="white"/>
-                            <ellipse cx="48" cy="70" rx="4.5" ry="4.5" fill="#1e1b4b"/>
-                            <ellipse cx="76" cy="70" rx="4.5" ry="4.5" fill="#1e1b4b"/>
-                            <ellipse cx="49.5" cy="69" rx="1.5" ry="1.5" fill="white"/>
-                            <ellipse cx="77.5" cy="69" rx="1.5" ry="1.5" fill="white"/>
-                        </g>
-                        <!-- Peek eyes -->
-                        <g id="char-peek-eyes" style="display:none;">
-                            <ellipse cx="44" cy="72" rx="6" ry="5" fill="white"/>
-                            <ellipse cx="76" cy="72" rx="6" ry="5" fill="white"/>
-                            <ellipse cx="45" cy="73" rx="3.5" ry="3.5" fill="#1e1b4b"/>
-                            <ellipse cx="77" cy="73" rx="3.5" ry="3.5" fill="#1e1b4b"/>
-                        </g>
-                        <!-- Nervous eyes -->
-                        <g id="char-nervous-eyes" style="display:none;">
-                            <ellipse cx="46" cy="69" rx="8" ry="7" fill="white"/>
-                            <ellipse cx="74" cy="69" rx="8" ry="7" fill="white"/>
-                            <ellipse cx="44" cy="71" rx="4" ry="4" fill="#1e1b4b"/>
-                            <ellipse cx="72" cy="71" rx="4" ry="4" fill="#1e1b4b"/>
-                            <ellipse cx="84" cy="56" rx="4" ry="6" fill="#60a5fa" opacity="0.8"/>
-                        </g>
-                        <!-- Mouth expressions -->
-                        <path id="mouth-smile"   d="M50 84 Q60 92 70 84" stroke="#92400e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                        <path id="mouth-sad"     d="M50 90 Q60 83 70 90" stroke="#92400e" stroke-width="2.5" fill="none" stroke-linecap="round" style="display:none;"/>
-                        <ellipse id="mouth-open" cx="60" cy="88" rx="9" ry="7" fill="#92400e" style="display:none;"/>
-                        <rect id="mouth-teeth"   x="53" y="86" width="14" height="5" rx="2" fill="white" style="display:none;"/>
-                        <path id="mouth-nervous" d="M52 86 Q60 86 68 86" stroke="#92400e" stroke-width="2.5" fill="none" stroke-linecap="round" style="display:none;"/>
-                        <!-- Celebration sparkles -->
-                        <g id="char-sparkles" style="display:none;">
-                            <text x="5" y="50" font-size="16">✨</text>
-                            <text x="90" y="40" font-size="12">⭐</text>
-                        </g>
-                        <!-- Loading ring (auth) -->
-                        <g id="char-loading-ring" style="display:none;">
-                            <circle cx="60" cy="30" r="14" stroke="rgba(99,102,241,0.3)" stroke-width="3" fill="none"/>
-                            <circle cx="60" cy="30" r="14" stroke="#818cf8" stroke-width="3" fill="none" stroke-dasharray="22 66" stroke-linecap="round">
-                                <animateTransform attributeName="transform" type="rotate" from="0 60 30" to="360 60 30" dur="0.8s" repeatCount="indefinite"/>
-                            </circle>
-                        </g>
-                    </svg>
-                    <!-- Briefcase -->
-                    <div id="login-bag" class="bag-idle absolute" style="bottom:0;right:-12px;font-size:34px;filter:drop-shadow(0 4px 12px rgba(99,102,241,0.5));transition:all 0.4s ease;">🧳</div>
-                </div>
 
-                <!-- CARD -->
-                <div id="login-card-container" class="flex-1 rounded-3xl relative overflow-hidden" style="background:linear-gradient(145deg,rgba(10,8,30,0.98) 0%,rgba(20,12,50,0.98) 100%);border:1px solid rgba(99,102,241,0.3);box-shadow:0 30px 70px rgba(99,102,241,0.35),inset 0 1px 0 rgba(255,255,255,0.05);transition:transform 0.08s ease;">
-                    <div style="position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(99,102,241,0.9),transparent);animation:scanLine 4s linear infinite;top:0;pointer-events:none;z-index:5;"></div>
-                    <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(99,102,241,0.8),rgba(168,85,247,0.8),transparent);pointer-events:none;"></div>
-                    <div class="p-6 space-y-5">
-                        <div class="text-center space-y-1">
-                            <div id="login-status-badge" class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase" style="background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);color:#a5b4fc;transition:border-color 0.3s;">
-                                <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></div>
-                                <span id="login-status-text">Secure Access Portal</span>
+        <!-- Center Vault Container -->
+        <div class="relative z-10 min-h-screen flex items-center justify-center p-4">
+            <div id="login-card-container" class="w-full max-w-md rounded-3xl relative overflow-hidden transition-all duration-300"
+                 style="background: #0f1424; border: 1px solid rgba(99,102,241,0.25); box-shadow: 0 25px 80px rgba(0,0,0,0.8), 0 0 40px rgba(99,102,241,0.15);">
+                
+                <!-- Animated Top Edge Glow Bar -->
+                <div class="h-1 w-full" style="background: linear-gradient(90deg, #6366f1, #a855f7, #3b82f6, #6366f1); background-size: 200% 100%; animation: gradientGlow 4s linear infinite;"></div>
+
+                <div class="p-8 space-y-6">
+
+                    <!-- Header Icon & Status -->
+                    <div class="text-center space-y-3">
+                        <!-- Shield Icon Container -->
+                        <div class="relative inline-flex items-center justify-center">
+                            <div class="w-16 h-16 rounded-2xl flex items-center justify-center relative z-10" style="background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(168,85,247,0.2)); border: 1px solid rgba(99,102,241,0.4); box-shadow: inset 0 0 20px rgba(99,102,241,0.2);">
+                                <i id="vault-lock-icon" class="fa-solid fa-shield-halved text-2xl text-indigo-400 transition-all duration-300"></i>
                             </div>
-                            <h3 id="login-heading" class="text-xl font-black text-white tracking-tight transition-all">Admin Security Console</h3>
-                            <p id="login-subtext" class="text-[11px] transition-all" style="color:rgba(165,180,252,0.6);">Enter master password to unlock site management</p>
+                            <div class="absolute -inset-2 rounded-3xl opacity-50 blur-lg pointer-events-none" style="background: linear-gradient(135deg, #6366f1, #a855f7);"></div>
                         </div>
-                        <form onsubmit="handleAdminLoginSubmit(event)" class="space-y-4">
-                            <div>
-                                <label class="block text-[10px] font-bold uppercase tracking-widest mb-2" style="color:rgba(165,180,252,0.5);"><i class="fa-solid fa-key mr-1"></i>Master Admin Key</label>
-                                <div class="relative">
-                                    <input type="password" id="admin-login-password" required placeholder="••••••••••••"
-                                        class="w-full px-4 py-3.5 rounded-2xl text-white placeholder-gray-700 pr-12 font-mono text-sm transition-all"
-                                        style="background:rgba(255,255,255,0.04);border:1px solid rgba(99,102,241,0.3);outline:none;"
-                                        onfocus="this.style.borderColor='rgba(99,102,241,0.8)';this.style.boxShadow='0 0 24px rgba(99,102,241,0.25)';onPasswordFocus();"
-                                        onblur="this.style.borderColor='rgba(99,102,241,0.3)';this.style.boxShadow='none';onPasswordBlur();"
-                                        oninput="onPasswordInput()">
-                                    <button type="button" onclick="togglePasswordVisibility('admin-login-password',this)" class="absolute right-3.5 top-3.5 cursor-pointer transition-colors" style="color:rgba(165,180,252,0.4);" onmouseenter="this.style.color='rgba(165,180,252,1)'" onmouseleave="this.style.color='rgba(165,180,252,0.4)'"><i class="fa-solid fa-eye text-base"></i></button>
-                                </div>
-                                <div id="admin-login-error" style="display:none;" class="flex items-center gap-2 text-xs font-semibold mt-2.5 p-2.5 rounded-xl" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);color:#fca5a5;">
-                                    <i class="fa-solid fa-triangle-exclamation"></i><span id="admin-login-error-text">Invalid security key.</span>
-                                </div>
-                                <div id="admin-lockout-banner" style="display:none;" class="mt-2.5 p-3 rounded-xl space-y-2" style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.25);color:#fcd34d;">
-                                    <div class="flex items-center justify-between text-xs font-bold"><span><i class="fa-solid fa-lock mr-1"></i> Rate Lockout</span><span id="lockout-timer-text">30s</span></div>
-                                    <div class="w-full h-1.5 rounded-full overflow-hidden" style="background:rgba(255,255,255,0.1);"><div id="lockout-progress-bar" class="h-full rounded-full transition-all duration-1000" style="background:#f59e0b;width:100%;"></div></div>
-                                </div>
+
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-2" style="background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.25); color: #a5b4fc;">
+                                <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></div>
+                                <span id="login-status-text">Master Security Vault</span>
                             </div>
-                            <div id="typing-indicator" style="display:none;" class="flex items-center gap-1.5 px-1">
-                                <div style="width:6px;height:6px;border-radius:50%;background:#818cf8;animation:typingDot 1.2s ease-in-out infinite;"></div>
-                                <div style="width:6px;height:6px;border-radius:50%;background:#a78bfa;animation:typingDot 1.2s ease-in-out infinite;animation-delay:0.2s;"></div>
-                                <div style="width:6px;height:6px;border-radius:50%;background:#818cf8;animation:typingDot 1.2s ease-in-out infinite;animation-delay:0.4s;"></div>
-                                <span class="text-[10px] ml-1" style="color:rgba(165,180,252,0.4);">encrypting...</span>
-                            </div>
-                            <div id="auth-progress-wrap" style="display:none;">
-                                <div class="w-full h-1 rounded-full overflow-hidden" style="background:rgba(255,255,255,0.06);"><div id="auth-progress-bar" class="h-full rounded-full" style="background:linear-gradient(90deg,#4f46e5,#7c3aed,#a855f7);width:0%;transition:width 1.5s ease;"></div></div>
-                                <div class="text-[10px] text-center mt-1.5" style="color:rgba(165,180,252,0.5);">Authenticating identity...</div>
-                            </div>
-                            <div class="flex gap-3 pt-1">
-                                <button type="button" onclick="closeAdminLoginModal()" class="flex-shrink-0 px-5 py-3 rounded-2xl text-xs font-bold cursor-pointer transition-all text-gray-400" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);" onmouseenter="this.style.background='rgba(255,255,255,0.08)'" onmouseleave="this.style.background='rgba(255,255,255,0.04)'">Cancel</button>
-                                <button type="submit" id="admin-login-submit-btn" class="flex-1 py-3 rounded-2xl text-xs font-bold text-white cursor-pointer flex items-center justify-center gap-2 transition-all" style="background:linear-gradient(135deg,#4f46e5,#7c3aed);box-shadow:0 8px 24px rgba(99,102,241,0.4);" onmouseenter="this.style.transform='translateY(-1px)';this.style.boxShadow='0 12px 32px rgba(99,102,241,0.6)'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='0 8px 24px rgba(99,102,241,0.4)'"><i class="fa-solid fa-shield-halved"></i> Authenticate</button>
-                            </div>
-                        </form>
+                            <h3 id="login-heading" class="text-2xl font-black text-white tracking-tight">Admin Console</h3>
+                            <p id="login-subtext" class="text-xs text-gray-400 mt-1">Authenticate with SHA-256 master key</p>
+                        </div>
                     </div>
-                    <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(99,102,241,0.5),rgba(168,85,247,0.5),transparent);"></div>
+
+                    <!-- Form -->
+                    <form onsubmit="handleAdminLoginSubmit(event)" class="space-y-5">
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between text-[11px] font-semibold text-gray-400">
+                                <label for="admin-login-password" class="flex items-center gap-1.5">
+                                    <i class="fa-solid fa-key text-indigo-400"></i> Security Key
+                                </label>
+                                <span class="text-[10px] text-gray-500 font-mono">256-BIT ENCRYPTED</span>
+                            </div>
+
+                            <div class="relative">
+                                <input type="password" id="admin-login-password" required
+                                    placeholder="Enter admin password..."
+                                    onfocus="onPasswordFocus()"
+                                    onblur="onPasswordBlur()"
+                                    oninput="onPasswordInput()"
+                                    class="w-full px-4 py-3.5 rounded-2xl text-white placeholder-gray-600 font-mono text-sm transition-all duration-200"
+                                    style="background: rgba(255,255,255,0.03); border: 1px solid rgba(99,102,241,0.25); outline: none;"
+                                    onfocus="this.style.borderColor='rgba(99,102,241,0.8)'; this.style.boxShadow='0 0 20px rgba(99,102,241,0.2)'; onPasswordFocus();"
+                                    onblur="this.style.borderColor='rgba(99,102,241,0.25)'; this.style.boxShadow='none'; onPasswordBlur();">
+                                <button type="button" onclick="togglePasswordVisibility('admin-login-password', this)"
+                                    class="absolute right-4 top-3.5 text-gray-500 hover:text-indigo-400 transition-colors cursor-pointer">
+                                    <i class="fa-solid fa-eye text-sm"></i>
+                                </button>
+                            </div>
+
+                            <!-- Error Message -->
+                            <div id="admin-login-error" class="hidden items-center gap-2 text-xs font-semibold p-3 rounded-xl" style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5;">
+                                <i class="fa-solid fa-circle-exclamation text-rose-400"></i>
+                                <span id="admin-login-error-text">Invalid security key. Please try again.</span>
+                            </div>
+
+                            <!-- Lockout Banner -->
+                            <div id="admin-lockout-banner" class="hidden p-3 rounded-xl space-y-2" style="background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); color: #fcd34d;">
+                                <div class="flex items-center justify-between text-xs font-bold">
+                                    <span><i class="fa-solid fa-lock mr-1"></i> Security Lockout Active</span>
+                                    <span id="lockout-timer-text">30s</span>
+                                </div>
+                                <div class="w-full h-1.5 rounded-full overflow-hidden" style="background: rgba(255,255,255,0.1);">
+                                    <div id="lockout-progress-bar" class="h-full rounded-full transition-all duration-1000" style="background: #f59e0b; width: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Typing Indicator -->
+                        <div id="typing-indicator" class="hidden items-center gap-2 text-[11px] text-indigo-400/80 px-1">
+                            <div class="flex gap-1">
+                                <div class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-bounce"></div>
+                                <div class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-bounce" style="animation-delay: 0.15s;"></div>
+                                <div class="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-bounce" style="animation-delay: 0.3s;"></div>
+                            </div>
+                            <span class="font-mono text-[10px]">Verifying key pattern...</span>
+                        </div>
+
+                        <!-- Authentication Progress Bar -->
+                        <div id="auth-progress-wrap" class="hidden space-y-1.5">
+                            <div class="w-full h-1.5 rounded-full overflow-hidden" style="background: rgba(255,255,255,0.06);">
+                                <div id="auth-progress-bar" class="h-full rounded-full transition-all duration-500" style="background: linear-gradient(90deg, #6366f1, #a855f7); width: 0%;"></div>
+                            </div>
+                            <p class="text-[10px] text-center text-indigo-300/70 font-mono">Authenticating Web Crypto token...</p>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="flex items-center gap-3 pt-2">
+                            <button type="button" onclick="closeAdminLoginModal()"
+                                class="w-1/3 py-3 rounded-2xl text-xs font-bold text-gray-400 hover:text-white transition-all cursor-pointer"
+                                style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);"
+                                onmouseenter="this.style.background='rgba(255,255,255,0.08)'"
+                                onmouseleave="this.style.background='rgba(255,255,255,0.04)'">
+                                Cancel
+                            </button>
+
+                            <button type="submit" id="admin-login-submit-btn"
+                                class="w-2/3 py-3 rounded-2xl text-xs font-bold text-white transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg"
+                                style="background: linear-gradient(135deg, #4f46e5, #7c3aed); box-shadow: 0 8px 25px rgba(99,102,241,0.35);"
+                                onmouseenter="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 12px 30px rgba(99,102,241,0.5)';"
+                                onmouseleave="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(99,102,241,0.35)';">
+                                <i class="fa-solid fa-right-to-bracket"></i> Unlock Console
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Footer Note -->
+                    <div class="pt-4 border-t border-gray-800/60 text-center">
+                        <p class="text-[10px] text-gray-500 font-mono flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-lock text-[9px] text-emerald-400"></i> Zero-Vulnerability SHA-256 Verification
+                        </p>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-
 <!-- 2. Main Admin Dashboard Modal -->
-    <div id="admin-dashboard-modal" class="fixed inset-0 z-[100]" style="display:none;" style="background: rgba(0,0,0,0.88); backdrop-filter: blur(16px);">
+    <div id="admin-dashboard-modal" class="fixed inset-0 z-[100]" style="display:none; background:#070913; overflow:hidden;">
         <div class="flex h-full w-full">
 
             <!-- ── SIDEBAR ─────────────────────────────── -->
@@ -1589,7 +1561,7 @@
     </div>
 
     <!-- ── ADD NEW POLICY MODAL ─────────────────────────── -->
-    <div id="add-policy-modal" class="fixed inset-0 z-[120]" style="display:none; align-items:center; justify-content:center; padding:1rem;" style="background: rgba(0,0,0,0.85); backdrop-filter: blur(16px);">
+    <div id="add-policy-modal" class="fixed inset-0 z-[120]" style="display:none; align-items:center; justify-content:center; padding:1rem; background:rgba(7,9,19,0.95); backdrop-filter:blur(20px);">
         <div class="w-full max-w-md rounded-3xl p-7 space-y-5" style="background: rgba(10,8,25,0.98); border: 1px solid rgba(99,102,241,0.3); box-shadow: 0 25px 60px rgba(99,102,241,0.25);">
             <div class="flex items-center justify-between">
                 <h3 class="text-lg font-black text-white">Add New Policy Page</h3>
@@ -1618,7 +1590,7 @@
     </div>
 
     <!-- ── QUICK FIELD EDIT MODAL ───────────────────────── -->
-    <div id="quick-edit-modal" class="fixed inset-0 z-[120]" style="display:none; align-items:center; justify-content:center; padding:1rem;" style="background: rgba(0,0,0,0.85); backdrop-filter: blur(16px);">
+    <div id="quick-edit-modal" class="fixed inset-0 z-[120]" style="display:none; align-items:center; justify-content:center; padding:1rem; background:rgba(7,9,19,0.95); backdrop-filter:blur(20px);">
         <div class="w-full max-w-md rounded-3xl p-7 space-y-5" style="background: rgba(10,8,25,0.98); border: 1px solid rgba(99,102,241,0.3); box-shadow: 0 25px 60px rgba(99,102,241,0.25);">
             <div class="flex items-center justify-between">
                 <h3 id="quick-edit-title" class="text-lg font-black text-white">Quick Edit</h3>
@@ -1728,7 +1700,7 @@
     </div>
 
 <!-- 4. Quick Field Edit Modal -->
-    <div id="quick-edit-modal" class="fixed inset-0 z-[120] hidden flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm transition-all duration-300">
+    <div id="quick-edit-modal" class="fixed inset-0 z-[120]" style="display:none; align-items:center; justify-content:center; padding:1rem; background:rgba(7,9,19,0.95); backdrop-filter:blur(20px);">
         <div class="w-full max-w-lg rounded-3xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-2xl space-y-4 text-left">
             <div class="flex justify-between items-center">
                 <h3 class="text-base font-bold text-gray-900 dark:text-white" id="quick-edit-title">Quick Live Edit</h3>
@@ -2270,7 +2242,7 @@
     </div>
 
     <!-- 4. Quick Field Edit Modal -->
-    <div id="quick-edit-modal" class="fixed inset-0 z-[120] hidden flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm transition-all duration-300">
+    <div id="quick-edit-modal" class="fixed inset-0 z-[120]" style="display:none; align-items:center; justify-content:center; padding:1rem; background:rgba(7,9,19,0.95); backdrop-filter:blur(20px);">
         <div class="w-full max-w-lg rounded-3xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-2xl space-y-4 text-left">
             <div class="flex justify-between items-center">
                 <h3 class="text-base font-bold text-gray-900 dark:text-white" id="quick-edit-title">Quick Live Edit</h3>
@@ -2813,269 +2785,72 @@
         }
 
         // ----------------------------------------------------
-        //    REACTIVE CHARACTER CONTROLLER (Login Animation)
+        //    CYBER VAULT LOGIN CONTROLLER
         // ----------------------------------------------------
-        let charState = 'idle';
-        let charTypingTimeout = null;
-        let charIdleInterval = null;
-
-        function startIdleBreath() {
-            stopIdleBreath();
-            charIdleInterval = setInterval(() => {
-                if (charState !== 'idle') return;
-                const char = document.getElementById('login-character');
-                if (char) {
-                    char.style.transform = 'translateY(-5px)';
-                    setTimeout(() => { if (char && charState === 'idle') char.style.transform = 'translateY(0px)'; }, 700);
-                }
-            }, 1400);
-        }
-
-        function stopIdleBreath() {
-            if (charIdleInterval) { clearInterval(charIdleInterval); charIdleInterval = null; }
-        }
-
-        function setMouth(type) {
-            ['mouth-smile','mouth-sad','mouth-open','mouth-teeth','mouth-nervous'].forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.style.display = 'none';
-            });
-            const show = document.getElementById(type);
-            if (show) show.style.display = 'block';
-            if (type === 'mouth-open') {
-                const teeth = document.getElementById('mouth-teeth');
-                if (teeth) teeth.style.display = 'block';
-            }
-        }
-
-        function setEyes(type) {
-            const els = {
-                glasses: document.getElementById('char-glasses'),
-                eyes:    document.getElementById('char-eyes'),
-                nervous: document.getElementById('char-nervous-eyes'),
-                cover:   document.getElementById('char-cover-hands'),
-                peek:    document.getElementById('char-peek-eyes')
-            };
-            Object.values(els).forEach(el => { if (el) { el.style.display = 'none'; el.style.opacity = '0'; } });
-            if (type === 'glasses' && els.glasses) { els.glasses.style.display = 'block'; els.glasses.style.opacity = '1'; }
-            else if (type === 'open' && els.eyes)  { els.eyes.style.display = 'block'; els.eyes.style.opacity = '1'; }
-            else if (type === 'nervous' && els.nervous) { els.nervous.style.display = 'block'; els.nervous.style.opacity = '1'; }
-            else if (type === 'cover' && els.cover) { els.cover.style.display = 'block'; setTimeout(() => { if (els.cover) els.cover.style.opacity = '1'; }, 50); }
-            else if (type === 'peek') {
-                if (els.cover) { els.cover.style.display = 'block'; els.cover.style.opacity = '1'; }
-                if (els.peek)  { els.peek.style.display = 'block'; els.peek.style.opacity = '1'; }
-            }
-        }
-
         function setCharState(state) {
-            charState = state;
-            const char     = document.getElementById('login-character');
-            const bag      = document.getElementById('login-bag');
-            const sparkles = document.getElementById('char-sparkles');
-            const loadRing = document.getElementById('char-loading-ring');
-            const armsNorm = document.getElementById('arm-left-group');
-            const armsRise = document.getElementById('arms-raised');
-            const typingInd = document.getElementById('typing-indicator');
-            const statusText= document.getElementById('login-status-text');
-            const heading  = document.getElementById('login-heading');
-            const subtext  = document.getElementById('login-subtext');
+            const vaultIcon = document.getElementById('vault-lock-icon');
+            const card = document.getElementById('login-card-container');
+            const statusText = document.getElementById('login-status-text');
+            const heading = document.getElementById('login-heading');
+            const subtext = document.getElementById('login-subtext');
             const authWrap = document.getElementById('auth-progress-wrap');
-            const authBar  = document.getElementById('auth-progress-bar');
-            const badge    = document.getElementById('login-status-badge');
+            const authBar = document.getElementById('auth-progress-bar');
+            const typingInd = document.getElementById('typing-indicator');
 
-            if (!char) return;
-            char.style.transition = 'transform 0.4s cubic-bezier(0.34,1.56,0.64,1)';
-            if (sparkles) sparkles.style.display = 'none';
-            if (loadRing) loadRing.style.display = 'none';
-            if (armsNorm) armsNorm.style.display = 'block';
-            if (armsRise) armsRise.style.display = 'none';
-            if (authWrap) authWrap.classList.add('hidden');
+            if (!vaultIcon) return;
 
             if (state === 'idle') {
-                stopIdleBreath();
-                char.style.transform = 'translateX(0) rotate(0deg)';
-                setEyes('glasses'); setMouth('mouth-smile');
-                if (typingInd) typingInd.classList.add('hidden');
-                if (bag) bag.style.animation = '';
-                if (badge) badge.style.borderColor = 'rgba(99,102,241,0.3)';
-                startIdleBreath();
+                vaultIcon.className = 'fa-solid fa-shield-halved text-2xl text-indigo-400 transition-all duration-300';
+                if (statusText) statusText.textContent = 'Master Security Vault';
+                if (heading) heading.textContent = 'Admin Console';
+                if (subtext) subtext.textContent = 'Authenticate with SHA-256 master key';
+                if (typingInd) typingInd.style.display = 'none';
+                if (authWrap) authWrap.style.display = 'none';
+                if (card) card.style.borderColor = 'rgba(99,102,241,0.25)';
 
             } else if (state === 'focus') {
-                stopIdleBreath();
-                char.style.transform = 'translateX(14px) rotate(6deg)';
-                setEyes('open'); setMouth('mouth-smile');
-                if (typingInd) typingInd.classList.remove('hidden');
-                if (statusText) statusText.textContent = 'Awaiting Input...';
-
-            } else if (state === 'shy') {
-                stopIdleBreath();
-                char.style.transform = 'translateX(-16px) rotate(-8deg)';
-                setEyes('cover'); setMouth('mouth-smile');
-                if (typingInd) typingInd.classList.remove('hidden');
-                if (statusText) statusText.textContent = 'Eyes Covered 🙈';
-
-            } else if (state === 'peek') {
-                stopIdleBreath();
-                char.style.transform = 'translateX(-8px) rotate(-3deg)';
-                setEyes('peek'); setMouth('mouth-nervous');
-                if (typingInd) typingInd.classList.add('hidden');
-                if (statusText) statusText.textContent = 'Peeking... 👀';
+                vaultIcon.className = 'fa-solid fa-lock text-2xl text-indigo-300 transition-all duration-300 scale-110';
+                if (typingInd) typingInd.style.display = 'flex';
+                if (card) card.style.borderColor = 'rgba(99,102,241,0.6)';
 
             } else if (state === 'authenticating') {
-                stopIdleBreath();
-                char.style.transform = 'translateX(0)';
-                setEyes('nervous'); setMouth('mouth-nervous');
-                if (loadRing) loadRing.style.display = 'block';
-                if (typingInd) typingInd.classList.add('hidden');
-                if (authWrap) authWrap.classList.remove('hidden');
-                if (authBar) setTimeout(() => { authBar.style.width = '80%'; }, 100);
-                if (statusText) statusText.textContent = 'Authenticating...';
-                if (heading) heading.textContent = 'Verifying Identity...';
-                if (subtext) subtext.textContent = 'Checking your credentials...';
-                if (badge) badge.style.borderColor = 'rgba(245,158,11,0.5)';
-                let sc = 0;
-                const si = setInterval(() => {
-                    if (charState !== 'authenticating') { clearInterval(si); return; }
-                    sc++; char.style.transform = sc % 2 === 0 ? 'translateX(3px)' : 'translateX(-3px)';
-                }, 200);
+                vaultIcon.className = 'fa-solid fa-arrows-rotate animate-spin text-2xl text-purple-400 transition-all duration-300';
+                if (statusText) statusText.textContent = 'Verifying Credentials...';
+                if (heading) heading.textContent = 'Authenticating Key';
+                if (subtext) subtext.textContent = 'Running SHA-256 Web Crypto verification';
+                if (typingInd) typingInd.style.display = 'none';
+                if (authWrap) authWrap.style.display = 'block';
+                if (authBar) { authBar.style.width = '0%'; setTimeout(() => { authBar.style.width = '75%'; }, 50); }
 
             } else if (state === 'success') {
-                stopIdleBreath();
+                vaultIcon.className = 'fa-solid fa-lock-open text-2xl text-emerald-400 transition-all duration-300 scale-125';
+                if (statusText) statusText.textContent = 'Access Granted';
+                if (heading) heading.textContent = 'Identity Verified';
+                if (subtext) subtext.textContent = 'Opening Admin Control Center...';
                 if (authBar) authBar.style.width = '100%';
-                if (armsNorm) armsNorm.style.display = 'none';
-                if (armsRise) armsRise.style.display = 'block';
-                if (sparkles) sparkles.style.display = 'block';
-                setEyes('open'); setMouth('mouth-open');
-                if (bag) { bag.style.fontSize = '42px'; bag.style.transform = 'rotate(-20deg) scale(1.3)'; setTimeout(() => { if (bag) { bag.style.fontSize = '34px'; bag.style.transform = ''; } }, 600); }
-                if (badge) badge.style.borderColor = 'rgba(52,211,153,0.6)';
-                if (statusText) statusText.textContent = '✅ Access Granted!';
-                if (heading) heading.textContent = 'Welcome Back! 🎉';
-                if (subtext) subtext.textContent = 'Opening admin console...';
-                let b = 0;
-                const bi = setInterval(() => {
-                    if (b >= 6) { clearInterval(bi); return; }
-                    char.style.transform = b % 2 === 0 ? 'translateY(-20px) scale(1.08)' : 'translateY(0) scale(1)'; b++;
-                }, 160);
-                spawnSuccessParticles();
+                if (card) card.style.borderColor = 'rgba(52,211,153,0.6)';
 
             } else if (state === 'shake') {
-                stopIdleBreath();
-                setEyes('open'); setMouth('mouth-sad');
-                if (badge) badge.style.borderColor = 'rgba(239,68,68,0.5)';
-                if (statusText) statusText.textContent = '❌ Access Denied';
-                if (heading) heading.textContent = 'Wrong Password';
-                if (subtext) subtext.textContent = 'The security key you entered is incorrect.';
-                if (bag) { bag.style.transform = 'rotate(-25deg) scale(0.8)'; setTimeout(() => { if (bag) bag.style.transform = ''; }, 600); }
-                const shakeSeq = ['-14px','14px','-10px','10px','-5px','0'];
-                shakeSeq.forEach((x, i) => setTimeout(() => { char.style.transform = `translateX(${x})`; }, i * 75));
-                setTimeout(() => {
-                    if (heading) heading.textContent = 'Admin Security Console';
-                    if (subtext) subtext.textContent = 'Enter master password to unlock site management';
-                    if (statusText) statusText.textContent = 'Secure Access Portal';
-                    if (badge) badge.style.borderColor = 'rgba(99,102,241,0.3)';
-                    setCharState('idle');
-                }, 2200);
+                vaultIcon.className = 'fa-solid fa-triangle-exclamation text-2xl text-rose-400 transition-all duration-300';
+                if (card) {
+                    card.style.borderColor = 'rgba(239,68,68,0.6)';
+                    card.style.transform = 'translateX(-8px)';
+                    setTimeout(() => { card.style.transform = 'translateX(8px)'; }, 75);
+                    setTimeout(() => { card.style.transform = 'translateX(-5px)'; }, 150);
+                    setTimeout(() => { card.style.transform = 'translateX(5px)'; }, 225);
+                    setTimeout(() => { card.style.transform = 'translateX(0)'; }, 300);
+                }
+                setTimeout(() => { setCharState('idle'); }, 2000);
             }
         }
 
-        function onPasswordFocus() {
-            if (charState === 'idle' || charState === 'peek') {
-                setCharState('focus');
-                setTimeout(() => { if (charState === 'focus') setCharState('shy'); }, 600);
-            }
-        }
+        function onPasswordFocus() { setCharState('focus'); }
         function onPasswordBlur() {
             const pw = document.getElementById('admin-login-password');
-            if (pw && pw.value.length > 0) setCharState('peek');
-            else setCharState('idle');
+            if (!pw || !pw.value) setCharState('idle');
         }
-        function onPasswordInput() {
-            clearTimeout(charTypingTimeout);
-            if (charState !== 'shy') setCharState('shy');
-            charTypingTimeout = setTimeout(() => {
-                const pw = document.getElementById('admin-login-password');
-                if (pw && document.activeElement !== pw && pw.value.length > 0) setCharState('peek');
-            }, 2000);
-        }
+        function onPasswordInput() { setCharState('focus'); }
 
-        function spawnSuccessParticles() {
-            const modal = document.getElementById('admin-login-modal');
-            if (!modal) return;
-            const colors = ['#818cf8','#a78bfa','#34d399','#fbbf24','#f472b6','#60a5fa'];
-            for (let i = 0; i < 22; i++) {
-                const p = document.createElement('div');
-                p.style.cssText = `position:absolute;border-radius:50%;pointer-events:none;z-index:20;width:${4+Math.random()*7}px;height:${4+Math.random()*7}px;background:${colors[Math.floor(Math.random()*colors.length)]};left:${25+Math.random()*50}%;bottom:${15+Math.random()*20}%;animation:particleRise ${1.2+Math.random()*1.2}s ease-out forwards;animation-delay:${Math.random()*0.4}s;`;
-                modal.appendChild(p);
-                setTimeout(() => p.remove(), 2800);
-            }
-        }
-
-        // ────────────────────────────────────────────────────────────
-        //   GITHUB LIVE SYNC
-        // ────────────────────────────────────────────────────────────
-        function loadGithubConfig() {
-            try {
-                const cfg = JSON.parse(localStorage.getItem('saurabh_github_config') || '{}');
-                const ownerEl = document.getElementById('gh-owner');
-                const repoEl  = document.getElementById('gh-repo');
-                const patEl   = document.getElementById('gh-pat');
-                if (ownerEl && cfg.owner) ownerEl.value = cfg.owner;
-                if (repoEl  && cfg.repo)  repoEl.value  = cfg.repo;
-                if (patEl   && cfg.pat)   patEl.value   = cfg.pat;
-            } catch(e) {}
-        }
-
-        function saveGithubConfig() {
-            const owner = document.getElementById('gh-owner')?.value.trim();
-            const repo  = document.getElementById('gh-repo')?.value.trim();
-            const pat   = document.getElementById('gh-pat')?.value.trim();
-            if (!owner || !repo || !pat) { showToast("GitHub Config", "Please fill in all three fields.", false); return; }
-            localStorage.setItem('saurabh_github_config', JSON.stringify({ owner, repo, pat }));
-            showToast("✅ GitHub Config Saved!", "Admin saves will now push site_data.json to GitHub → Vercel auto-deploys your live site!", true);
-        }
-
-        async function pushToGithub(dataJson) {
-            try {
-                const cfg = JSON.parse(localStorage.getItem('saurabh_github_config') || '{}');
-                if (!cfg.owner || !cfg.repo || !cfg.pat) return false;
-                const apiUrl = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/site_data.json`;
-                let sha = '';
-                try {
-                    const getRes = await fetch(apiUrl, { headers: { 'Authorization': `Bearer ${cfg.pat}`, 'Accept': 'application/vnd.github+json' } });
-                    if (getRes.ok) { const fd = await getRes.json(); sha = fd.sha || ''; }
-                } catch(e) {}
-                const content = btoa(unescape(encodeURIComponent(JSON.stringify(dataJson, null, 2))));
-                const body = { message: `admin: update site_data.json [${new Date().toISOString()}]`, content, ...(sha ? { sha } : {}) };
-                const putRes = await fetch(apiUrl, { method: 'PUT', headers: { 'Authorization': `Bearer ${cfg.pat}`, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-                if (putRes.ok) {
-                    const ss = document.getElementById('github-sync-status');
-                    if (ss) { ss.style.display = 'flex'; setTimeout(() => { ss.style.display = 'none'; }, 6000); }
-                    return true;
-                } else {
-                    const err = await putRes.json();
-                    showToast("GitHub Push Failed", `${err.message || putRes.status} — Check your PAT token and repo name.`, false);
-                    return false;
-                }
-            } catch(e) { console.error('GitHub push error:', e); return false; }
-        }
-
-        async function fetchRemoteSiteData() {
-            try {
-                const res = await fetch('/site_data.json?t=' + Date.now());
-                if (res.ok) {
-                    const remote = await res.json();
-                    if (remote && typeof remote === 'object') {
-                        const local = JSON.parse(localStorage.getItem('saurabh_dev_admin_data') || 'null');
-                        if (!local) {
-                            SITE_DATA = Object.assign({}, DEFAULT_SITE_DATA, remote);
-                            SITE_DATA.policiesList = remote.policiesList || DEFAULT_SITE_DATA.policiesList;
-                            projects = SITE_DATA.projects || [];
-                            applySiteDataToDom();
-                        }
-                    }
-                }
-            } catch(e) { /* site_data.json not yet created — that's fine */ }
-        }
 
         // ----------------------------------------------------
         //            ADMIN AUTHENTICATION & NAV
