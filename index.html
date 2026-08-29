@@ -1213,29 +1213,9 @@
                 <!-- ── CHARACTER COLUMN WITH AVATAR SELECTOR ── -->
                 <div class="flex flex-col items-center flex-shrink-0 z-30">
                     
-                    <!-- AVATAR SELECTOR PILL BAR -->
-                    <div class="mb-3 px-3 py-1.5 rounded-full flex items-center gap-2" style="background: rgba(15,20,36,0.9); border: 1px solid rgba(99,102,241,0.3); backdrop-filter: blur(12px);">
-                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mr-1">Avatar:</span>
-                        <button type="button" onclick="selectCharacterAvatar('executive')" id="av-btn-executive" class="avatar-pill active-avatar px-2.5 py-1 rounded-full text-[11px] font-bold text-amber-300 flex items-center gap-1 cursor-pointer" title="Executive Suit (Visme Reel)">
-                            💼 Executive
-                        </button>
-                        <button type="button" onclick="selectCharacterAvatar('cyber')" id="av-btn-cyber" class="avatar-pill px-2.5 py-1 rounded-full text-[11px] font-bold text-indigo-300 flex items-center gap-1 cursor-pointer" title="Cyber Specialist">
-                            ⚡ Cyber
-                        </button>
-                        <button type="button" onclick="selectCharacterAvatar('founder')" id="av-btn-founder" class="avatar-pill px-2.5 py-1 rounded-full text-[11px] font-bold text-purple-300 flex items-center gap-1 cursor-pointer" title="Tech Founder">
-                            🚀 Founder
-                        </button>
-                        <button type="button" onclick="selectCharacterAvatar('suspenders')" id="av-btn-suspenders" class="avatar-pill px-2.5 py-1 rounded-full text-[11px] font-bold text-emerald-300 flex items-center gap-1 cursor-pointer" title="Man Wearing Suspenders">
-                            🤵 Suspenders
-                        </button>
-                    </div>
-
                     <!-- 3D SVG VECTOR CHARACTER (Full-Page Mouse Tracking) -->
                     <div id="reel-character" class="char-breathe relative flex-shrink-0 select-none cursor-pointer" style="width: 160px; height: 270px; margin-bottom: 0px; z-index: 30;">
-                        <!-- Suspenders Man Raster Graphic Overlay -->
-                        <div id="suspenders-man-container" style="display:none;" class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <img src="assets/avatar-pack/suspenders_man.png" class="w-full h-full object-contain filter drop-shadow-xl">
-                        </div>
+                        
                         
                         <!-- Anger Steam / Fire Overlays -->
                         <div id="char-anger-effects" class="absolute -top-10 inset-x-0 flex justify-center items-center gap-3 pointer-events-none" style="display:none;">
@@ -1252,8 +1232,8 @@
                         <svg id="char-svg-element" viewBox="0 0 160 270" xmlns="http://www.w3.org/2000/svg" width="160" height="270" style="overflow: visible;">
                             <defs>
                                 <linearGradient id="coatGrad" x1="0" y1="0" x2="1" y2="1">
-                                    <stop id="coat-stop1" offset="0%" stop-color="#b91c1c"/>
-                                    <stop id="coat-stop2" offset="100%" stop-color="#7f1d1d"/>
+                                    <stop id="coat-stop1" offset="0%" stop-color="#4f46e5"/>
+                                    <stop id="coat-stop2" offset="100%" stop-color="#312e81"/>
                                 </linearGradient>
                                 <linearGradient id="skinGrad" x1="0" y1="0" x2="0" y2="1">
                                     <stop offset="0%" stop-color="#fde68a"/>
@@ -1788,23 +1768,6 @@
                                     </button>
                                 </div>
                             </form>
-                        </div>
-
-                        <!-- GitHub Live Sync -->
-                        <div class="p-5 rounded-2xl space-y-4" style="background:rgba(52,211,153,0.06);border:1px solid rgba(52,211,153,0.2);">
-                            <div class="flex items-center justify-between">
-                                <h4 class="text-xs font-bold uppercase tracking-widest text-emerald-400 flex items-center gap-2"><i class="fa-brands fa-github"></i> Vercel Serverless GitHub Live Sync</h4>
-                                <div id="github-sync-status" class="flex items-center gap-1.5 text-[10px] font-bold text-emerald-400" style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.3);padding:4px 10px;border-radius:8px;"><i class="fa-solid fa-shield-halved"></i> Vercel Serverless Active</div>
-                            </div>
-                            <p class="text-[11px]" style="color:rgba(165,180,252,0.6);">Admin saves call the secure Vercel Serverless Endpoint (<code>/api/github-sync</code>) using your <code>GITHUB_PAT</code> environment variable. No tokens are exposed on the client side.</p>
-                            <div class="p-4 rounded-xl space-y-2 font-mono text-[11px]" style="background:rgba(0,0,0,0.3);border:1px solid rgba(52,211,153,0.2);color:#a7f3d0;">
-                                <div class="font-bold text-white flex items-center gap-2"><i class="fa-solid fa-gear text-emerald-400"></i> Setup Instructions (Vercel Environment Variables):</div>
-                                <ol class="list-decimal list-inside space-y-1 text-gray-300 text-[10px]">
-                                    <li>Go to <a href="https://vercel.com" target="_blank" class="text-emerald-400 underline">Vercel Dashboard</a> → your project → <b>Settings</b> → <b>Environment Variables</b>.</li>
-                                    <li>Add key: <code class="text-amber-300 font-bold">GITHUB_PAT</code> = your Personal Access Token from GitHub (repo scope).</li>
-                                    <li>(Optional) Add <code class="text-amber-300">GITHUB_OWNER</code> = <code class="text-white">SaurabhDave8</code> & <code class="text-amber-300">GITHUB_REPO</code> = <code class="text-white">saurabh.dev</code>.</li>
-                                </ol>
-                            </div>
                         </div>
 
                         <!-- Backup & Restore -->
@@ -3061,7 +3024,7 @@
         //    FULL-PAGE MOUSE TRACKING & AVATAR ENGINE
         // ----------------------------------------------------
         let failedAttemptsCount = 0;
-        let activeAvatarType = 'executive'; // executive | cyber | founder | suspenders
+        let activeAvatarType = 'cyber'; // executive | cyber | founder | suspenders
         let mouseX = window.innerWidth / 2;
         let mouseY = window.innerHeight / 2;
         let currentArmAngle = 0;
