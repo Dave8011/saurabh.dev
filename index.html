@@ -1225,10 +1225,17 @@
                         <button type="button" onclick="selectCharacterAvatar('founder')" id="av-btn-founder" class="avatar-pill px-2.5 py-1 rounded-full text-[11px] font-bold text-purple-300 flex items-center gap-1 cursor-pointer" title="Tech Founder">
                             🚀 Founder
                         </button>
+                        <button type="button" onclick="selectCharacterAvatar('suspenders')" id="av-btn-suspenders" class="avatar-pill px-2.5 py-1 rounded-full text-[11px] font-bold text-emerald-300 flex items-center gap-1 cursor-pointer" title="Man Wearing Suspenders">
+                            🤵 Suspenders
+                        </button>
                     </div>
 
                     <!-- 3D SVG VECTOR CHARACTER (Full-Page Mouse Tracking) -->
                     <div id="reel-character" class="char-breathe relative flex-shrink-0 select-none cursor-pointer" style="width: 160px; height: 270px; margin-bottom: 0px; z-index: 30;">
+                        <!-- Suspenders Man Raster Graphic Overlay -->
+                        <div id="suspenders-man-container" style="display:none;" class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                            <img src="assets/avatar-pack/suspenders_man.png" class="w-full h-full object-contain filter drop-shadow-xl">
+                        </div>
                         
                         <!-- Anger Steam / Fire Overlays -->
                         <div id="char-anger-effects" class="absolute -top-10 inset-x-0 flex justify-center items-center gap-3 pointer-events-none" style="display:none;">
@@ -3054,7 +3061,7 @@
         //    FULL-PAGE MOUSE TRACKING & AVATAR ENGINE
         // ----------------------------------------------------
         let failedAttemptsCount = 0;
-        let activeAvatarType = 'executive'; // executive | cyber | founder
+        let activeAvatarType = 'executive'; // executive | cyber | founder | suspenders
         let mouseX = window.innerWidth / 2;
         let mouseY = window.innerHeight / 2;
         let currentArmAngle = 0;
@@ -3117,12 +3124,23 @@
             const shirt = document.getElementById('av-shirt');
 
             // Reset buttons
-            ['executive', 'cyber', 'founder'].forEach(t => {
+            ['executive', 'cyber', 'founder', 'suspenders'].forEach(t => {
                 const btn = document.getElementById(`av-btn-${t}`);
                 if (btn) btn.classList.remove('active-avatar');
             });
             const activeBtn = document.getElementById(`av-btn-${type}`);
             if (activeBtn) activeBtn.classList.add('active-avatar');
+
+            const suspendersOverlay = document.getElementById('suspenders-man-container');
+            const svgElement = document.getElementById('char-svg-element');
+
+            if (type === 'suspenders') {
+                if (suspendersOverlay) suspendersOverlay.style.display = 'flex';
+                if (svgElement) svgElement.style.opacity = '0.15';
+            } else {
+                if (suspendersOverlay) suspendersOverlay.style.display = 'none';
+                if (svgElement) svgElement.style.opacity = '1';
+            }
 
             if (type === 'executive') {
                 // Red Trench Coat & Blonde Hair (Visme Reel Style)
