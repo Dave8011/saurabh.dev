@@ -1,1 +1,490 @@
-{}
+{
+  "adminPassword": "admin123",
+  "adminPasswordHash": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+  "heroBadgeText": "Independent Developer Console",
+  "heroTitleMain": "Building High-Performance.",
+  "heroTitleSub": "Digital Experiences",
+  "heroBio": "Hi, I'm Saurabh. I design and build secure, offline-first mobile applications, developer frameworks, cloud infrastructures, and automated systems. Verified developer committed to transparency, compliance, and user privacy.",
+  "heroStat1Val": "26",
+  "heroStat1Lbl": "Projects Developed",
+  "heroStat2Val": "Privacy Compliant",
+  "heroStat3Val": "Full Stack & PWA",
+  "heroBtn1Text": "View Projects Suite",
+  "heroBtn2Text": "Policy Center",
+  "heroJsonSnippet": "{\n  \"developer\": \"Saurabh\",\n  \"status\": \"Active Portfolio\",\n  \"core_focus\": [\n    \"PWA\", \"Offline Utilities\",\n    \"Scrapers\", \"React/Next.js\"\n  ],\n  \"play_console\": {\n    \"status\": \"Live on Play Store\",\n    \"app_id\": \"com.rehabhouse.trhgames\",\n    \"compliance\": true\n  },\n  \"active_projects\": 26,\n  \"contact\": {\n    \"email\": \"saurabhdave8@gmail.com\"\n  }\n}",
+  "projectsTitle": "Applications & Software Suite",
+  "projectsSubtitle": "A comprehensive catalogue of 26 active packages spanning Progressive Web Apps (PWAs), online and offline utilities, administrative systems, and backend automation modules.",
+  "contactEmail": "saurabhdave8@gmail.com",
+  "contactLocation": "Mumbai, Maharashtra, India",
+  "contactResponseTime": "Within 24 to 48 Hours",
+  "web3formsKey": "",
+  "formspreeId": "",
+  "githubUrl": "https://github.com/SaurabhDave8",
+  "linkedinUrl": "https://linkedin.com/in/saurabh-dave",
+  "playStoreUrl": "https://play.google.com/store/apps/developer?id=Saurabh+Dave",
+  "projects": [
+    {
+      "id": 1,
+      "name": "Rehab Play (Finger Tap)",
+      "folder": "finger-tap-game",
+      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/finger-tap-game",
+      "description": "A clinical motor-skill and cognitive rehabilitation web application designed for tap frequency tracking, speed monitoring, and motor recovery metrics.",
+      "tech": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "PWA",
+        "Service Worker"
+      ],
+      "logo": "assets/logos/rehab-play.png",
+      "category": "featured",
+      "isPwa": true,
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.rehabhouse.trhgames",
+      "policySlug": "rehab-play"
+    },
+    {
+      "id": 2,
+      "name": "ScribaX IDE",
+      "folder": "ScribaX",
+      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/ScribaX",
+      "description": "A premium mobile-friendly code editor and web IDE featuring syntax highlighting powered by the Monaco Editor engine and modern Next.js framework.",
+      "tech": [
+        "Next.js",
+        "React",
+        "Monaco Editor",
+        "Tailwind CSS"
+      ],
+      "logo": "assets/logos/scribax.png",
+      "category": "featured",
+      "isPwa": false,
+      "policySlug": "scribax"
+    },
+    {
+      "id": 3,
+      "name": "The Rehab House Portal",
+      "folder": "trh-recovery-feedback",
+      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/trh-recovery-feedback",
+      "description": "A patient feedback pipeline and clinical recovery tracking portal created for administration monitoring and patient experience analytics.",
+      "tech": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS"
+      ],
+      "logo": "assets/logos/trh-feedback.png",
+      "category": "featured",
+      "isPwa": false,
+      "policySlug": "rehab-house-portal"
+    },
+    {
+      "id": 4,
+      "name": "HCP DaveCloud",
+      "folder": "HCP_DaveCloud",
+      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/HCP_DaveCloud",
+      "description": "A secure, private self-hosted cloud repository and access management console featuring live docker-based container execution and monitoring.",
+      "tech": [
+        "React",
+        "FastAPI",
+        "Python",
+        "Docker",
+        "Tailwind CSS"
+      ],
+      "logo": "svg-cloud",
+      "category": "tools",
+      "isPwa": false,
+      "policySlug": "hcp-davecloud"
+    },
+    {
+      "id": 5,
+      "name": "Mr. B Mentalist Hub",
+      "folder": "mr.b-website",
+      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/mr.b-website",
+      "description": "A premium, modular brand portfolio and interactive client booking interface for India's premier mentalist and corporate mind trainer Bhupesh Dave.",
+      "tech": [
+        "HTML5",
+        "CSS3",
+        "Vanilla JS",
+        "Tailwind CSS"
+      ],
+      "logo": "svg-brain",
+      "category": "featured",
+      "isPwa": false,
+      "policySlug": "mrb-mentalist"
+    },
+    {
+      "id": 6,
+      "name": "The Rehab House Corporate",
+      "folder": "my-static-website",
+      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/my-static-website",
+      "description": "Corporate hub for a neuro-rehabilitation centre in South Mumbai, complete with static assets, custom maps, and clean administrative hooks.",
+      "tech": [
+        "HTML5",
+        "CSS3",
+        "JavaScript"
+      ],
+      "logo": "assets/logos/rehab-house.ico",
+      "category": "featured",
+      "isPwa": false,
+      "policySlug": "rehab-house-corporate"
+    },
+    {
+      "id": 7,
+      "name": "Shopify Price Updater",
+      "folder": "shopify-price-updater",
+      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/shopify-price-updater",
+      "description": "A robust dashboard created to automate catalog pricing audits and sync modified retail valuations in bulk on active Shopify listings.",
+      "tech": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS"
+      ],
+      "logo": "svg-price",
+      "category": "saas",
+      "isPwa": false,
+      "policySlug": "shopify-price-updater"
+    },
+    {
+      "id": 8,
+      "name": "Inventory Sync Svelte",
+      "folder": "inventory-updater-svelte",
+      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/inventory-updater-svelte",
+      "description": "A lightweight, real-time inventory management panel utilizing reactive components built on the Svelte framework and Vite tools.",
+      "tech": [
+        "Svelte",
+        "Vite",
+        "TypeScript",
+        "Tailwind CSS"
+      ],
+      "logo": "svg-sync",
+      "category": "saas",
+      "isPwa": false,
+      "policySlug": "inventory-sync-svelte"
+    },
+    {
+      "id": 9,
+      "name": "Yash Dave Corporate Site",
+      "folder": "yash-website",
+      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/yash-website",
+      "description": "A responsive portfolio showcase for mind trainer, speaker, and corporate consultant Yash Dave.",
+      "tech": [
+        "Vite",
+        "HTML5",
+        "CSS3",
+        "Tailwind CSS"
+      ],
+      "logo": "svg-trainer",
+      "category": "saas",
+      "isPwa": false,
+      "policySlug": "yash-dave-site"
+    },
+    {
+      "id": 10,
+      "name": "Attendance Tracker",
+      "folder": "monthly_performance",
+      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/monthly_performance",
+      "description": "An operational utility tool featuring automatic date detection, IN/OUT check-in punch loggers, and spreadsheet-ready CSV export.",
+      "tech": [
+        "HTML5",
+        "CSS3",
+        "JavaScript"
+      ],
+      "logo": "svg-calendar",
+      "category": "saas",
+      "isPwa": false,
+      "policySlug": "attendance-tracker"
+    },
+    {
+      "id": 11,
+      "name": "WhatsApp Sender Core",
+      "folder": "messenger-waitlist",
+      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/messenger-waitlist",
+      "description": "A messaging queue controller designed to schedule and queue client notifications and tracking lists in real-time.",
+      "tech": [
+        "React",
+        "Vite",
+        "Tailwind CSS"
+      ],
+      "logo": "svg-whatsapp",
+      "category": "saas",
+      "isPwa": false,
+      "policySlug": "whatsapp-sender-core"
+    },
+    {
+      "id": 12,
+      "name": "Amazon Review Miner",
+      "folder": "amazon-review-scrapping-main",
+      "liveUrl": "https://github.com/SaurabhDave8/amazon-review-scrapping-main",
+      "description": "A Python crawler that extracts customer reviews and filters feedback keywords for marketplace analysis.",
+      "tech": [
+        "Python",
+        "Web Scraping",
+        "Data Analysis"
+      ],
+      "logo": "svg-scraper",
+      "category": "tools",
+      "isPwa": false,
+      "policySlug": "amazon-review-miner"
+    },
+    {
+      "id": 13,
+      "name": "Amazon Competitor Tracker",
+      "folder": "amazon-comp-scrapping",
+      "liveUrl": "https://github.com/SaurabhDave8/amazon-comp-scrapping",
+      "description": "Automated crawler module engineered to extract retail values, tags, and product listings from competing stores.",
+      "tech": [
+        "Python",
+        "Selenium",
+        "Web Scraping"
+      ],
+      "logo": "svg-scraper",
+      "category": "tools",
+      "isPwa": false,
+      "policySlug": "amazon-competitor-tracker"
+    },
+    {
+      "id": 14,
+      "name": "JioMart Content Gatherer",
+      "folder": "jiomart_listing_details",
+      "liveUrl": "https://github.com/SaurabhDave8/jiomart_listing_details",
+      "description": "Automated scraper module constructed to extract category listings and detail information on JioMart products.",
+      "tech": [
+        "JavaScript",
+        "Web Scraping",
+        "API Hooks"
+      ],
+      "logo": "svg-scraper",
+      "category": "tools",
+      "isPwa": false,
+      "policySlug": "jiomart-content-gatherer"
+    },
+    {
+      "id": 15,
+      "name": "Jio Image Bulk Extractor",
+      "folder": "jio_img",
+      "liveUrl": "https://github.com/SaurabhDave8/jio_img",
+      "description": "A Python automation utility built to download, format, and compression-audit e-commerce asset imagery.",
+      "tech": [
+        "Python",
+        "Automation",
+        "Pillow"
+      ],
+      "logo": "svg-image",
+      "category": "tools",
+      "isPwa": false,
+      "policySlug": "jio-image-extractor"
+    },
+    {
+      "id": 16,
+      "name": "Stock Database Repo",
+      "folder": "stock_repo",
+      "liveUrl": "https://github.com/SaurabhDave8/stock_repo",
+      "description": "A lightweight administrative database script designed to audit raw material levels and warehouse tracking records.",
+      "tech": [
+        "JavaScript",
+        "Database Storage"
+      ],
+      "logo": "svg-database",
+      "category": "tools",
+      "isPwa": false,
+      "policySlug": "stock-database-repo"
+    },
+    {
+      "id": 17,
+      "name": "Stock Dispatch Router",
+      "folder": "stock_distribution",
+      "liveUrl": "https://github.com/SaurabhDave8/stock_distribution",
+      "description": "An optimization utility designed to track inventory counts and calculate dispatch loads between regional warehouses.",
+      "tech": [
+        "JavaScript",
+        "Distribution Logic"
+      ],
+      "logo": "svg-truck",
+      "category": "tools",
+      "isPwa": false,
+      "policySlug": "stock-dispatch-router"
+    },
+    {
+      "id": 18,
+      "name": "Image Spec Auditor",
+      "folder": "img_checker",
+      "liveUrl": "https://github.com/SaurabhDave8/img_checker",
+      "description": "A JavaScript utility that audits folder assets, validating dimension parameters, file size constraints, and compression margins.",
+      "tech": [
+        "JavaScript",
+        "Canvas API"
+      ],
+      "logo": "svg-image",
+      "category": "tools",
+      "isPwa": false,
+      "policySlug": "image-spec-auditor"
+    },
+    {
+      "id": 19,
+      "name": "Drive Asset Downloader",
+      "folder": "drive-images",
+      "liveUrl": "https://github.com/SaurabhDave8/drive-images",
+      "description": "A programmatic file scanner designed to query parent directories on Google Drive and download high-resolution media.",
+      "tech": [
+        "JavaScript",
+        "Google Drive API"
+      ],
+      "logo": "svg-drive",
+      "category": "tools",
+      "isPwa": false,
+      "policySlug": "drive-asset-downloader"
+    },
+    {
+      "id": 20,
+      "name": "Codex Next Sandbox",
+      "folder": "codex-next",
+      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/codex-next",
+      "description": "A component laboratory created to model modular designs, layouts, and interactive dashboard systems using Next.js core assets.",
+      "tech": [
+        "Next.js",
+        "React",
+        "Tailwind CSS"
+      ],
+      "logo": "svg-code",
+      "category": "tools",
+      "isPwa": false,
+      "policySlug": "codex-next-sandbox"
+    },
+    {
+      "id": 21,
+      "name": "ISO → Bootable USB Creator",
+      "folder": "bootable-maker",
+      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/bootable-maker",
+      "description": "An interactive web & CLI utility for writing ISO images safely to removable USB storage drives with partition auto-unmounting, validation, and progress tracking.",
+      "tech": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "Bash",
+        "Vercel"
+      ],
+      "logo": "svg-usb",
+      "category": "tools",
+      "isPwa": false,
+      "policySlug": "iso-bootable-usb-creator"
+    },
+    {
+      "id": 22,
+      "name": "Direct Wholesale Price Generator",
+      "folder": "direct-price",
+      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/direct-price",
+      "description": "An automated wholesale catalog and PDF pricelist generator powered by Node.js and Puppeteer to render CSV product feeds into print-ready PDF documents.",
+      "tech": [
+        "Node.js",
+        "Puppeteer",
+        "JavaScript",
+        "CSV",
+        "PDF"
+      ],
+      "logo": "svg-pdf",
+      "category": "saas",
+      "isPwa": false,
+      "policySlug": "direct-wholesale-price-generator"
+    },
+    {
+      "id": 23,
+      "name": "WebP Image Batch Converter",
+      "folder": "img-conv",
+      "liveUrl": "https://github.com/SaurabhDave8/img-conv",
+      "description": "An automated Python image downloading and conversion utility designed to optimize e-commerce catalog imagery into high-compression WebP format.",
+      "tech": [
+        "Python",
+        "Pillow",
+        "Image Processing",
+        "Automation"
+      ],
+      "logo": "svg-image",
+      "category": "tools",
+      "isPwa": false,
+      "policySlug": "webp-image-batch-converter"
+    },
+    {
+      "id": 24,
+      "name": "Google Sheets Combo Builder",
+      "folder": "COMBUILDER",
+      "liveUrl": "https://github.com/SaurabhDave8/COMBUILDER",
+      "description": "A Google Apps Script automation engine for building master/child SKU bundles, unit ratios, and dynamic combo listings for e-commerce OMS.",
+      "tech": [
+        "Google Apps Script",
+        "JavaScript",
+        "Google Sheets",
+        "OMS"
+      ],
+      "logo": "svg-sheets",
+      "category": "tools",
+      "isPwa": false,
+      "policySlug": "google-sheets-combo-builder"
+    },
+    {
+      "id": 25,
+      "name": "Google Drive SKU Asset Sync",
+      "folder": "IS0 DRIVE IMG",
+      "liveUrl": "https://github.com/SaurabhDave8/IS0-DRIVE-IMG",
+      "description": "A Python and Google Apps Script bridge designed to scan parent Google Drive folders and link high-resolution asset images to e-commerce SKU feeds.",
+      "tech": [
+        "Python",
+        "Google Apps Script",
+        "Node.js",
+        "Google Drive API"
+      ],
+      "logo": "svg-drive",
+      "category": "tools",
+      "isPwa": false,
+      "policySlug": "google-drive-sku-asset-sync"
+    },
+    {
+      "id": 26,
+      "name": "Timed Cards Opening Framework",
+      "folder": "timed-cards-opening",
+      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/timed-cards-opening",
+      "description": "An interactive card reveal animation and UI transition component framework built with GSAP, Vite, and modern CSS physics.",
+      "tech": [
+        "JavaScript",
+        "GSAP",
+        "CSS3",
+        "Vite"
+      ],
+      "logo": "svg-cards",
+      "category": "tools",
+      "isPwa": false,
+      "policySlug": "timed-cards-opening-framework"
+    }
+  ],
+  "policiesList": [
+    {
+      "id": "general",
+      "title": "General Privacy Policy",
+      "slug": "general",
+      "content": "<h2>General Privacy Policy</h2><p>This privacy policy governs your use of software applications and portfolio services created by Saurabh Dave. We prioritize user data protection, minimal data collection, and complete compliance with global privacy standards.</p>"
+    },
+    {
+      "id": "rehab-play",
+      "title": "Rehab Play (Finger Tap)",
+      "slug": "rehab-play",
+      "content": "<h2>Rehab Play (Finger Tap) Privacy Policy</h2><p>Rehab Play is an offline-first rehabilitation app designed for motor skill tracking. Zero personal health info (PHI) is transmitted or stored on external servers.</p>"
+    },
+    {
+      "id": "scribax",
+      "title": "ScribaX IDE",
+      "slug": "scribax",
+      "content": "<h2>ScribaX IDE Privacy Policy</h2><p>ScribaX processes code locally within browser memory. Code snippets and workspace files never leave your device unless explicitly exported by you.</p>"
+    },
+    {
+      "id": "terms",
+      "title": "Terms of Service",
+      "slug": "terms",
+      "content": "<h2>Terms of Service</h2><p>By accessing software applications provided by Saurabh Dave, you agree to comply with standard software licensing, fair usage policies, and non-reverse engineering terms.</p>"
+    },
+    {
+      "id": "deletion",
+      "title": "Data Deletion Procedure",
+      "slug": "deletion",
+      "content": "<h2>Data Deletion & Erasure Request</h2><p>To request permanent data erasure for any app or support inquiry, fill out the erasure form or email saurabhdave8@gmail.com. Data will be purged within 48 hours.</p>"
+    }
+  ]
+}
