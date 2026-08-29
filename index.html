@@ -2944,28 +2944,31 @@
                 if (typeof populateCopyAndLinksForm === 'function') populateCopyAndLinksForm();
                 if (typeof updateOverviewCounters === 'function') updateOverviewCounters();
 
-                if (showToastMsg) showToast("✅ Changes Saved!", customMsg, true);
+                if (showToastMsg) showToast("⏳ Syncing...", "Pushing changes to live site...", true);
 
-                // Call Vercel Serverless Function (/api/saveConfig or /api/github-sync)
-                const endpoints = ['/api/saveConfig', '/api/github-sync'];
-                for (const url of endpoints) {
-                    try {
-                        const apiRes = await fetch(url, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ configData: SITE_DATA, data: SITE_DATA })
-                        });
-                        if (apiRes.ok) {
-                            const resData = await apiRes.json();
-                            if (resData.success) break;
-                        }
-                    } catch(err) {
-                        // local / static fallback
+                try {
+                    const res = await fetch('/api/saveConfig', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ configData: SITE_DATA, sha: window.currentConfigSha || null })
+                    });
+
+                    const data = await res.json();
+                    if (res.ok && data.success) {
+                        if (data.newSha) window.currentConfigSha = data.newSha;
+                        if (showToastMsg) showToast("✅ Live Site Updated!", customMsg || "Pushed to GitHub → Vercel auto-deploys live in ~15-30s!", true);
+                    } else {
+                        const errMsg = data.error || "Could not push to live site.";
+                        console.error("Vercel saveConfig Error:", errMsg);
+                        if (showToastMsg) showToast("⚠️ Saved Locally", `Local update saved. Notice: ${errMsg}`, false);
                     }
+                } catch(err) {
+                    console.error("Local/Static fallback mode:", err);
+                    if (showToastMsg) showToast("💾 Saved Locally", customMsg || "Changes saved in local browser storage.", true);
                 }
             } catch(e) {
                 console.error("Save failed:", e);
-                showToast("Save Failed", "Could not write changes.", false);
+                showToast("Save Failed", "Could not save changes.", false);
             }
         }
 

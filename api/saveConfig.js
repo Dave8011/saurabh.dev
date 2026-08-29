@@ -1,12 +1,7 @@
-// Vercel Serverless Endpoint: /api/saveConfig (mr.b-website pattern)
-// Securely commits site_data.json to GitHub using Vercel Environment Variables:
-// GITHUB_PAT (or GITHUB_TOKEN or ADMIN_GITHUB_PAT or GH_PAT)
-// GITHUB_OWNER (default: SaurabhDave8)
-// GITHUB_REPO (default: saurabh.dev)
+// Vercel Serverless Endpoint: /api/saveConfig (Exact mr.b-website pattern)
+// Commits site_data.json to GitHub using process.env.GITHUB_TOKEN / GITHUB_PAT
 
-const https = require('https');
-
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
     // Enable CORS
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -17,7 +12,7 @@ module.exports = async (req, res) => {
     }
 
     if (req.method !== 'POST') {
-        return res.status(405).json({ success: false, error: 'Method Not Allowed' });
+        return res.status(405).json({ error: 'Method Not Allowed' });
     }
 
     try {
@@ -28,101 +23,71 @@ module.exports = async (req, res) => {
 
         const configData = body ? (body.configData || body.data) : null;
         if (!configData || typeof configData !== 'object') {
-            return res.status(400).json({ success: false, error: 'Missing config data payload.' });
+            return res.status(400).json({ error: 'Missing config data payload.' });
         }
 
-        // Read environment variables (supports GITHUB_PAT, GITHUB_TOKEN, etc.)
-        const pat = (process.env.GITHUB_PAT || process.env.GITHUB_TOKEN || process.env.ADMIN_GITHUB_PAT || process.env.GH_PAT || process.env.TOKEN || '').trim();
         const owner = (process.env.GITHUB_OWNER || 'SaurabhDave8').trim();
         const repo = (process.env.GITHUB_REPO || 'saurabh.dev').trim();
+        const githubToken = (process.env.GITHUB_TOKEN || process.env.GITHUB_PAT || process.env.ADMIN_GITHUB_PAT || process.env.GH_PAT || process.env.TOKEN || '').trim();
+        const path = 'site_data.json';
 
-        if (!pat) {
+        if (!githubToken) {
             return res.status(500).json({
-                success: false,
-                error: 'Server Configuration Error: GITHUB_PAT or GITHUB_TOKEN environment variable is missing in Vercel.'
+                error: 'Server Configuration Error: Missing GITHUB_TOKEN or GITHUB_PAT environment variable in Vercel settings.'
             });
         }
 
-        const filePath = 'site_data.json';
-        const fileContentBase64 = Buffer.from(JSON.stringify(configData, null, 2), 'utf-8').toString('base64');
-
-        // Helper function for GitHub HTTPS API calls
-        function githubApiRequest(method, path, dataPayload = null, authPrefix = 'token') {
-            return new Promise((resolve, reject) => {
-                const options = {
-                    hostname: 'api.github.com',
-                    path: path,
-                    method: method,
-                    headers: {
-                        'User-Agent': 'Vercel-Serverless-Function',
-                        'Authorization': `${authPrefix} ${pat}`,
-                        'Accept': 'application/vnd.github.v3+json',
-                        'Content-Type': 'application/json'
-                    }
-                };
-
-                const request = https.request(options, (response) => {
-                    let resData = '';
-                    response.on('data', chunk => resData += chunk);
-                    response.on('end', () => {
-                        try {
-                            const parsed = JSON.parse(resData);
-                            resolve({ status: response.statusCode, data: parsed });
-                        } catch (e) {
-                            resolve({ status: response.statusCode, data: resData });
-                        }
-                    });
-                });
-
-                request.on('error', err => reject(err));
-                if (dataPayload) {
-                    request.write(JSON.stringify(dataPayload));
-                }
-                request.end();
-            });
-        }
-
-        // 1. Fetch current file SHA if exists
+        // Fetch current file SHA if exists
         let sha = body.sha || null;
         if (!sha) {
             try {
-                let getRes = await githubApiRequest('GET', `/repos/${owner}/${repo}/contents/${filePath}`, null, 'token');
-                if (getRes.status !== 200) {
-                    getRes = await githubApiRequest('GET', `/repos/${owner}/${repo}/contents/${filePath}`, null, 'Bearer');
-                }
-                if (getRes.status === 200 && getRes.data && getRes.data.sha) {
-                    sha = getRes.data.sha;
+                const getRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `token ${githubToken}`,
+                        'User-Agent': 'Vercel-Admin-Panel',
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+                if (getRes.ok) {
+                    const fileData = await getRes.json();
+                    sha = fileData.sha || null;
                 }
             } catch (e) {}
         }
 
-        // 2. Commit updated site_data.json to GitHub
-        const commitBody = {
+        // Base64 encode the content
+        const content = Buffer.from(JSON.stringify(configData, null, 2), 'utf-8').toString('base64');
+
+        const payload = {
             message: `admin: update site_data.json via Admin Panel [${new Date().toISOString()}]`,
-            content: fileContentBase64,
-            ...(sha ? { sha } : {})
+            content: content
         };
 
-        let putRes = await githubApiRequest('PUT', `/repos/${owner}/${repo}/contents/${filePath}`, commitBody, 'token');
-        if (putRes.status !== 200 && putRes.status !== 201) {
-            putRes = await githubApiRequest('PUT', `/repos/${owner}/${repo}/contents/${filePath}`, commitBody, 'Bearer');
+        if (sha) {
+            payload.sha = sha;
         }
 
-        if (putRes.status === 200 || putRes.status === 201) {
-            return res.status(200).json({
-                success: true,
-                message: 'Successfully updated site_data.json on GitHub.',
-                newSha: putRes.data.content ? putRes.data.content.sha : null
-            });
-        } else {
-            return res.status(putRes.status || 500).json({
-                success: false,
-                error: putRes.data ? (putRes.data.message || putRes.data) : 'GitHub API Error'
-            });
+        const githubRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `token ${githubToken}`,
+                'User-Agent': 'Vercel-Admin-Panel',
+                'Content-Type': 'application/json',
+                'Accept': 'application/vnd.github.v3+json'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        if (!githubRes.ok) {
+            const err = await githubRes.json();
+            throw new Error(err.message || 'GitHub API Error');
         }
 
-    } catch (err) {
-        console.error('Vercel saveConfig sync error:', err);
-        return res.status(500).json({ success: false, error: err.message || 'Internal Server Error' });
+        const data = await githubRes.json();
+        return res.status(200).json({ success: true, newSha: data.content ? data.content.sha : null });
+    } catch (e) {
+        console.error('Vercel saveConfig error:', e);
+        return res.status(500).json({ error: e.message || 'Internal Server Error' });
     }
-};
+}
