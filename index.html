@@ -1742,31 +1742,18 @@
                         <!-- GitHub Live Sync -->
                         <div class="p-5 rounded-2xl space-y-4" style="background:rgba(52,211,153,0.06);border:1px solid rgba(52,211,153,0.2);">
                             <div class="flex items-center justify-between">
-                                <h4 class="text-xs font-bold uppercase tracking-widest text-emerald-400 flex items-center gap-2"><i class="fa-brands fa-github"></i> GitHub Live Sync</h4>
-                                <div id="github-sync-status" class="hidden items-center gap-1.5 text-[10px] font-bold text-emerald-400" style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);padding:4px 10px;border-radius:8px;"><i class="fa-solid fa-circle-check"></i> Pushed to GitHub!</div>
+                                <h4 class="text-xs font-bold uppercase tracking-widest text-emerald-400 flex items-center gap-2"><i class="fa-brands fa-github"></i> Vercel Serverless GitHub Live Sync</h4>
+                                <div id="github-sync-status" class="flex items-center gap-1.5 text-[10px] font-bold text-emerald-400" style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.3);padding:4px 10px;border-radius:8px;"><i class="fa-solid fa-shield-halved"></i> Vercel Serverless Active</div>
                             </div>
-                            <p class="text-[11px]" style="color:rgba(165,180,252,0.5);">Add your GitHub PAT to automatically push admin changes to your repo. Vercel will auto-deploy to your live site in 15–30 seconds after every save.</p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                <div>
-                                    <label class="block text-[10px] font-bold uppercase text-gray-500 mb-1">GitHub Repo Owner</label>
-                                    <input type="text" id="gh-owner" placeholder="e.g. SaurabhDave8" class="w-full px-3.5 py-2.5 rounded-xl text-xs text-white focus:outline-none font-mono" style="background:rgba(255,255,255,0.04);border:1px solid rgba(52,211,153,0.2);" onfocus="this.style.borderColor='rgba(52,211,153,0.6)'" onblur="this.style.borderColor='rgba(52,211,153,0.2)'">
-                                </div>
-                                <div>
-                                    <label class="block text-[10px] font-bold uppercase text-gray-500 mb-1">GitHub Repo Name</label>
-                                    <input type="text" id="gh-repo" placeholder="e.g. saurabh.dev" class="w-full px-3.5 py-2.5 rounded-xl text-xs text-white focus:outline-none font-mono" style="background:rgba(255,255,255,0.04);border:1px solid rgba(52,211,153,0.2);" onfocus="this.style.borderColor='rgba(52,211,153,0.6)'" onblur="this.style.borderColor='rgba(52,211,153,0.2)'">
-                                </div>
-                                <div class="md:col-span-2">
-                                    <label class="block text-[10px] font-bold uppercase text-gray-500 mb-1">Personal Access Token (PAT) — stored in your browser only, never sent anywhere except GitHub API</label>
-                                    <div class="relative">
-                                        <input type="password" id="gh-pat" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" class="w-full px-3.5 py-2.5 rounded-xl text-xs text-white focus:outline-none font-mono pr-10" style="background:rgba(255,255,255,0.04);border:1px solid rgba(52,211,153,0.2);" onfocus="this.style.borderColor='rgba(52,211,153,0.6)'" onblur="this.style.borderColor='rgba(52,211,153,0.2)'">
-                                        <button type="button" onclick="togglePasswordVisibility('gh-pat',this)" class="absolute right-3 top-2.5 text-gray-500 hover:text-white cursor-pointer"><i class="fa-solid fa-eye text-xs"></i></button>
-                                    </div>
-                                    <p class="text-[10px] mt-1" style="color:rgba(165,180,252,0.3);">Create at: github.com → Settings → Developer settings → Personal access tokens → Tokens (classic) → required scope: <code>repo</code></p>
-                                </div>
+                            <p class="text-[11px]" style="color:rgba(165,180,252,0.6);">Admin saves call the secure Vercel Serverless Endpoint (<code>/api/github-sync</code>) using your <code>GITHUB_PAT</code> environment variable. No tokens are exposed on the client side.</p>
+                            <div class="p-4 rounded-xl space-y-2 font-mono text-[11px]" style="background:rgba(0,0,0,0.3);border:1px solid rgba(52,211,153,0.2);color:#a7f3d0;">
+                                <div class="font-bold text-white flex items-center gap-2"><i class="fa-solid fa-gear text-emerald-400"></i> Setup Instructions (Vercel Environment Variables):</div>
+                                <ol class="list-decimal list-inside space-y-1 text-gray-300 text-[10px]">
+                                    <li>Go to <a href="https://vercel.com" target="_blank" class="text-emerald-400 underline">Vercel Dashboard</a> → your project → <b>Settings</b> → <b>Environment Variables</b>.</li>
+                                    <li>Add key: <code class="text-amber-300 font-bold">GITHUB_PAT</code> = your Personal Access Token from GitHub (repo scope).</li>
+                                    <li>(Optional) Add <code class="text-amber-300">GITHUB_OWNER</code> = <code class="text-white">SaurabhDave8</code> & <code class="text-amber-300">GITHUB_REPO</code> = <code class="text-white">saurabh.dev</code>.</li>
+                                </ol>
                             </div>
-                            <button onclick="saveGithubConfig()" class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white cursor-pointer" style="background:linear-gradient(135deg,#059669,#10b981);">
-                                <i class="fa-solid fa-floppy-disk"></i> Save GitHub Config
-                            </button>
                         </div>
 
                         <!-- Backup & Restore -->
