@@ -136,7 +136,7 @@
       "id": 7,
       "name": "Shopify Price Updater",
       "folder": "shopify-price-updater",
-      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/shopify-price-updater",
+      "liveUrl": "",
       "description": "A robust dashboard created to automate catalog pricing audits and sync modified retail valuations in bulk on active Shopify listings.",
       "tech": [
         "Next.js",
@@ -147,6 +147,7 @@
       "logo": "svg-price",
       "category": "saas",
       "isPwa": false,
+      "playStoreUrl": "",
       "policySlug": "shopify-price-updater"
     },
     {
