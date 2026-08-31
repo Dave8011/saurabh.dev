@@ -137,10 +137,9 @@
       "name": "Shopify Price Updater",
       "folder": "shopify-price-updater",
       "liveUrl": "",
-      "appsScriptUrl": "",
-      "description": "A robust Google Apps Script automation engine and dashboard created to automate catalog pricing audits and sync modified retail valuations in bulk on active Shopify listings.",
+      "appsScriptUrl": "https://script.google.com/u/0/home/projects/1cIcxy5zS6FeMMkUvq46L9EU4cXH-LDGhMDrZVqF2HB2rXuJZnyX-eZ-n/edit",
+      "description": "A robust dashboard created to automate catalog pricing audits and sync modified retail valuations in bulk on active Shopify listings.",
       "tech": [
-        "Google Apps Script",
         "Next.js",
         "React",
         "TypeScript",
@@ -403,7 +402,7 @@
     {
       "id": 23,
       "name": "WebP Image Batch Converter",
-      "folder": "batch-image-renamer",
+      "folder": "img-conv",
       "liveUrl": "https://batch-image-renamer-converter.vercel.app/",
       "description": "An automated Python image downloading and conversion utility designed to optimize e-commerce catalog imagery into high-compression WebP format.",
       "tech": [
