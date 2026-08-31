@@ -154,7 +154,7 @@
       "id": 8,
       "name": "Inventory Sync Svelte",
       "folder": "inventory-updater-svelte",
-      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/inventory-updater-svelte",
+      "liveUrl": "http://192.168.1.155:3000/",
       "description": "A lightweight, real-time inventory management panel utilizing reactive components built on the Svelte framework and Vite tools.",
       "tech": [
         "Svelte",
@@ -165,6 +165,7 @@
       "logo": "svg-sync",
       "category": "saas",
       "isPwa": false,
+      "playStoreUrl": "",
       "policySlug": "inventory-sync-svelte"
     },
     {
