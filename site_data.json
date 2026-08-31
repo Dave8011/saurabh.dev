@@ -119,7 +119,7 @@
       "id": 6,
       "name": "The Rehab House Corporate",
       "folder": "my-static-website",
-      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/my-static-website",
+      "liveUrl": "https://www.therehabhouse.in/",
       "description": "Corporate hub for a neuro-rehabilitation centre in South Mumbai, complete with static assets, custom maps, and clean administrative hooks.",
       "tech": [
         "HTML5",
@@ -129,6 +129,7 @@
       "logo": "assets/logos/rehab-house.ico",
       "category": "featured",
       "isPwa": false,
+      "playStoreUrl": "",
       "policySlug": "rehab-house-corporate"
     },
     {
