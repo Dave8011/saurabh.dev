@@ -347,7 +347,7 @@
       "id": 20,
       "name": "Codex Next Sandbox",
       "folder": "codex-next",
-      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/codex-next",
+      "liveUrl": "https://codex1-2.vercel.app/",
       "description": "A component laboratory created to model modular designs, layouts, and interactive dashboard systems using Next.js core assets.",
       "tech": [
         "Next.js",
@@ -357,6 +357,7 @@
       "logo": "svg-code",
       "category": "tools",
       "isPwa": false,
+      "playStoreUrl": "",
       "policySlug": "codex-next-sandbox"
     },
     {
