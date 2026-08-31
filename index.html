@@ -227,7 +227,7 @@
             font-weight: 600;
             border-radius: 10px;
             display: inline-flex;
-            items-center: center;
+            align-items: center;
             justify-content: center;
             gap: 6px;
             white-space: nowrap;
@@ -1616,6 +1616,8 @@
                                 class="px-4 py-2.5 rounded-xl text-xs text-gray-300 cursor-pointer focus:outline-none"
                                 style="background: rgba(255,255,255,0.04); border: 1px solid rgba(99,102,241,0.2);">
                                 <option value="all">All</option>
+                                <option value="visible">Visible Only</option>
+                                <option value="hidden">Hidden Only</option>
                                 <option value="featured">Featured</option>
                                 <option value="saas">SaaS</option>
                                 <option value="tools">Tools</option>
@@ -1889,9 +1891,15 @@
                     </div>
                 </div>
 
-                <div>
-                    <label class="block font-bold text-gray-600 dark:text-gray-400 mb-1">Live Demo / App URL (Optional)</label>
-                    <input type="url" id="crud-app-liveurl" placeholder="https://scribax.saurabh.dev or https://..." class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 font-mono">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div>
+                        <label class="block font-bold text-gray-600 dark:text-gray-400 mb-1">Live Demo / App URL (Optional)</label>
+                        <input type="url" id="crud-app-liveurl" placeholder="https://scribax.saurabh.dev or https://..." class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 font-mono">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-600 dark:text-gray-400 mb-1">Google Apps Script URL (Optional)</label>
+                        <input type="url" id="crud-app-appsscripturl" placeholder="https://script.google.com/..." class="w-full px-3.5 py-2.5 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 font-mono">
+                    </div>
                 </div>
 
                 <div>
@@ -1915,9 +1923,17 @@
                     </div>
                 </div>
 
-                <div class="flex items-center gap-2 pt-1">
-                    <input type="checkbox" id="crud-app-ispwa" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 h-4 w-4">
-                    <label for="crud-app-ispwa" class="font-semibold text-gray-700 dark:text-gray-300">Is Progressive Web App (PWA)</label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                    <div class="flex items-center gap-2">
+                        <input type="checkbox" id="crud-app-ispwa" class="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 h-4 w-4">
+                        <label for="crud-app-ispwa" class="font-semibold text-gray-700 dark:text-gray-300">Is Progressive Web App (PWA)</label>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input type="checkbox" id="crud-app-ishidden" class="rounded border-gray-300 text-amber-500 focus:ring-amber-500 h-4 w-4">
+                        <label for="crud-app-ishidden" class="font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-1.5">
+                            <i class="fa-solid fa-eye-slash text-amber-500"></i> Hide Project (Admin Only)
+                        </label>
+                    </div>
                 </div>
 
                 <div class="flex justify-end gap-3 pt-4 border-t border-gray-200 dark:border-gray-800">
@@ -3682,11 +3698,14 @@
             const categoryVal = document.getElementById('admin-project-filter')?.value || 'all';
 
             const filtered = SITE_DATA.projects.filter(p => {
-                if (categoryVal !== 'all' && p.category !== categoryVal) return false;
+                if (categoryVal === 'visible' && p.isHidden) return false;
+                if (categoryVal === 'hidden' && !p.isHidden) return false;
+                if (categoryVal !== 'all' && categoryVal !== 'visible' && categoryVal !== 'hidden' && p.category !== categoryVal) return false;
                 if (searchVal) {
                     return p.name.toLowerCase().includes(searchVal) ||
                            p.folder.toLowerCase().includes(searchVal) ||
                            (p.liveUrl && p.liveUrl.toLowerCase().includes(searchVal)) ||
+                           (p.appsScriptUrl && p.appsScriptUrl.toLowerCase().includes(searchVal)) ||
                            p.tech.some(t => t.toLowerCase().includes(searchVal));
                 }
                 return true;
@@ -3711,29 +3730,39 @@
                     iconDisplay = '<span class="text-xl">📦</span>';
                 }
 
-                const targetUrl = p.liveUrl || `https://github.com/SaurabhDave8/${p.folder}`;
+                const targetUrl = p.liveUrl || p.appsScriptUrl || `https://github.com/SaurabhDave8/${p.folder}`;
                 const techBadges = p.tech.slice(0, 3).map(t => `<span class="px-1.5 py-0.5 rounded text-[9px] font-mono" style="background:rgba(99,102,241,0.12);color:rgba(165,180,252,0.8)">${t}</span>`).join('');
                 const extraTech = p.tech.length > 3 ? `<span class="text-[9px] text-gray-500">+${p.tech.length - 3}</span>` : '';
 
                 const row = document.createElement('div');
                 row.className = 'flex items-center gap-3 p-3.5 rounded-2xl transition-all';
-                row.style.cssText = 'background: rgba(255,255,255,0.025); border: 1px solid rgba(99,102,241,0.1);';
-                row.onmouseenter = function(){ this.style.background = 'rgba(99,102,241,0.08)'; this.style.borderColor = 'rgba(99,102,241,0.25)'; };
-                row.onmouseleave = function(){ this.style.background = 'rgba(255,255,255,0.025)'; this.style.borderColor = 'rgba(99,102,241,0.1)'; };
+                row.style.cssText = p.isHidden 
+                    ? 'background: rgba(245,158,11,0.04); border: 1px solid rgba(245,158,11,0.25);'
+                    : 'background: rgba(255,255,255,0.025); border: 1px solid rgba(99,102,241,0.1);';
+                row.onmouseenter = function(){ this.style.background = p.isHidden ? 'rgba(245,158,11,0.08)' : 'rgba(99,102,241,0.08)'; };
+                row.onmouseleave = function(){ this.style.background = p.isHidden ? 'rgba(245,158,11,0.04)' : 'rgba(255,255,255,0.025)'; };
 
                 row.innerHTML = `
                     <div class="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(255,255,255,0.04);">${iconDisplay}</div>
                     <div class="flex-1 min-w-0">
-                        <div class="font-bold text-white text-xs truncate">${p.name}</div>
+                        <div class="font-bold text-white text-xs truncate flex items-center gap-1.5">
+                            ${p.name}
+                            ${p.isHidden ? '<span class="px-1.5 py-0.2 rounded text-[8px] font-bold uppercase" style="background:rgba(245,158,11,0.2);color:#fbbf24"><i class="fa-solid fa-eye-slash text-[8px]"></i> Hidden</span>' : ''}
+                        </div>
                         <a href="${targetUrl}" target="_blank" class="text-[10px] font-mono truncate block hover:underline" style="color:rgba(165,180,252,0.5);">${targetUrl.replace(/^https?:\/\//, '').substring(0,45)}${targetUrl.length > 50 ? '…' : ''}</a>
                     </div>
                     <span class="flex-shrink-0 px-2 py-0.5 rounded-lg text-[9px] font-bold uppercase hidden sm:block" style="background:rgba(99,102,241,0.15);color:#a5b4fc">${p.category}</span>
                     <div class="flex-shrink-0 hidden md:flex flex-wrap gap-1">${techBadges}${extraTech}</div>
                     <div class="flex-shrink-0 flex gap-1">
+                        ${p.appsScriptUrl ? '<a href="' + p.appsScriptUrl + '" target="_blank" class="text-[9px] font-bold px-1.5 py-0.5 rounded" style="background:rgba(245,158,11,0.15);color:#fbbf24" title="Google Apps Script Link"><i class="fa-solid fa-file-code"></i> Script</a>' : ''}
                         ${p.isPwa ? '<span class="text-[9px] font-bold px-1.5 py-0.5 rounded" style="background:rgba(168,85,247,0.15);color:#c084fc">PWA</span>' : ''}
                         ${p.playStoreUrl ? '<span class="text-[9px] font-bold px-1.5 py-0.5 rounded" style="background:rgba(52,211,153,0.15);color:#34d399">PS</span>' : ''}
                     </div>
                     <div class="flex-shrink-0 flex items-center gap-1.5">
+                        <button onclick="toggleHideProject(${p.id})" class="h-7 px-2 rounded-lg flex items-center gap-1 cursor-pointer transition-all ${p.isHidden ? 'text-amber-400 bg-amber-500/20' : 'text-gray-400 hover:text-white bg-white/5'}" title="${p.isHidden ? 'Click to Unhide project' : 'Click to Hide project'}">
+                            <i class="fa-solid ${p.isHidden ? 'fa-eye-slash' : 'fa-eye'} text-[10px]"></i>
+                            <span class="text-[10px] font-semibold hidden lg:inline">${p.isHidden ? 'Unhide' : 'Hide'}</span>
+                        </button>
                         <button onclick="moveProjectUp(${p.id})" class="w-7 h-7 rounded-lg flex items-center justify-center cursor-pointer text-gray-500 hover:text-white transition-all" style="background:rgba(255,255,255,0.04);" title="Up"><i class="fa-solid fa-arrow-up text-[10px]"></i></button>
                         <button onclick="moveProjectDown(${p.id})" class="w-7 h-7 rounded-lg flex items-center justify-center cursor-pointer text-gray-500 hover:text-white transition-all" style="background:rgba(255,255,255,0.04);" title="Down"><i class="fa-solid fa-arrow-down text-[10px]"></i></button>
                         <button onclick="openEditProjectModal(${p.id})" class="h-7 px-3 rounded-lg flex items-center gap-1 cursor-pointer text-indigo-400 text-[11px] font-bold transition-all" style="background:rgba(99,102,241,0.12);" onmouseenter="this.style.background='rgba(99,102,241,0.25)'" onmouseleave="this.style.background='rgba(99,102,241,0.12)'" title="Edit"><i class="fa-solid fa-pen text-[10px]"></i> Edit</button>
@@ -3744,6 +3773,15 @@
             });
         }
 
+        function toggleHideProject(id) {
+            const project = SITE_DATA.projects.find(p => p.id === id);
+            if (!project) return;
+            project.isHidden = !project.isHidden;
+            saveSiteData(true, project.isHidden ? `Hidden "${project.name}" from public portfolio.` : `Unhidden "${project.name}" in public portfolio.`);
+            renderAdminProjectsTable();
+            renderProjectsList();
+        }
+
         function openAddProjectModal() {
             document.getElementById('crud-modal-title').innerText = "Add New Application";
             document.getElementById('crud-app-id').value = '';
@@ -3751,6 +3789,8 @@
             document.getElementById('crud-app-folder').value = '';
             const liveUrlInput = document.getElementById('crud-app-liveurl');
             if (liveUrlInput) liveUrlInput.value = '';
+            const appsScriptInput = document.getElementById('crud-app-appsscripturl');
+            if (appsScriptInput) appsScriptInput.value = '';
             document.getElementById('crud-app-category').value = 'featured';
             document.getElementById('crud-app-logo').value = 'svg-code';
             document.getElementById('crud-app-desc').value = '';
@@ -3758,6 +3798,8 @@
             document.getElementById('crud-app-playstore').value = '';
             document.getElementById('crud-app-policyslug').value = '';
             document.getElementById('crud-app-ispwa').checked = false;
+            const hiddenCheckbox = document.getElementById('crud-app-ishidden');
+            if (hiddenCheckbox) hiddenCheckbox.checked = false;
 
             document.getElementById('app-crud-modal').classList.remove('hidden');
         }
@@ -3772,6 +3814,8 @@
             document.getElementById('crud-app-folder').value = project.folder;
             const liveUrlInput = document.getElementById('crud-app-liveurl');
             if (liveUrlInput) liveUrlInput.value = project.liveUrl || '';
+            const appsScriptInput = document.getElementById('crud-app-appsscripturl');
+            if (appsScriptInput) appsScriptInput.value = project.appsScriptUrl || '';
             document.getElementById('crud-app-category').value = project.category;
             
             const logoSelect = document.getElementById('crud-app-logo');
@@ -3789,6 +3833,8 @@
             document.getElementById('crud-app-playstore').value = project.playStoreUrl || '';
             document.getElementById('crud-app-policyslug').value = project.policySlug || '';
             document.getElementById('crud-app-ispwa').checked = !!project.isPwa;
+            const hiddenCheckbox = document.getElementById('crud-app-ishidden');
+            if (hiddenCheckbox) hiddenCheckbox.checked = !!project.isHidden;
 
             document.getElementById('app-crud-modal').classList.remove('hidden');
         }
@@ -3804,6 +3850,8 @@
             const folder = document.getElementById('crud-app-folder').value.trim();
             const liveUrlEl = document.getElementById('crud-app-liveurl');
             const liveUrl = liveUrlEl ? liveUrlEl.value.trim() : '';
+            const appsScriptEl = document.getElementById('crud-app-appsscripturl');
+            const appsScriptUrl = appsScriptEl ? appsScriptEl.value.trim() : '';
             const category = document.getElementById('crud-app-category').value;
             const logo = document.getElementById('crud-app-logo').value;
             const desc = document.getElementById('crud-app-desc').value.trim();
@@ -3811,6 +3859,8 @@
             const playStoreUrl = document.getElementById('crud-app-playstore').value.trim();
             const policySlug = document.getElementById('crud-app-policyslug').value.trim();
             const isPwa = document.getElementById('crud-app-ispwa').checked;
+            const isHiddenEl = document.getElementById('crud-app-ishidden');
+            const isHidden = isHiddenEl ? isHiddenEl.checked : false;
 
             const tech = techStr.split(',').map(t => t.trim()).filter(t => t.length > 0);
 
@@ -3819,20 +3869,21 @@
                 if (index !== -1) {
                     SITE_DATA.projects[index] = {
                         id: parseInt(idVal),
-                        name, folder, liveUrl, description: desc, tech, logo, category, isPwa, playStoreUrl, policySlug
+                        name, folder, liveUrl, appsScriptUrl, description: desc, tech, logo, category, isPwa, playStoreUrl, policySlug, isHidden
                     };
                 }
             } else {
                 const newId = SITE_DATA.projects.length > 0 ? Math.max(...SITE_DATA.projects.map(p => p.id)) + 1 : 1;
                 SITE_DATA.projects.unshift({
                     id: newId,
-                    name, folder, liveUrl, description: desc, tech, logo, category, isPwa, playStoreUrl, policySlug
+                    name, folder, liveUrl, appsScriptUrl, description: desc, tech, logo, category, isPwa, playStoreUrl, policySlug, isHidden
                 });
             }
 
             saveSiteData(true, "Application catalog updated.");
             closeAppCrudModal();
             renderAdminProjectsTable();
+            renderProjectsList();
         }
 
         function deleteProjectCard(id) {
@@ -4343,6 +4394,7 @@
             const currentProjects = SITE_DATA.projects || [];
 
             const filtered = currentProjects.filter(p => {
+                if (p.isHidden) return false;
                 if (activeCategoryTab !== 'all' && p.category !== activeCategoryTab) {
                     return false;
                 }
@@ -4351,7 +4403,7 @@
                     const matchDesc = p.description.toLowerCase().includes(query);
                     const matchTech = p.tech.some(t => t.toLowerCase().includes(query));
                     const matchFolder = p.folder.toLowerCase().includes(query);
-                    const matchUrl = p.liveUrl && p.liveUrl.toLowerCase().includes(query);
+                    const matchUrl = (p.liveUrl && p.liveUrl.toLowerCase().includes(query)) || (p.appsScriptUrl && p.appsScriptUrl.toLowerCase().includes(query));
                     return matchName || matchDesc || matchTech || matchFolder || matchUrl;
                 }
                 return true;
@@ -4388,8 +4440,14 @@
                     </a>
                 ` : '';
 
-                const targetUrl = p.liveUrl || `https://github.com/SaurabhDave8/${p.folder}`;
-                const displayUrlLabel = p.liveUrl ? p.liveUrl.replace(/^https?:\/\//, '') : `saurabh.dev/dev/${p.folder}`;
+                const appsScriptBtn = p.appsScriptUrl ? `
+                    <a href="${p.appsScriptUrl}" target="_blank" rel="noopener noreferrer" class="py-2.5 px-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white border border-amber-600 text-xs font-semibold transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm">
+                        <i class="fa-solid fa-file-code"></i> Apps Script
+                    </a>
+                ` : '';
+
+                const targetUrl = p.liveUrl || p.appsScriptUrl || `https://github.com/SaurabhDave8/${p.folder}`;
+                const displayUrlLabel = p.liveUrl ? p.liveUrl.replace(/^https?:\/\//, '') : (p.appsScriptUrl ? 'script.google.com' : `saurabh.dev/dev/${p.folder}`);
 
                 card.innerHTML = `
                     <div class="space-y-4">
@@ -4398,6 +4456,7 @@
                                 ${logoContent}
                             </div>
                             <div class="flex gap-2 items-center">
+                                ${p.appsScriptUrl ? '<span class="text-[9px] font-bold bg-amber-500/10 text-amber-600 dark:text-amber-400 px-2 py-0.5 rounded-full uppercase tracking-wider flex items-center gap-1"><i class="fa-solid fa-file-code"></i> Apps Script</span>' : ''}
                                 ${p.playStoreUrl ? '<span class="text-[9px] font-bold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 px-2 py-0.5 rounded-full uppercase tracking-wider flex items-center gap-1"><i class="fa-brands fa-google-play"></i> Live</span>' : ''}
                                 ${p.isPwa ? '<span class="text-[9px] font-bold bg-indigo-500/10 text-indigo-650 dark:text-indigo-400 px-2 py-0.5 rounded-full uppercase tracking-wider">PWA</span>' : ''}
                                 <span class="text-[9px] font-bold bg-gray-100 dark:bg-gray-950 text-gray-500 dark:text-gray-500 px-2 py-0.5 rounded-full uppercase tracking-wider">${p.category}</span>
@@ -4419,12 +4478,13 @@
                         <div class="flex flex-wrap gap-1.5 justify-start">
                             ${techTags}
                         </div>
-                        <div class="flex gap-2">
+                        <div class="flex flex-wrap gap-2">
                             ${playStoreBtn}
-                            <button onclick="copyPolicyLink('${p.name}', '${p.policySlug || ''}')" class="flex-1 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white border border-indigo-600 hover:border-indigo-700 text-xs font-semibold transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm dark:shadow-none">
+                            ${appsScriptBtn}
+                            <button onclick="copyPolicyLink('${p.name.replace(/'/g, "\\'")}', '${p.policySlug || ''}')" class="flex-1 min-w-[120px] py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white border border-indigo-600 hover:border-indigo-700 text-xs font-semibold transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm dark:shadow-none">
                                 <i class="fa-solid fa-share-nodes"></i> Share Policy
                             </button>
-                            <button onclick="openAppDetailsModal('${p.name}', '${p.folder}', '${p.description.replace(/'/g, "\\'")}', '${p.tech.join(', ')}', '${p.playStoreUrl || ''}', '${targetUrl}')" class="flex-1 py-2.5 rounded-xl bg-gray-50 hover:bg-gray-100 dark:bg-gray-950 dark:hover:bg-gray-900 border border-gray-200 dark:border-gray-850 hover:border-gray-300 dark:hover:border-gray-750 text-xs font-semibold text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm dark:shadow-none">
+                            <button onclick="openAppDetailsModal('${p.name.replace(/'/g, "\\'")}', '${p.folder}', '${p.description.replace(/'/g, "\\'")}', '${p.tech.join(', ')}', '${p.playStoreUrl || ''}', '${targetUrl}', '${(p.appsScriptUrl || '').replace(/'/g, "\\'")}')" class="flex-1 min-w-[100px] py-2.5 rounded-xl bg-gray-50 hover:bg-gray-100 dark:bg-gray-950 dark:hover:bg-gray-900 border border-gray-200 dark:border-gray-850 hover:border-gray-300 dark:hover:border-gray-750 text-xs font-semibold text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all flex items-center justify-center gap-1.5 cursor-pointer shadow-sm dark:shadow-none">
                                 <i class="fa-solid fa-circle-info"></i> View Info
                             </button>
                         </div>
@@ -4547,7 +4607,7 @@
             showPolicyTab('general');
         }
 
-        function openAppDetailsModal(name, folder, desc, tech, playStoreUrl = '', liveUrl = '') {
+        function openAppDetailsModal(name, folder, desc, tech, playStoreUrl = '', liveUrl = '', appsScriptUrl = '') {
             const modalId = 'app-details-modal';
             let modal = document.getElementById(modalId);
             if (!modal) {
@@ -4556,7 +4616,14 @@
                 modal.className = "fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 dark:bg-black/70 backdrop-blur-sm transition-all";
                 document.body.appendChild(modal);
             }
-            const targetUrl = liveUrl || `https://github.com/SaurabhDave8/${folder}`;
+            const targetUrl = liveUrl || appsScriptUrl || `https://github.com/SaurabhDave8/${folder}`;
+            const appsScriptBox = appsScriptUrl ? `
+                <div class="mt-2 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-between text-xs">
+                    <span class="text-amber-400 font-semibold"><i class="fa-solid fa-file-code mr-2"></i>Google Apps Script</span>
+                    <a href="${appsScriptUrl}" target="_blank" class="text-amber-400 font-bold hover:underline flex items-center gap-1">Open Apps Script <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></a>
+                </div>
+            ` : '';
+
             modal.innerHTML = `
                 <div class="relative w-full max-w-lg rounded-3xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-8 shadow-2xl space-y-6">
                     <button onclick="document.getElementById('${modalId}').remove()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors cursor-pointer">
@@ -4587,10 +4654,12 @@
                                 <span class="text-gray-500 dark:text-gray-400 font-semibold"><i class="fa-solid fa-globe text-indigo-500 mr-2"></i>Live Endpoint</span>
                                 <a href="${targetUrl}" target="_blank" class="text-indigo-600 dark:text-indigo-400 font-bold hover:underline flex items-center gap-1">Open Application <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></a>
                             </div>
+                            ${appsScriptBox}
                         </div>
                     </div>
 
                     <div class="pt-4 border-t border-gray-150 dark:border-gray-850 flex justify-end gap-3">
+                        ${appsScriptUrl ? `<a href="${appsScriptUrl}" target="_blank" class="px-5 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"><i class="fa-solid fa-file-code"></i> Google Apps Script</a>` : ''}
                         <a href="${targetUrl}" target="_blank" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Live App</a>
                         <button onclick="document.getElementById('${modalId}').remove()" class="px-5 py-2.5 rounded-xl bg-gray-50 hover:bg-gray-100 dark:bg-gray-950 dark:border-gray-800 dark:hover:bg-gray-850 border border-gray-200 dark:border-gray-800 text-xs font-semibold text-gray-650 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all cursor-pointer shadow-sm dark:shadow-none">
                             Close Specification
