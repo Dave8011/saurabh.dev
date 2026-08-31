@@ -101,7 +101,7 @@
       "id": 5,
       "name": "Mr. B Mentalist Hub",
       "folder": "mr.b-website",
-      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/mr.b-website",
+      "liveUrl": "https://www.bhupeshdave.com/",
       "description": "A premium, modular brand portfolio and interactive client booking interface for India's premier mentalist and corporate mind trainer Bhupesh Dave.",
       "tech": [
         "HTML5",
@@ -112,6 +112,7 @@
       "logo": "svg-brain",
       "category": "featured",
       "isPwa": false,
+      "playStoreUrl": "",
       "policySlug": "mrb-mentalist"
     },
     {
