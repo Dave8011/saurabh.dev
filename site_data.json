@@ -364,7 +364,7 @@
       "id": 21,
       "name": "ISO → Bootable USB Creator",
       "folder": "bootable-maker",
-      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/bootable-maker",
+      "liveUrl": "https://bootable-maker.vercel.app/",
       "description": "An interactive web & CLI utility for writing ISO images safely to removable USB storage drives with partition auto-unmounting, validation, and progress tracking.",
       "tech": [
         "HTML5",
@@ -376,6 +376,7 @@
       "logo": "svg-usb",
       "category": "tools",
       "isPwa": false,
+      "playStoreUrl": "",
       "policySlug": "iso-bootable-usb-creator"
     },
     {
