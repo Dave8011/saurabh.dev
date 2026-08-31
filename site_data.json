@@ -401,7 +401,7 @@
       "id": 23,
       "name": "WebP Image Batch Converter",
       "folder": "img-conv",
-      "liveUrl": "https://github.com/SaurabhDave8/img-conv",
+      "liveUrl": "https://batch-image-renamer-converter.vercel.app/",
       "description": "An automated Python image downloading and conversion utility designed to optimize e-commerce catalog imagery into high-compression WebP format.",
       "tech": [
         "Python",
@@ -412,6 +412,7 @@
       "logo": "svg-image",
       "category": "tools",
       "isPwa": false,
+      "playStoreUrl": "",
       "policySlug": "webp-image-batch-converter"
     },
     {
