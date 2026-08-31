@@ -82,7 +82,7 @@
       "id": 4,
       "name": "HCP DaveCloud",
       "folder": "HCP_DaveCloud",
-      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/HCP_DaveCloud",
+      "liveUrl": "https://github.com/Dave8011/HCP_DaveCloud",
       "description": "A secure, private self-hosted cloud repository and access management console featuring live docker-based container execution and monitoring.",
       "tech": [
         "React",
@@ -94,6 +94,7 @@
       "logo": "svg-cloud",
       "category": "tools",
       "isPwa": false,
+      "playStoreUrl": "",
       "policySlug": "hcp-davecloud"
     },
     {
