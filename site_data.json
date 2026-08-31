@@ -172,7 +172,7 @@
       "id": 9,
       "name": "Yash Dave Corporate Site",
       "folder": "yash-website",
-      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/yash-website",
+      "liveUrl": "https://stepzero-web.vercel.app/",
       "description": "A responsive portfolio showcase for mind trainer, speaker, and corporate consultant Yash Dave.",
       "tech": [
         "Vite",
@@ -183,6 +183,7 @@
       "logo": "svg-trainer",
       "category": "saas",
       "isPwa": false,
+      "playStoreUrl": "",
       "policySlug": "yash-dave-site"
     },
     {
