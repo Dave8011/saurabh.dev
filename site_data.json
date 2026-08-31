@@ -190,7 +190,7 @@
       "id": 10,
       "name": "Attendance Tracker",
       "folder": "monthly_performance",
-      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/monthly_performance",
+      "liveUrl": "https://monthly-performance-roan.vercel.app/",
       "description": "An operational utility tool featuring automatic date detection, IN/OUT check-in punch loggers, and spreadsheet-ready CSV export.",
       "tech": [
         "HTML5",
@@ -200,6 +200,7 @@
       "logo": "svg-calendar",
       "category": "saas",
       "isPwa": false,
+      "playStoreUrl": "",
       "policySlug": "attendance-tracker"
     },
     {
