@@ -5,7 +5,7 @@
   "heroTitleMain": "Building High-Performance",
   "heroTitleSub": "Digital Experiences",
   "heroBio": "Hi, I'm Saurabh. I design and build secure, offline-first mobile applications, developer frameworks, cloud infrastructures, and automated systems. Verified developer committed to transparency, compliance, and user privacy.",
-  "heroStat1Val": "27",
+  "heroStat1Val": "26",
   "heroStat1Lbl": "Projects Developed",
   "heroStat2Val": "Privacy Compliant",
   "heroStat3Val": "Full Stack & PWA",
@@ -27,7 +27,7 @@
       "id": 1,
       "name": "Rehab Play (Finger Tap)",
       "folder": "finger-tap-game",
-      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/finger-tap-game",
+      "liveUrl": "https://play.google.com/store/apps/details?id=com.rehabhouse.trhgames",
       "description": "A clinical motor-skill and cognitive rehabilitation web application designed for tap frequency tracking, speed monitoring, and motor recovery metrics.",
       "tech": [
         "HTML5",
