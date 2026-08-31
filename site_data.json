@@ -46,7 +46,7 @@
       "id": 2,
       "name": "ScribaX IDE",
       "folder": "ScribaX",
-      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/ScribaX",
+      "liveUrl": "https://scribax.vercel.app/",
       "description": "A premium mobile-friendly code editor and web IDE featuring syntax highlighting powered by the Monaco Editor engine and modern Next.js framework.",
       "tech": [
         "Next.js",
@@ -56,7 +56,8 @@
       ],
       "logo": "assets/logos/scribax.png",
       "category": "featured",
-      "isPwa": false,
+      "isPwa": true,
+      "playStoreUrl": "",
       "policySlug": "scribax"
     },
     {
