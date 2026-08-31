@@ -64,7 +64,7 @@
       "id": 3,
       "name": "The Rehab House Portal",
       "folder": "trh-recovery-feedback",
-      "liveUrl": "https://saurabh-dev-five.vercel.app/dev/trh-recovery-feedback",
+      "liveUrl": "https://trh-recovery-feedback.vercel.app/",
       "description": "A patient feedback pipeline and clinical recovery tracking portal created for administration monitoring and patient experience analytics.",
       "tech": [
         "Next.js",
@@ -75,6 +75,7 @@
       "logo": "assets/logos/trh-feedback.png",
       "category": "featured",
       "isPwa": false,
+      "playStoreUrl": "",
       "policySlug": "rehab-house-portal"
     },
     {
